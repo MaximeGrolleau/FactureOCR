@@ -1,0 +1,52 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+
+\section{Partie 1 : Analyse et Spécification des besoins}
+\subsection{Buts et destinataires}
+L'objectif de ce projet est de centraliser et informatiser les factures au sein d'une entreprise. Avec pour objectif d'accélérer les remboursements.
+
+\subsection{Définition-Abréviation}
+\begin{enumerate}
+ \item{OCR} (Optical Character Recognition) Reconnaissance active de caractères.
+\end{enumerate}
+
+\subsection{Présentation générale du document}
+Wololo
+
+\section{Partie 2 : Description Générale}
+\subsection{Environnement ou contexte du système}
+FactureOCRSimulatorManageWololo sera situé au sein du service comptabilité de l'entreprise.
+Il n'est en relation avec aucun autre système de l'entreprise étant donné que sa base de données est indépendante.
+
+IMAGE
+
+Un seul Acteur interagit avec le système : l'utilisateur. Le système communique avec une base de données intégrée. 
+
+\subsection{Modèle Conceptuel}
+
+Les principales fonctions du système sont le chargement, l'extraction et la modifications données présentes dans les factures et les tickets de caisses ainsi que les modifications
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
