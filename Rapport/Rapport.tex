@@ -1,5 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 %opening
 \title{}
@@ -16,11 +17,12 @@
 
 \section{Partie 1 : Analyse et Spécification des besoins}
 \subsection{Buts et destinataires}
-L'objectif de ce projet est de centraliser et informatiser les factures au sein d'une entreprise. Avec pour objectif d'accélérer les remboursements.
+L'objectif de ce projet est de centraliser et informatiser les factures au sein d'une entreprise.
+Avec pour objectif d'accélérer les remboursements.
 
 \subsection{Définition-Abréviation}
 \begin{enumerate}
- \item{OCR} (Optical Character Recognition) Reconnaissance active de caractères.
+\item{OCR} (Optical Character Recognition) Reconnaissance active de caractères.
 \end{enumerate}
 
 \subsection{Présentation générale du document}
@@ -31,12 +33,16 @@ L'objectif de ce projet est de centraliser et informatiser les factures au sein 
 FactureOCR sera situé au sein du service comptabilité de l'entreprise.
 Il n'est en relation avec aucun autre système de l'entreprise étant donné que sa base de données est indépendante.
 
-
 Un seul Acteur interagit avec le système : l'utilisateur. Le système communique avec une base de données intégrée. 
 
 \subsection{Modèle Conceptuel}
-
 Les principales fonctions du système sont le chargement, l'extraction et la modification des données présentes dans les factures et les tickets de caisses ainsi que l'enregistrement.
+
+\begin{figure}[!ht] %on ouvre l'environnement figure
+  \includegraphics[width=5cm]{SystemActor.png} %ou image.png, .jpeg etc.
+  \caption{testl} %la légende
+  \label{test} %l'étiquette pour faire référence à cette image
+\end{figure} %on ferme l'environnement figure
 
 
 \section{Les besoins en performance}
