@@ -28,14 +28,13 @@ public class AppFrame extends JFrame implements MenuListener {
 		DocumentPanel documentPanel = new DocumentPanel();
 
 		ExtractedDataPanel dataPanel = new ExtractedDataPanel();
-		dataPanel.addFileListener(documentPanel);
 		dataPanel.addDocumentListener(controller);
 
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 		
 		content.add(BorderLayout.NORTH, menuPanel);
-		splitPane.add(dataPanel);
 		splitPane.add(documentPanel);
+		splitPane.add(dataPanel);
 		content.add(BorderLayout.CENTER, splitPane);
 		
 		setVisible(true);
@@ -55,7 +54,6 @@ public class AppFrame extends JFrame implements MenuListener {
 		statFrame.setLocationRelativeTo(this);
 		statFrame.setPreferredSize(new Dimension(300, 300));
 		statFrame.setVisible(true);
-
 	}
 
 }
