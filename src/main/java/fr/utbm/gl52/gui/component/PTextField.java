@@ -10,6 +10,6 @@ public class PTextField extends JTextField{
 
 	public PTextField() {
 		super();
-		setPreferredSize(new Dimension(150, 20));
+		setPreferredSize(new Dimension(250, 20));
 	}
 }

@@ -11,6 +11,7 @@ public class PButton extends JButton {
 	public PButton(String text, ActionListener listener) {
 		super(text);
 		addActionListener(listener);
+
 	}
 
 }
