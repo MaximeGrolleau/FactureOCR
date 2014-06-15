@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package fr.utbm.gl52.facturemodel;
 
 import java.util.ArrayList;
@@ -31,3 +32,10 @@ public class Field {
 		this.values = values;
 	}
 }
+=======
+package fr.utbm.gl52.facturemodel;
+
+public class Field {
+
+}
+>>>>>>> 573c6ed774dfa4de591cce74a620bde42b186091
