@@ -19,7 +19,7 @@
     <property name="show_sql">true</property>
  
     <property name="format_sql">true</property>
-    <property name="hbm2ddl.auto">create</property>
+    <property name="hbm2ddl.auto">update</property>
  
     <!-- c3p0 config http://www.hibernate.org/214.html -->
     <!--<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>        

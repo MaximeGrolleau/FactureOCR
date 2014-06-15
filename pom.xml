@@ -1,25 +1,59 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>factureOCR</groupId>
+	<groupId>fr.utbm.gl52.factureOCR</groupId>
 	<artifactId>factureOCR</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+	<name>Facture OCR</name>
+	<inceptionYear>2014</inceptionYear>
+	<description>A facture image information extractor</description>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+
 	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source />
-					<target />
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
+	<repositories>
+		<repository>
+			<id>org.ghost4j.repository.releases</id>
+			<name>Ghost4J releases</name>
+			<url>http://repo.ghost4j.org/maven2/releases</url>
+		</repository>
+		<repository>
+			<id>org.ghost4j.repository.snapshots</id>
+			<name>Ghost4J snapshots</name>
+			<url>http://repo.ghost4j.org/maven2/snapshots</url>
+		</repository>
+		<repository>
+			<releases />
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>mygrid-repository</id>
+			<name>myGrid Repository</name>
+			<url>http://build.mygrid.org.uk/maven/repository</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
+		<!-- <dependency> <groupId>net.sourceforge</groupId> <artifactId>tess4j</artifactId> 
+			<version>3.0.2</version> </dependency> -->
 		<dependency>
 			<groupId>org.torpedoquery</groupId>
 			<artifactId>org.torpedoquery</artifactId>
@@ -31,12 +65,50 @@
 			<version>4.3.5.Final</version>
 		</dependency>
 		<dependency>
-	      <groupId>org.jasypt</groupId>
-	      <artifactId>jasypt-hibernate4</artifactId>
-	      <version>1.9.2</version>
-	      <scope>compile</scope>
-    	</dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-hibernate4</artifactId>
+			<version>1.9.2</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>tess4j</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>liblept</artifactId>
+			<version>1.68</version>
+			<scope>runtime</scope>
+			<type>dll</type>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>libtesseract</artifactId>
+			<version>3.02</version>
+			<scope>runtime</scope>
+			<type>dll</type>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.30</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jai-imageio</groupId>
+			<artifactId>jai-imageio-core-standalone</artifactId>
+			<version>1.2-pre-dr-b04-2011-07-04</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ghost4j</groupId>
+			<artifactId>ghost4j</artifactId>
+			<version>0.5.1</version>
+		</dependency>
 	</dependencies>
-
 </project>
 

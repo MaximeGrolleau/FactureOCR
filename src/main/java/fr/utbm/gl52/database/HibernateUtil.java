@@ -3,7 +3,6 @@ package fr.utbm.gl52.database;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.mapping.Property;
 import org.hibernate.service.ServiceRegistry;
  
 /**
@@ -44,6 +43,7 @@ public class HibernateUtil {
      * 
      */
     public static void shutdown() {
+    	System.out.println("Fermeture de la session");
         // Close caches and connection pools
         getSessionFactory().close();
     }

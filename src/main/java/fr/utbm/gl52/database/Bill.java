@@ -22,6 +22,13 @@ public class Bill {
 	private int billPriceET;
 
 	/**
+	 * default constructor
+	 */
+	public Bill(){
+		
+	}
+	
+	/**
 	 * @param priceATI
 	 * @param percentTax
 	 * @param priceET

@@ -2,6 +2,7 @@ package fr.utbm.gl52.database;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -34,6 +35,9 @@ public static void main(String[] args) {
         for (Bill next : resultList) {
             System.out.println("next employee: " + next);
         }
+        
+        
+        HibernateUtil.shutdown();
 
     }
    
