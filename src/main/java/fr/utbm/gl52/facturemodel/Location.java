@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package fr.utbm.gl52.facturemodel;
 
 public class Location {
@@ -44,12 +43,4 @@ public class Location {
 	public void setAfter(String after) {
 		this.after = after;
 	}
-	
 }
-=======
-package fr.utbm.gl52.facturemodel;
-
-public class Location {
-
-}
->>>>>>> 573c6ed774dfa4de591cce74a620bde42b186091
