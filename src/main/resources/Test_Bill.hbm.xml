@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+	<class name="Bill" table="bill">
+		<id name="billId" type="int" column="id">
+		<generator class="native"/>
+		</id>
+		<property name="billPriceATI" type="int"/>
+		<property name="billPercentTax" type="int"/>
+		<property name="billPriceET" type="int">
+			<meta attribute="field-description">Prix hors taxes</meta>
+		</property>
+	</class>
+</hibernate-mapping>
