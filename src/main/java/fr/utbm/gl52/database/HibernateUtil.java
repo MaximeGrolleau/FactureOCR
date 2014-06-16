@@ -4,8 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.hibernate4.encryptor.HibernatePBEEncryptorRegistry;
+import org.jasypt.util.password.StrongPasswordEncryptor;
  
 /**
  * @author mgrollea
@@ -21,12 +20,7 @@ public class HibernateUtil {
      */
 	private static SessionFactory buildSessionFactory() {
         try {
-        	StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
-            strongEncryptor.setAlgorithm("PBEWithMD5AndDES"); //$NON-NLS-1$
-              strongEncryptor.setPassword("root"); //$NON-NLS-1$
-              HibernatePBEEncryptorRegistry registry = HibernatePBEEncryptorRegistry.getInstance();
-             registry.registerPBEStringEncryptor("configurationHibernateEncryptor", strongEncryptor); //$NON-NLS-1$
-             
+        	
         	 Configuration configuration = new Configuration();
              configuration.configure();
              serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
@@ -41,7 +35,7 @@ public class HibernateUtil {
     }
  
     /**
-     * @return
+     * @return SessionFactory
      */
     public static SessionFactory getSessionFactory() {
         return sessionFactory;

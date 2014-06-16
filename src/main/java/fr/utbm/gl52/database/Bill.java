@@ -99,8 +99,11 @@ public class Bill {
 		this.billPercentTax = billPercentTax;
 	}
 
+	/**
+	 * @return string
+	 */
 	public String ToString(){
-		return new String("Bill [id=" + this.billId + ", taxPercent=" + this.billPercentTax + ", PriceATI=" //$NON-NLS-1$
-				+ this.billPriceATI + " Price EC" + this.billPriceET + "]" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return new String("Bill [id=" + this.billId + ", taxPercent=" + this.billPercentTax + ", PriceATI=" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ this.billPriceATI + " Price EC" + this.billPriceET + "]" ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

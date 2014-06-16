@@ -2,7 +2,6 @@ package fr.utbm.gl52.database;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -16,7 +15,7 @@ public class HibernateTest {
  * @param args
  */
 public static void main(String[] args) {
-         
+	
         Session session = HibernateUtil.getSessionFactory().openSession();
  
         session.beginTransaction();
@@ -28,14 +27,14 @@ public static void main(String[] args) {
      
         session.getTransaction().commit();
 
-        Query q = session.createQuery("From Bill");
+        Query q = session.createQuery("From Bill"); //$NON-NLS-1$
                 
-        List<Bill> resultList = q.list();
-        System.out.println("num of bill:" + resultList.size());
+        @SuppressWarnings({"unchecked" })
+		List<Bill> resultList = q.list();
+        System.out.println("num of bill:" + resultList.size()); //$NON-NLS-1$
         for (Bill next : resultList) {
-            System.out.println("next employee: " + next);
+            System.out.println("next employee: " + next); //$NON-NLS-1$
         }
-        
         
         HibernateUtil.shutdown();
 
