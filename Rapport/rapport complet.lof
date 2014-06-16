@@ -1,11 +1,16 @@
 \select@language {french}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Diagramme de cas d'utilisation}}{5}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Diagramme de s\IeC {\'e}quence - Chargeur}}{6}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Diagramme de s\IeC {\'e}quence - Visualiseur}}{7}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Diagramme de s\IeC {\'e}quence - Superviseur}}{8}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Domain Model}}{9}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces \it Diagramme de cas d'utilisation}}{5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces \it Diagramme de s\IeC {\'e}quence - Chargeur}}{8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces \it Diagramme de s\IeC {\'e}quence - Visualiseur}}{9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces \it Diagramme de s\IeC {\'e}quence - Superviseur}}{10}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces \it Domain Model}}{11}
 \addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \it Diagramme de classe d\IeC {\'e}taill\IeC {\'e}}}{14}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces \it Diagramme de s\IeC {\'e}quence d\IeC {\'e}taill\IeC {\'e} - Uploader}}{16}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces \it Diagramme de s\IeC {\'e}quence d\IeC {\'e}taill\IeC {\'e} - Visualiseur}}{18}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \it Diagramme de s\IeC {\'e}quence d\IeC {\'e}taill\IeC {\'e} - Superviseur}}{19}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces \it Mod\IeC {\`e}le Conceptuel de Donn\IeC {\'e}es}}{20}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces \it Mod\IeC {\`e}le Logique de Donn\IeC {\'e}es}}{20}
 \addvspace {10\p@ }

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.15)  16 JUN 2014 04:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.15)  16 JUN 2014 08:36
 entering extended mode
 **rapport*complet.tex
 ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.tex"
@@ -308,14 +308,6 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
-Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\labelindent=\skip43
-\enit@outerparindent=\dimen113
-\enit@toks=\toks18
-\enit@inbox=\box26
-\enitdp@description=\count92
-)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
 Package: babel 2008/07/08 v3.8m The Babel package
 
@@ -330,17 +322,17 @@ Language: frenchb 2009/03/16 v2.3d French support from the babel system
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
-\babel@savecnt=\count93
-\U@D=\dimen114
+\babel@savecnt=\count92
+\U@D=\dimen113
 )
 Package babel Info: Making : an active character on input line 120.
 Package babel Info: Making ; an active character on input line 121.
 Package babel Info: Making ! an active character on input line 122.
 Package babel Info: Making ? an active character on input line 123.
-\FB@Mht=\dimen115
-\std@mcc=\count94
-\dec@mcc=\count95
-\parindentFFN=\dimen116
+\FB@Mht=\dimen114
+\std@mcc=\count93
+\dec@mcc=\count94
+\parindentFFN=\dimen115
 
 *************************************
 * Local config file frenchb.cfg used
@@ -348,25 +340,18 @@ Package babel Info: Making ? an active character on input line 123.
 ("C:\Program Files\MiKTeX 2.9\tex\generic\babel\frenchb.cfg")))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\carlisle\scalefnt.sty")
 ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
-LaTeX Font Info:    ... okay on input line 17.
-LaTeX Font Info:    Try loading font information for OT1+calibri on input line 
-17.
-LaTeX Font Info:    No file OT1calibri.fd. on input line 17.
-
-
-LaTeX Font Warning: Font shape `OT1/calibri/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 17.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -404,40 +389,36 @@ LaTeX Font Warning: Font shape `OT1/calibri/m/n' undefined
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count96
-\scratchdimen=\dimen117
-\scratchbox=\box27
-\nofMPsegments=\count97
-\nofMParguments=\count98
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count99
-\MPscratchDim=\dimen118
-\MPnumerator=\count100
-\makeMPintoPDFobject=\count101
-\everyMPtoPDFconversion=\toks20
+\scratchcounter=\count95
+\scratchdimen=\dimen116
+\scratchbox=\box26
+\nofMPsegments=\count96
+\nofMParguments=\count97
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count98
+\MPscratchDim=\dimen117
+\MPnumerator=\count99
+\makeMPintoPDFobject=\count100
+\everyMPtoPDFconversion=\toks19
 )
-LaTeX Info: Redefining \degres on input line 17.
-LaTeX Info: Redefining \dots on input line 17.
-LaTeX Info: Redefining \up on input line 17.
+LaTeX Info: Redefining \degres on input line 16.
+LaTeX Info: Redefining \dots on input line 16.
+LaTeX Info: Redefining \up on input line 16.
 
 
 Package frenchb.ldf Warning: OT1 encoding should not be used for French. 
 (frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(frenchb.ldf)                of your document, on input line 17.
+(frenchb.ldf)                of your document, on input line 16.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 19.
+(Font)              <12> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 19.
+(Font)              <8> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 19.
+(Font)              <6> on input line 18.
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Font Warning: Font shape `OT1/calibri/bx/n' undefined
-(Font)              using `OT1/calibri/m/n' instead on input line 22.
-
 ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.toc"
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
@@ -474,61 +455,137 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
 ) (C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\part1.tex [3
 
 ]
 Chapitre 2.
+
+Overfull \hbox (1.28899pt too wide) in paragraph at lines 3--3
+[]\OT1/cmr/bx/n/14.4 Objectifs de l'ap-pli-ca-tion, en-vi-ron-ne-ment, uti-li-s
+a-teurs 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
+ []
+
 [4
 
-] <img/usecase.png, id=20, 327.47343pt x 228.10219pt>
+]
+Underfull \hbox (badness 10000) in paragraph at lines 33--35
+
+ []
+
+<img/usecase.png, id=23, 327.47343pt x 228.10219pt>
 File: img/usecase.png Graphic file (type png)
  <use img/usecase.png>
 Package pdftex.def Info: img/usecase.png used on input line 49.
 (pdftex.def)             Requested size: 163.73631pt x 114.0508pt.
 
-
-LaTeX Font Warning: Font shape `OT1/calibri/m/sc' undefined
-(Font)              using `OT1/calibri/m/n' instead on input line 51.
-
 [5 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/usecase.png>]
-<img/seqDiagUploader.png, id=26, 947.79094pt x 1525.95094pt>
+[6] [7] <img/seqDiagUploader.png, id=38, 947.79094pt x 1525.95094pt>
 File: img/seqDiagUploader.png Graphic file (type png)
 
 <use img/seqDiagUploader.png>
-Package pdftex.def Info: img/seqDiagUploader.png used on input line 60.
+Package pdftex.def Info: img/seqDiagUploader.png used on input line 168.
 (pdftex.def)             Requested size: 284.33948pt x 457.78882pt.
- [6 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seqDiagUploader.pn
+ [8 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seqDiagUploader.pn
 g (PNG copy)>]
-<img/SeqDiagVisualizer.png, id=31, 799.48688pt x 605.26125pt>
+<img/SeqDiagVisualizer.png, id=42, 799.48688pt x 605.26125pt>
 File: img/SeqDiagVisualizer.png Graphic file (type png)
 
 <use img/SeqDiagVisualizer.png>
-Package pdftex.def Info: img/SeqDiagVisualizer.png used on input line 86.
+Package pdftex.def Info: img/SeqDiagVisualizer.png used on input line 199.
 (pdftex.def)             Requested size: 319.78908pt x 242.1002pt.
- [7 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/SeqDiagVisualizer.
+ [9 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/SeqDiagVisualizer.
 png (PNG copy)>]
-<img/seqDiagSupervizer.png, id=35, 739.26187pt x 517.18219pt>
+<img/seqDiagSupervizer.png, id=46, 739.26187pt x 517.18219pt>
 File: img/seqDiagSupervizer.png Graphic file (type png)
 
 <use img/seqDiagSupervizer.png>
-Package pdftex.def Info: img/seqDiagSupervizer.png used on input line 106.
+Package pdftex.def Info: img/seqDiagSupervizer.png used on input line 220.
 (pdftex.def)             Requested size: 295.69951pt x 206.8692pt.
-
-Overfull \hbox (0.45091pt too wide) in paragraph at lines 121--122
-[]\OT1/calibri/m/sc/10 Le bou-ton "Show Sta-tis-tics" ap-pelle la fonc-tion cli
--ck-Dis-playS-ta-tis-tics() qui per-met d'avoir
- []
-
-<img/domainModel.png, id=36, 780.66656pt x 769.37437pt>
+ [10 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seqDiagSupervizer
+.png (PNG copy)>]
+<img/domainModel.png, id=50, 780.66656pt x 769.37437pt>
 File: img/domainModel.png Graphic file (type png)
 
 <use img/domainModel.png>
-Package pdftex.def Info: img/domainModel.png used on input line 134.
+Package pdftex.def Info: img/domainModel.png used on input line 245.
 (pdftex.def)             Requested size: 312.2611pt x 307.7443pt.
-)
-(C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\part2.tex [8 <C:/Users/Cam
-ille/Documents/UTBM/GL52/Projet/Rapport/img/seqDiagSupervizer.png (PNG copy)>]
-[9 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/domainModel.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
+
+ []
+
+
+Overfull \hbox (19.40826pt too wide) in paragraph at lines 258--259
+[]\OT1/cmr/m/n/10 Chaque do-cu-ment-Mo-de-lE-le-ment cor-res-pond a une zone d
+'inter^et
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+
+ []
+
+[11 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/domainModel.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--275
+
+ []
+
+) (C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\part2.tex [12]
 Chapitre 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 12--13
@@ -540,40 +597,125 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
+[13
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 22--25
 
  []
 
-[10
+<img/classDiag.png, id=62, 1239.12938pt x 1340.00626pt>
+File: img/classDiag.png Graphic file (type png)
 
-]) (C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\annexes.tex [11]
+<use img/classDiag.png>
+Package pdftex.def Info: img/classDiag.png used on input line 34.
+(pdftex.def)             Requested size: 371.74168pt x 402.00497pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+
+ []
+
+[14 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/classDiag.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+
+Overfull \hbox (3.60287pt too wide) in paragraph at lines 45--46
+[]\OT1/cmr/m/n/10 La classe Do-cu-ment-Mo-del represente la maniere dont on d
+oit recuperer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+[15] <img/globalSeqDiagDetailled.png, id=70, 1455.18657pt x 1955.80687pt>
+File: img/globalSeqDiagDetailled.png Graphic file (type png)
+
+<use img/globalSeqDiagDetailled.png>
+Package pdftex.def Info: img/globalSeqDiagDetailled.png used on input line 58.
+(pdftex.def)             Requested size: 436.55934pt x 586.7466pt.
+
+Overfull \hbox (26.9539pt too wide) in paragraph at lines 58--59
+ [] 
+ []
+
+[16 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/globalSeqDiagDetai
+lled.png (PNG copy)>]
+<img/SeqDiagVisualizerDetailled.png, id=74, 718.93594pt x 429.10312pt>
+File: img/SeqDiagVisualizerDetailled.png Graphic file (type png)
+
+<use img/SeqDiagVisualizerDetailled.png>
+Package pdftex.def Info: img/SeqDiagVisualizerDetailled.png used on input line 
+89.
+(pdftex.def)             Requested size: 431.3649pt x 257.46385pt.
+
+Overfull \hbox (21.75946pt too wide) in paragraph at lines 89--90
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17] <img/seqDiagSupervizerDetailled.png, id=78, 692.5875pt x 385.44pt>
+File: img/seqDiagSupervizerDetailled.png Graphic file (type png)
+
+<use img/seqDiagSupervizerDetailled.png>
+Package pdftex.def Info: img/seqDiagSupervizerDetailled.png used on input line 
+115.
+(pdftex.def)             Requested size: 415.5557pt x 231.26578pt.
+
+Overfull \hbox (5.95026pt too wide) in paragraph at lines 115--116
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[18 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/SeqDiagVisualizerD
+etailled.png>] [19 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seq
+DiagSupervizerDetailled.png>] <img/mcd.png, id=88, 1144.275pt x 584.1825pt>
+File: img/mcd.png Graphic file (type png)
+
+<use img/mcd.png>
+Package pdftex.def Info: img/mcd.png used on input line 141.
+(pdftex.def)             Requested size: 400.50224pt x 204.46693pt.
+ <img/mld.png, id=89, 1144.275pt x 563.10374pt>
+File: img/mld.png Graphic file (type png)
+
+<use img/mld.png>
+Package pdftex.def Info: img/mld.png used on input line 149.
+(pdftex.def)             Requested size: 400.50224pt x 197.08926pt.
+)
+(C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\conclusion.tex [20 <C:/Use
+rs/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mcd.png (PNG copy)> <C:/Users
+/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mld.png (PNG copy)>]
 Chapitre 4.
-) (C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\conclusion.tex [12
+) [21
 
-]
-Chapitre 5.
-) [13
-
-] ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.aux")
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- ) 
+] ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.aux") )
+ 
 Here is how much of TeX's memory you used:
- 2874 strings out of 493921
- 40289 string characters out of 3147276
- 107411 words of memory out of 3000000
- 6129 multiletter control sequences out of 15000+200000
- 7571 words of font info for 27 fonts, out of 3000000 for 9000
+ 2628 strings out of 493921
+ 36211 string characters out of 3147276
+ 102268 words of memory out of 3000000
+ 5881 multiletter control sequences out of 15000+200000
+ 10408 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,7n,32p,524b,259s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on "rapport complet.pdf" (14 pages, 382318 bytes).
+ 27i,7n,32p,716b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmti12.pfb>
+Output written on "rapport complet.pdf" (22 pages, 996088 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
