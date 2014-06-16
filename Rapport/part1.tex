@@ -2,69 +2,137 @@
 
 \section{Objectifs de l'application, environnement, utilisateurs}
 
-\subsection{Objectif}
-L'objectif de ce projet est de centraliser et informatiser les factures.
+\subsection{Objectif principal}
+Le principal objectif de l'application est la collecte et l'informatisation d'un maximum de données pouvant être contenues dans une facture ou un ticket de caisse.  
 
-\subsection{bla}
+\subsection{Contexte}
+L'application est destinée à un unique utilisateur. Les documents à analyser peuvent être introduits sous format image (fichiers PNG, JPG, ...), PDF, ou éventuellement HTML.
 
 \section{Contraintes de développement et performances}
 
-\subsection{Nombre maximum de terminaux}
-
+\subsection{Limites en terme de terminaux et transactions simultanées}
 Le nombre maximum de terminaux n’est pas pertinent dans ce projet. L’intégralité des calculs est effectuée du côté client, et la base de données est stockée localement. Si cette dernière est distante, le nombre de requêtes étant très limité, une somme importante de clients n’est pas un souci.
-
-\subsection{Nombre maximum de transactions simultanées}
 
 Le nombre d’accès à la base de données (partie potentiellement commune aux clients) est très réduit. De ce fait, un nombre maximum de transactions simultanées à la base de données de 1 n’est pas un problème.
 
 \subsection{Nombre de fichiers et leurs tailles}
-
-Pour chaque facture / ticket de caisse considéré, il y a un fichier image (jusqu’à 10 Mo), un fichier texte contenant les données récupérées (200 Ko maximum) et un autre contenant les modifications apportées par l’utilisateur (taille inférieure au premier fichier texte). Un modèle de facture / ticket de caisse doit être aussi présent pour chaque type de document ; stocké sous forme textuelle, sa taille ne dépasse pas 500 Ko.
+Pour chaque facture / ticket de caisse considéré, il y a un fichier image (jusqu’à 10 Mo), un fichier texte contenant les données récupérées (200 Ko maximum) et un autre contenant les modifications apportées par l'utilisateur (taille inférieure au premier fichier texte). Un modèle de facture / ticket de caisse doit être aussi présent pour chaque type de document ; stocké sous forme textuelle, sa taille ne dépasse pas 500 Ko.
 Au total, en moyenne, pour une somme de 1000 factures, un espace de stockage de 5 Go doit être alloué.
 
 \subsection{Temps de réponse souhaité}
-
 Les accès à la base de données ne sont pas cruciaux en termes de durée. La lecture et l’écriture ne doivent pas être très lentes, mais un temps de réponse élevé (une seconde 
 maximum) reste convenable. Cependant, la partie extraction et affichage des données ne 
 doit pas être mal optimisée, car les technologies utilisées (OCR) peuvent être rapidement gourmandes en temps et capacité de calcul si elles sont poussives.
 
-\subsection{Les contraintes liées à l'environnement (temps réel)}
-
-Il n’y a pas de contrainte d’exécution temps réel, si ce n’est un temps de réponse excessif de l’application. Un ordinateur standard (voire tablette ou smartphone) sera capable de supporter la charge de travail demandée par l’application avec un délai raisonnable, avec ou sans base de données distante.
-Développé de manière portable, le logiciel devra être exécutable depuis une machine Windows ou Unix (Linus ou Mac).
-
 \subsection{Fiabilité et tolérance aux fautes}
-
 La reconnaissance optique de caractères ne peut pas donner de résultats fiables pour n’importe quelle entrée. De ce fait, la partie vérification des erreurs est majoritairement réalisée par l’utilisateur, via la phase de correction et d’enregistrement dans la base de données. L’image dont les données sont extraites est aussi stockée, laissant la possibilité d’une vérification ultérieure.
-
-\subsection{Le comportement du système dans des situations anormales (les exceptions critiques)}
 
 Lorsqu’une urgence survient, le logiciel doit être en mesure de prévenir l’utilisateur et de ne pas transmettre de données erronées. 
 
 \subsection{Sécurité}
-
 Si les données présentes dans les factures sont sensibles, la mise en place de protocoles de transmission sécurisés et de chiffrage des données stockées peut être réalisée.
-
-\subsection{Restriction sur l'utilisation de certaines commandes}
-
 Certaines fonctions (notamment récupération et/ou édition d’informations présentes dans la base de données) doivent pouvoir être limitées à certains utilisateurs.
 
-\subsection{Contrôle des accès aux données}
-
 Comme écrit ci-dessus, certains utilisateurs peuvent n’avoir besoin que de l’affichage de certaines données. L’accès à d’autres et la modification doivent pouvoir être contrôlées, soit par des fonctions restreintes en fonction de l'utilisateur, soit par des enregistrements des activités et des vérifications de ces dernières.
-
-\subsection{Utilisation de mot de passe}
 
 Si les problèmes de sécurité discutés ci-dessus sont présents, un système de mot de passe ou de carte magnétique doit pouvoir être instauré afin de respecter les contraintes citées précédemment.
 
 \subsection{Utilisation de standards en ce qui concerne les méthodes, outils et langages de développement.}
-
 Le logiciel fourni doit pouvoir être portable et fonctionnel. Il doit être réutilisable et donc modulaire. Un environnement de travail à licence permissive doit être adopté, ainsi que des langages de développement libres d’utilisation.
+Développé de manière portable, le logiciel devra être exécutable depuis une machine Windows ou Unix (Linus ou Mac).
+
 
 \section{Analyse des besoins}
-
 Les principales fonctions du système sont le chargement, l'extraction et la modification des données présentes dans les factures et les tickets de caisses ainsi que l'enregistrement.
+\begin{figure}[h]
+	\begin{center}
+			\includegraphics[scale = 0.5]{img/usecase.png}
+	\end{center}
+	\caption{Diagramme de cas d'utilisation}
+	\label{usecase}
+\end{figure}
+
+\newpage
 
 \section{Description des scénarios}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale = 0.3]{img/seqDiagUploader.png}
+	\end{center}
+	\caption{Diagramme de séquence - Chargeur}
+	\label{seqDiagUploader}
+\end{figure}
+
+\begin{enumerate}[label=\bfseries]
+	\item[{UID :}] sd0
+	\item[{Nom :}] Diagramme de séquence Chargeur
+	\item[{Resumé :}]  Charge une image et procède à l'extraction des données contenues pour remplir les champs adéquats, modifie les champs erronés et enregistre le document dans la base de données (image, données extraites et données modifiées).
+	\item[{Acteurs :}] Chargeur
+	\item[{Initiateur :}] Chargeur
+	\item[{Pré-conditions :}]  /
+	\item[{Post-conditions :}]  /
+	\item[{Description :}]
+	Les fonctions propres au choix et vérifications du fichier getFiles(), showFiles() et selectFiles() sont prises en charges par l'interface elle-même. Elle est chargée d'afficher l'arborescence permettant la sélection du fichier à ouvrir. La fonction showNewFilePath() inscrit seulement le chemin du fichier sélectionné dans le champs correspondant. Le chemin peut également être entré manuellement. \\
+	Au chargement de l'image, une double vérification est effectuée : le fichier indiqué par le chemin existe-t-il , et le format de ce fichier est-il supporté par le programme. Si ces deux conditions sont vérifiées, l'image s'affiche; sinon, un message d'erreur informe l'utilisateur du problème rencontré.\\
+	S'il le peut, le système pré-sélectionne un model via showPreselectedModel().
+	L'utilisateur peut choisir d'utiliser un autre modèle via selectModel(), et clique ensuite sur le bouton "Extract". \\
+	La fonction extractData() applique l'algorithme d'OCR grâce aux informations fournies par le modèle afin de remplir un maximum de champs. Les valeurs des champs sont affichées et peuvent potentiellement être modifiées par l'utilisateur. \\
+	L'utilisateur peut enregistrer les données extraites, annuler les modifications effectuées pour revenir aux données extraites brutes, ou modifié les valeurs présentent dans la base de donnée. Un message informe l'utilisateur du succès de l'opération.
+\end{enumerate}
+
+ 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale = 0.4]{img/SeqDiagVisualizer.png}
+	\end{center}
+	\caption{Diagramme de séquence - Visualiseur}
+	\label{seqDiagVisualizer}
+\end{figure}
+
+\begin{enumerate}[label=\bfseries]
+	\item[{UID :}] sd1
+	\item[{Nom :}] Diagramme de séquence Visualiseur
+	\item[{Resumé :}]  Permet de visualiser un fichier présent dans la base
+	\item[{Acteurs :}] Visualiseur
+	\item[{Initiateur :}] Visualiseur
+	\item[{Pré-conditions :}]  /
+	\item[{Post-conditions :}]  /
+	\item[{Description :}]
+	Un clic sur le bouton "LoadFromDb" appelle la fonction showLoadFormDbInterface() qui ouvre une fenêtre permettant à l'utilisateur de choisir un fichier présent dans la base de données. Un filtre permet d'affiner la recherche selon des critères particuliers appliqués aux champs.
+\end{enumerate}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale = 0.4]{img/seqDiagSupervizer.png}
+	\end{center}
+	\caption{Diagramme de séquence - Superviseur}
+	\label{seqDiagSupervizer}
+\end{figure}
+
+\begin{enumerate}[label=\bfseries]
+	\item[{UID :}] sd2
+	\item[{Nom :}] Diagramme de séquence Superviseur
+	\item[{Resumé :}]  Permet d'afficher les statistiques obtenues à partir de l'ensemble des données récoltées.
+	\item[{Acteurs :}] Superviseur
+	\item[{Initiateur :}] Superviseur
+	\item[{Pré-conditions :}]  /
+	\item[{Post-conditions :}]  /
+	\item[{Description :}]
+	Le bouton "Show Statistics" appelle la fonction clickDisplayStatistics() qui permet d'avoir des informations globales sur l'ensemble des documents analysés, voire le tracé de courbes ou de graphiques représentant l'évolution ou la répartition des données en fonction de leur type ou occurrences par exemple.
+\end{enumerate}
 
 \section{Concepts principaux et définitions}
+
+\begin{enumerate}[label=\bfseries]
+	\item[{Document :}] On appelle document l'entité enregistrée dans la base de données. Un document regroupe le fichier d'origine, l'ensemble des champs extraits par la procédure OCR, et l'ensemble des champs en tenant compte des modifications de l'utilisateur.
+	\item[{Modèle de facture :}] Un modèle de facture est composé de tags. Chaque tag correspond à une zone d'intérêt et possède un nom qui indique le type de données contenues dans la zone. La zone elle-même est définie par un rectangle et/ou un mot clé (la donnée recherchée sera située après le mot-clé). Dans la majorité des cas, un modèle est propre à un prestataire.
+	\item[{Champ :}] 
+\end{enumerate}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale = 0.4]{img/domainModel.png}
+	\end{center}
+	\caption{Domain Model}
+	\label{domainModel}
+\end{figure}

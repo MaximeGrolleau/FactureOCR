@@ -1,16 +1,34 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,10pt]{report}
+
 \usepackage[utf8]{inputenc}
+\usepackage[margin=1.3in]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[french]{babel}
+\renewcommand*\rmdefault{calibri}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
 
 %opening
-\title{}
-\author{}
+\title{Document de spécification - Projet de GL52}
+\author{Maxime Grolleau, Yannis Guyon, Camille Mougin et
+Célia Porcher}
+\date{Printemps 2014}
 
 \begin{document}
 
 \maketitle
 
+\setcounter{tocdepth}{3}
+\tableofcontents
 
+\newpage
+
+\listoffigures
+
+\input{intro.tex}
 \input{part1.tex}
 \input{part2.tex}
+\input{annexes.tex}
+\input{conclusion.tex}
 
 \end{document}

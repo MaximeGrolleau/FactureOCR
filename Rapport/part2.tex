@@ -2,6 +2,33 @@
 
 \section{Architecture de l'application}
 
-\subsection{bla}
+\subsection{Database}
+La persistance des données est assurée grâce à la création et à la maintenance d'une base de données. Cette dernière, structurée à l'aide du framework open-source Hibernate, stocke à la fois les modèles des factures, mais aussi le document résultant des chargements et extractions, qui sont composés comme expliqué précédemment de l'image elle-même, des données extraites par reconnaissance de caractères, et des éventuelles corrections de l'utilisateur.
+
+\subsection{Modèles}
+Ces structures de données permettent de stocker les différents modèles de factures et leurs caractéristiques. Les informations concernant le contenu et sa position dans l'image d'entrée sont définies grâce à ce package. Un modèle peut être de type Facture ou Ticket.
+
+\subsection{Optical Caracter Recognition (OCR)}
+Ce package regroupe les fonctions utilisant la librairie de reconnaissance de caractère. Un premier framework offre les fonctions premières d'extraction à partir d'une zone de l'image, en coordonnées relatives ou absolues, exprimées en pixels ou en unité. Des options permettent de rechercher sur une ou plusieurs lignes, de séparer des résultats en plusieurs champs et autres manipulations simples visant à faciliter la procédure globale. \\
+
+Des méthodes plus spécifiques utilisant ce framework effectuent l'extraction de données en fonction du modèle de facture ou ticket de caisse utilisé. 
+
+\subsection{Controller}
+Le controller fait le lien entre l'interface, et la partie modèle (au sens théorique MVC) de l'application, composée principalement du module de lecture OCR et de la base de données. En particulier, il écoute les actions réalisées par l'utilisateur sur l'interface et déclenche les actions nécessaires en conséquence.
+
+\subsection{GUI}
+L'interface utilisateur utilise la librairie Java Swing. Très simple d'aspect, elle est divisée verticalement en deux parties propres respectivement au document à analyser et aux données extraites.\\
+
+La partie gauche permet de rechercher un fichier, de paramétrer son type et le modèle adéquat, de visualiser le fichier une fois ouvert et enfin de lancer l'extraction des données à l'aide du bouton "Extract".
+La partie droite présente quant à elle l'ensemble des informations que l'on souhaite obtenir. Les données globales de la facture apparaissent sous forme de champs, et un tableau regroupe les données de chaque article.
+Enfin, trois boutons "Save", "Delete" et "Cancel all modifications" permettent de communiquer avec la base de données.\\
+
+En haut de la fenêtre, on trouve également une barre de menu qui propose un prolongement éventuel dans le développement, avec un module d'aperçu des statistiques d'utilisation.
 
 \section{Conception}
+
+\subsection{Diagramme de classe détaillé}
+
+\subsection{Diagramme de séquence détaillé}
+
+\subsection{MCD et MLD}
