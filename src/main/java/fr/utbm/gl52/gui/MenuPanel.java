@@ -28,6 +28,7 @@ public class MenuPanel extends JPanel {
 					}
 				});
 		add(btnOpen);
+		
 		PButton btnStats = new PButton("Show statistics", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fireOpenWindowShowStats();

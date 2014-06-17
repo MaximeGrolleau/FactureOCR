@@ -12,18 +12,20 @@ public class DocumentInfo {
 	@GeneratedValue
 	private int id;
 	
-	public Client client;
-	public Supplier supplier;
-	public String seller;
-	public Address store;
-	public Date date;
-	public List<Product> products;
-	public float taxInclTotal;
-	public float taxExclTotal;
+
+	private Client client;
+	private Supplier supplier;
+	private Address store;
+	private Date date;
+	private List<Product> products;
+	private Price total;
+	
+	public float taxInclTotal; //TODO à virer
+	public float taxExclTotal; //TODO à virer
 	public int factureNumber;
 
-	public DocumentInfo() {
-	}
+	public DocumentInfo() {}
+	
 	public DocumentInfo(Client client, Supplier supplier, Address store, Date date){
 		this.setClient(client);
 		this.setDate(date);
@@ -63,20 +65,12 @@ public class DocumentInfo {
 		this.date = date;
 	}
 
-	public float getTaxInclTotal() {
-		return taxInclTotal;
+	public Price getTotal() {
+		return total;
 	}
 
-	public void setTaxInclTotal(float taxInclTotal) {
-		this.taxInclTotal = taxInclTotal;
-	}
-
-	public float getTaxExclTotal() {
-		return taxExclTotal;
-	}
-
-	public void setTaxExclTotal(float taxExclTotal) {
-		this.taxExclTotal = taxExclTotal;
+	public void setTotal(Price total) {
+		this.total = total;
 	}
 
 	public List<Product> getProducts() {

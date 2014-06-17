@@ -9,15 +9,14 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import ocr.net.sourceforge.tess4j.Tesseract;
-import ocr.net.sourceforge.tess4j.TesseractException;
 import fr.utbm.gl52.document.Document;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.document.DocumentType;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
-
+import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
+import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
 public class TextExtractor {
 	
 	private File imageFile;

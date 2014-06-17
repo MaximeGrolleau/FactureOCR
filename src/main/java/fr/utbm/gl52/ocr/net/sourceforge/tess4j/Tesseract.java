@@ -14,7 +14,6 @@
  * the License.
  */
 package fr.utbm.gl52.ocr.net.sourceforge.tess4j;
-
 import com.sun.jna.Pointer;
 
 import fr.utbm.gl52.ocr.net.sourceforge.vietocr.ImageIOHelper;

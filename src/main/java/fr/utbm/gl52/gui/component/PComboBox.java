@@ -4,13 +4,13 @@ import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 
-public class PComboBox extends JComboBox<String> {
+public class PComboBox extends JComboBox<Object> {
 
 	private static final long serialVersionUID = -7564387139367739977L;
 
-	public PComboBox(String[] elements) {
+	public PComboBox(Object[] elements) {
 		super();
-		for (String elt : elements) {
+		for (Object elt : elements) {
 			addItem(elt);
 		}
 		setPreferredSize(new Dimension(150, 20));
