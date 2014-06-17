@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.15)  16 JUN 2014 08:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.6.15)  16 JUN 2014 16:50
 entering extended mode
 **rapport*complet.tex
 ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.tex"
@@ -675,47 +675,91 @@ Overfull \hbox (5.95026pt too wide) in paragraph at lines 115--116
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [18 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/SeqDiagVisualizerD
-etailled.png>] [19 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seq
-DiagSupervizerDetailled.png>] <img/mcd.png, id=88, 1144.275pt x 584.1825pt>
-File: img/mcd.png Graphic file (type png)
-
-<use img/mcd.png>
-Package pdftex.def Info: img/mcd.png used on input line 141.
-(pdftex.def)             Requested size: 400.50224pt x 204.46693pt.
- <img/mld.png, id=89, 1144.275pt x 563.10374pt>
-File: img/mld.png Graphic file (type png)
-
-<use img/mld.png>
-Package pdftex.def Info: img/mld.png used on input line 149.
-(pdftex.def)             Requested size: 400.50224pt x 197.08926pt.
-)
-(C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\conclusion.tex [20 <C:/Use
-rs/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mcd.png (PNG copy)> <C:/Users
-/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mld.png (PNG copy)>]
+etailled.png>])
+(C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\conclusion.tex [19 <C:/Use
+rs/Camille/Documents/UTBM/GL52/Projet/Rapport/img/seqDiagSupervizerDetailled.pn
+g>]
 Chapitre 4.
-) [21
 
-] ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.aux") )
- 
+Underfull \hbox (badness 10000) in paragraph at lines 5--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+
+Overfull \hbox (12.22751pt too wide) in paragraph at lines 11--12
+[]\OT1/cmr/m/n/10 Au ni-veau du pro-ces-sus d'OCR en lui-m^eme, l'ap-pli-ca-tio
+n est dependante du temps d'execution
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--23
+
+ []
+
+[20
+
+]) (C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\annexes.tex [21]
+Chapitre 5.
+<img/mcd.png, id=94, 1144.275pt x 584.1825pt>
+File: img/mcd.png Graphic file (type png)
+ <use img/mcd.png>
+Package pdftex.def Info: img/mcd.png used on input line 7.
+(pdftex.def)             Requested size: 423.37512pt x 216.14413pt.
+
+Overfull \hbox (13.76968pt too wide) in paragraph at lines 7--8
+ [] 
+ []
+
+[22
+
+ <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mcd.png (PNG copy)>] 
+<img/mld.png, id=98, 1144.275pt x 563.10374pt>
+File: img/mld.png Graphic file (type png)
+ <use img/mld.png>
+Package pdftex.def Info: img/mld.png used on input line 19.
+(pdftex.def)             Requested size: 423.37512pt x 208.34512pt.
+
+Overfull \hbox (13.76968pt too wide) in paragraph at lines 19--20
+ [] 
+ []
+
+) [23 <C:/Users/Camille/Documents/UTBM/GL52/Projet/Rapport/img/mld.png (PNG cop
+y)>] ("C:\Users\Camille\Documents\UTBM\GL52\Projet\Rapport\rapport complet.aux"
+) ) 
 Here is how much of TeX's memory you used:
- 2628 strings out of 493921
- 36211 string characters out of 3147276
+ 2632 strings out of 493921
+ 36352 string characters out of 3147276
  102268 words of memory out of 3000000
- 5881 multiletter control sequences out of 15000+200000
+ 5882 multiletter control sequences out of 15000+200000
  10408 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  27i,7n,32p,716b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmti12.pfb>
-Output written on "rapport complet.pdf" (22 pages, 996088 bytes).
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmti12.pfb>
+Output written on "rapport complet.pdf" (24 pages, 1001633 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
