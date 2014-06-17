@@ -1,33 +1,31 @@
 package fr.utbm.gl52.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import fr.utbm.gl52.document.DocumentType;
 
 public class Model {
-	public static enum DOCUMENT_TYPE  { BILL, RECEIPT }
-	private final DOCUMENT_TYPE type;
-	private final String name;
-	private List<ModelField> fields;
 	
-	public Model(DOCUMENT_TYPE type, String name) {
-		this.name = name;
+	private final DocumentType type;
+	private Set<Tag> tags;
+	
+	public Model(DocumentType type) {
 		this.type = type;
-		this.fields = new ArrayList<ModelField>();
+		this.tags = new HashSet<Tag>();
 	}
 
-	public DOCUMENT_TYPE getType() {
+	public DocumentType getType() {
 		return type;
 	}
 
-	public String getName() {
-		return name;
+	public Set<Tag> getTags() {
+		return tags;
 	}
 
-	public List<ModelField> getFields() {
-		return fields;
-	}
-
-	public void addField(ModelField field) {
-		this.fields.add(field);
+	public void addTag(Tag tag) {
+		this.tags.add(tag);
 	}
 }

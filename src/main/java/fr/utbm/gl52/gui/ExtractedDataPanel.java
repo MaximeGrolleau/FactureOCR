@@ -147,16 +147,19 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		  this.document = document;
 		  DocumentInfo infos;
 		  if(isModifiedDocument){
-		   infos = this.document.getModifiedInfos();   
+			  infos = this.document.getModifiedInfos();   
 		  } else {
-		   infos = this.document.getInitialInfos(); 
+			  infos = this.document.getInitialInfos(); 
 		  }
+		  
 		  clientFld.setText(infos.getClient().getLastName() + ", " + infos.getClient().getFirstName());
 		  storeFld.setText(infos.getStore().getStreet() + ", " + infos.getStore().getCity() + ", " + infos.getStore().getCountry());
 		  companyFld.setText(infos.getSupplier().getName());
 		  dateFld.setText(infos.getDate().toString());
-		 
-		 }
+		  totalFld.setText(String.valueOf(infos.getTaxExclTotal()));
+		  totalTTCFld.setText(String.valueOf(infos.getTaxInclTotal()));
+		  articleTable = new ArticleTableModel(infos.getProducts());	  
+	}
 
 	public void addDocumentListener(DocumentListener listener) {
 		documentListeners.add(listener);

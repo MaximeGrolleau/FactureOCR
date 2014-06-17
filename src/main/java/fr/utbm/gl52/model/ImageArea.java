@@ -7,14 +7,15 @@ public class ImageArea {
 	private double toX;
 	private double toY;
 
-	ImageArea(ImageArea relative, double fromX, double fromY, double toX, double toY) {
+	public ImageArea(ImageArea relative, double fromX, double fromY, double toX, double toY) {
 		this.relative = relative;
 		this.fromX = fromX;
 		this.fromY = fromY;
 		this.toX = toX;
 		this.toY = toY;
 	}
-	ImageArea(double fromX, double fromY, double width, double height, ImageArea relative) {
+	
+	public ImageArea(double fromX, double fromY, double width, double height, ImageArea relative) {
 		this.relative = relative;
 		this.fromX = fromX;
 		this.fromY = fromY;

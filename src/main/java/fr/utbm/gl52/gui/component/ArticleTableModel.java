@@ -11,18 +11,39 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
+import fr.utbm.gl52.document.Product;
+
 public class ArticleTableModel extends JPanel implements TableModel {
 
 	private static final long serialVersionUID = 7461212547930675721L;
 
 	private List<TableModelListener> tableModelListener = new ArrayList<TableModelListener>();
 	private JTable table;
-	private String[] header= { "Ref.", "Desc.", "Qty", "Price" };
+	private String[] header= { "Ref.", "Desc.", "Qty", "Price excl. taxes", "Price incl. taxes"};
 	Object[][] data = null;
 
 	public ArticleTableModel() {
-		data = new Object[4][10];
+		data = new Object[5][10];
 
+		table = new JTable(data, header);
+		table.setPreferredSize(new Dimension(getWidth(), 300));
+		setLayout(new BorderLayout());
+		add(table.getTableHeader(), BorderLayout.NORTH);
+		add(table, BorderLayout.CENTER);
+	
+	}
+	
+	public ArticleTableModel(List<Product> products) {
+		data = new Object[5][products.size()];
+
+		for(int i = 0; i<products.size(); i++){
+			data[0][i] = products.get(i).getReference();
+			data[1][i] = products.get(i).getName();
+			data[2][i] = products.get(i).getQuantity();
+			data[3][i] = products.get(i).getTaxExclPrice();
+			data[4][i] = products.get(i).getTaxInclPrice();		
+		}
+		
 		table = new JTable(data, header);
 		table.setPreferredSize(new Dimension(getWidth(), 300));
 		setLayout(new BorderLayout());

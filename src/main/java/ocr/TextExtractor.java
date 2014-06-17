@@ -51,38 +51,38 @@ public class TextExtractor {
 		}
     	
 
-		Model model = models.getModels().get(0);
-		for(ModelField field : model.getFields())
-		{
-			field.getField().getValues().get(0).setTextValue(
-					te.extractFromString(field.getLocation().getAfter(), 
-							te.extractFromZone(new Rectangle(
-									(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
-									(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
-									(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
-									(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight())
-
-									))
-							)
-					);
-System.out.println(field.getLocation().getAfter());
-System.out.println(te.extractFromZone(new Rectangle(
-		(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
-		(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
-		(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
-		(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight()))));
-			field.getField().getValues().get(0).extract();
-		}
-		for(ModelField field : model.getFields())
-		{
-			for(FieldValue<?> value : field.getField().getValues())
-				value.extract();
-		}
-		for(ModelField field : model.getFields())
-		{
-			for(FieldValue<?> value : field.getField().getValues())
-				System.out.println(field.getField().getName() + " : " + value.getExtractedValue());
-		}
+//		Model model = models.getModels().get(0);
+//		for(ModelField field : model.getFields())
+//		{
+//			field.getField().getValues().get(0).setTextValue(
+//					te.extractFromString(field.getLocation().getAfter(), 
+//							te.extractFromZone(new Rectangle(
+//									(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
+//									(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
+//									(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
+//									(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight())
+//
+//									))
+//							)
+//					);
+//System.out.println(field.getLocation().getAfter());
+//System.out.println(te.extractFromZone(new Rectangle(
+//		(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
+//		(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
+//		(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
+//		(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight()))));
+//			field.getField().getValues().get(0).extract();
+//		}
+//		for(ModelField field : model.getFields())
+//		{
+//			for(FieldValue<?> value : field.getField().getValues())
+//				value.extract();
+//		}
+//		for(ModelField field : model.getFields())
+//		{
+//			for(FieldValue<?> value : field.getField().getValues())
+//				System.out.println(field.getField().getName() + " : " + value.getExtractedValue());
+//		}
 		
         /*try {
         	Point pos = new Point(0, 0);

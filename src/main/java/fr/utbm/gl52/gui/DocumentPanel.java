@@ -178,6 +178,8 @@ public class DocumentPanel extends JPanel {
 			return true;
 		case "html":
 			return true;
+		case "tif":
+			return true;
 		default :
 			return false;
 		}
