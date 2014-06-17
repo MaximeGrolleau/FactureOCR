@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import ocr.net.sourceforge.tess4j.Tesseract;
 import ocr.net.sourceforge.tess4j.TesseractException;
-import fr.utbm.gl52.facturemodel.Models;
+import fr.utbm.gl52.model.Models;
 
 public class TextExtractor {
 	
@@ -28,7 +28,7 @@ public class TextExtractor {
         
         // Tesseract1 instance = new Tesseract1(); // JNA Direct Mapping
     	
-    	String mouche = "La brochette de yannis avait un gros pédoncule goulument assorti d'une mayonnaise divine. \nIl s'en saisit et marcha une centaine de km.";
+    	String mouche = "La brochette de yannis avait un gros pï¿½doncule goulument assorti d'une mayonnaise divine. \nIl s'en saisit et marcha une centaine de km.";
     	String result = te.extractFromString("bruchotte", mouche, 12, 60);
     	System.out.println(result);
     	
@@ -146,7 +146,7 @@ System.out.println(te.extractFromZone(new Rectangle(
     		}
     		System.out.println("avant "+currentPctMatch);
 			double temp = (currentPctMatch/(double)toFind.length());
-			System.out.println("paté "+temp);
+			System.out.println("patï¿½ "+temp);
 			currentPctMatch = (int)(temp*100);
 			System.out.println("d'mouche "+currentPctMatch);
 			

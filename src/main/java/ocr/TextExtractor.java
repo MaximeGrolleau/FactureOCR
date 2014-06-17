@@ -9,10 +9,10 @@ import javax.imageio.ImageIO;
 
 import ocr.net.sourceforge.tess4j.Tesseract;
 import ocr.net.sourceforge.tess4j.TesseractException;
-import fr.utbm.gl52.facturemodel.FieldValue;
-import fr.utbm.gl52.facturemodel.Model;
-import fr.utbm.gl52.facturemodel.ModelField;
-import fr.utbm.gl52.facturemodel.Models;
+import fr.utbm.gl52.model.FieldValue;
+import fr.utbm.gl52.model.Model;
+import fr.utbm.gl52.model.ModelField;
+import fr.utbm.gl52.model.Models;
 
 /**
  * @author mgrollea
