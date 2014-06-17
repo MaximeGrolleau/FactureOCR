@@ -3,8 +3,15 @@ package fr.utbm.gl52.document;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class DocumentInfo {
 
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private Client client;
 	private Supplier supplier;
 	private Address store;

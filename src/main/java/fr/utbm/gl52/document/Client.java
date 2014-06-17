@@ -1,7 +1,14 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Client {
 
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private Address address;
 	private String firstName;
 	private String lastName;

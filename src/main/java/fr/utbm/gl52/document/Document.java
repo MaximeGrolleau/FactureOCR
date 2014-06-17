@@ -2,8 +2,15 @@ package fr.utbm.gl52.document;
 
 import java.io.File;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Document {
 
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private final DocumentType type;
 	private final File attachedFile;
 	private final DocumentInfo initialInfos;
@@ -33,5 +40,9 @@ public class Document {
 
 	public void setModifiedInfos(DocumentInfo modifiedInfos) {
 		this.modifiedInfos = modifiedInfos;
+	}
+	
+	public int getId(){
+		return id;
 	}
 }

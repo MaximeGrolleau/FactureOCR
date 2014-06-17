@@ -1,6 +1,14 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Product {
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private String name;
 	private String reference;
 	private float taxInclPrice;

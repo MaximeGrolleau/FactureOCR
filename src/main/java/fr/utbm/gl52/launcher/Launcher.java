@@ -31,17 +31,18 @@ public class Launcher {
 		File modelFile = new File("models/modeltest.csv");
 		Model newModel = new Model(DocumentType.RECEIPT);
 		List<String> content = readModel(modelFile);
+		
 		if (!content.isEmpty()){
 			for(int i=1; i<content.size(); i++){
-				content.get(i).trim();
-				System.out.println(content.get(i));
+				content.set(i, content.get(i).replace("\n", " "));
+				content.set(i, content.get(i).trim());
 				String[] contentLine = content.get(i).split(";");
 				String upLeftCorner = contentLine[2].substring(1, contentLine[2].length()-1);
-				upLeftCorner.trim();
-				System.out.println(upLeftCorner);
+				upLeftCorner = upLeftCorner.trim();
+				//System.out.println(upLeftCorner);
 				String[] upCorner = upLeftCorner.split(",");
 				String bottomRightCorner = contentLine[3].replace('(', ' ');
-				bottomRightCorner.trim();
+				bottomRightCorner = bottomRightCorner.trim();
 				String[] btmCorner = upLeftCorner.split(",");
 				ImageArea imageArea = new ImageArea(null, Double.parseDouble(upCorner[0]), 
 						Double.parseDouble(upCorner[1]),
@@ -52,7 +53,7 @@ public class Launcher {
  		}
 		
 		
-		//AppFrame mainFrame = new AppFrame();
+		AppFrame mainFrame = new AppFrame();
 	}
 	
 	 public static List<String> readModel(File f) {
@@ -78,5 +79,5 @@ public class Launcher {
 		    }
 		    
 		    return content;
-		}
+	}
 }

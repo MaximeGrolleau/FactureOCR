@@ -1,6 +1,14 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Address {
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private String country;
 	private String city;
 	private String street;

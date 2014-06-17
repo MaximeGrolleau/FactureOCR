@@ -2,8 +2,16 @@ package fr.utbm.gl52.document;
 
 import java.awt.Image;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
 public class Supplier {
 
+	@Id
+	@GeneratedValue
+	private int id;
+	
 	private String name;
 	private Address address;
 	private Image logo;

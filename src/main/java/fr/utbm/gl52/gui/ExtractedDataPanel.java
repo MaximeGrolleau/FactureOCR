@@ -171,19 +171,31 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 
 	private void fireSaveDoc() {
 		for (DocumentListener elt : documentListeners) {
-			elt.saveDocument();
+			if(document != null){
+				elt.saveDocument(document);			
+			} else {
+				System.out.println("Pas de document à enregistrer");
+			}
 		}
 	}
 
 	private void fireDeleteDoc() {
 		for (DocumentListener elt : documentListeners) {
-			elt.deleteDocument();
+			if(document != null){
+				elt.deleteDocument(document.getId());	
+			} else {
+				System.out.println("Pas de document à supprimer");
+			}
 		}
 	}
 
 	private void fireCancelModifsDoc() {
 		for (DocumentListener elt : documentListeners) {
-			elt.cancelModifsDocument();
+			if(document != null){
+				elt.cancelModifsDocument(document.getId());	
+			} else {
+				System.out.println("Pas de document à supprimer");
+			}
 		}
 	}
 
