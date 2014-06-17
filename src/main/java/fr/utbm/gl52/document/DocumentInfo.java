@@ -14,6 +14,7 @@ public class DocumentInfo {
 	
 	public Client client;
 	public Supplier supplier;
+	public String seller;
 	public Address store;
 	public Date date;
 	public List<Product> products;

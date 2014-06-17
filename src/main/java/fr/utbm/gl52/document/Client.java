@@ -13,6 +13,7 @@ public class Client {
 	public String firstName;
 	public String lastName;
 	public String phoneNumber;
+	public int clientNumber;
 	
 	public Client(Address address, String firstName, String lastName){
 		this.setAddress(address);

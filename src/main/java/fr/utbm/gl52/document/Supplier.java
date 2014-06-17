@@ -14,6 +14,8 @@ public class Supplier {
 	
 	private String name;
 	private Address address;
+	private String website;
+	private String phoneNumber;
 	private Image logo;
 	
 	public Supplier(String name, Address address){
