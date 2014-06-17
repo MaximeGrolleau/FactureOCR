@@ -14,4 +14,24 @@ public class Document {
 		this.attachedFile = file;
 		this.initialInfos = initInfos;
 	}
+
+	public DocumentType getType() {
+		return type;
+	}
+ 
+	public File getAttachedFile() {
+		return attachedFile;
+	}
+
+	public DocumentInfo getInitialInfos() {
+		return initialInfos;
+	}
+
+	public DocumentInfo getModifiedInfos() {
+		return modifiedInfos;
+	}
+
+	public void setModifiedInfos(DocumentInfo modifiedInfos) {
+		this.modifiedInfos = modifiedInfos;
+	}
 }

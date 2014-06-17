@@ -12,6 +12,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import fr.utbm.gl52.document.Document;
+import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.gui.component.ArticleTableModel;
 import fr.utbm.gl52.gui.component.PButton;
 import fr.utbm.gl52.gui.component.PComboBox;
@@ -28,20 +30,28 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	
 	private List<DocumentListener> documentListeners = new ArrayList<DocumentListener>();
 
+	private Document document;
+	
 	private boolean isFileLoaded = false;
 	private PTextField clientFld;
 	private PTextField storeFld;
 	private PTextField dateFld;
 	private PTextField companyFld;
+	private PTextField totalTTCFld;
+	private PTextField totalFld;
+	private PComboBox totalCb;
+	private PComboBox totalTTCCb;
+	
 	private PButton saveBtn;
 	private PButton delBtn;
 	private PButton cancelBtn;
+	private ArticleTableModel articleTable;
 
 	public ExtractedDataPanel(){
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		
+				
 		// client
 		JLabel clientLbl = new JLabel("Client");
 		clientFld = new PTextField();
@@ -75,14 +85,14 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		add(datePane);		
 		
 		//articles table
-		ArticleTableModel articleTable = new ArticleTableModel();
+		articleTable = new ArticleTableModel();
 		add(articleTable);
 		
 		// total HT
 		JLabel totalLbl = new JLabel("Total HT: ");
-		PTextField totalFld = new PTextField();
-		totalFld.setEditable(false);
-		PComboBox totalCb = new PComboBox(new String[] { "EUR", "USD", "GBP" });
+		totalFld = new PTextField();
+		totalFld.setEnabled(false);
+		totalCb = new PComboBox(new String[] { "EUR", "USD", "GBP" });
 		totalCb.setPreferredSize(new Dimension(60, 20));
 		JPanel totalPane = new JPanel();
 		totalPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -93,9 +103,9 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		
 		// total TTC
 		JLabel totalTTCLbl = new JLabel("Total TTC: ");
-		PTextField totalTTCFld = new PTextField();
-		totalTTCFld.setEditable(false);
-		PComboBox totalTTCCb = new PComboBox(
+		totalTTCFld = new PTextField();
+		totalTTCFld.setEnabled(false);
+		totalTTCCb = new PComboBox(
 				new String[] { "EUR", "USD", "GBP" });
 		totalTTCCb.setPreferredSize(new Dimension(60, 20));
 		JPanel totalTTCPane = new JPanel();
@@ -122,7 +132,6 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 						fireCancelModifsDoc();
 					}
 				});
-		activateButtons(false, false, false);
 
 		JPanel btnPane = new JPanel();
 		btnPane.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -130,8 +139,24 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		btnPane.add(delBtn);
 		btnPane.add(cancelBtn);
 		add(btnPane);
-		this.setEnabled(isFileLoaded);
+		
+		activatePanel(false);
 	}
+	
+	public void showDocument(Document document, boolean isModifiedDocument){
+		  this.document = document;
+		  DocumentInfo infos;
+		  if(isModifiedDocument){
+		   infos = this.document.getModifiedInfos();   
+		  } else {
+		   infos = this.document.getInitialInfos(); 
+		  }
+		  clientFld.setText(infos.getClient().getLastName() + ", " + infos.getClient().getFirstName());
+		  storeFld.setText(infos.getStore().getStreet() + ", " + infos.getStore().getCity() + ", " + infos.getStore().getCountry());
+		  companyFld.setText(infos.getSupplier().getName());
+		  dateFld.setText(infos.getDate().toString());
+		 
+		 }
 
 	public void addDocumentListener(DocumentListener listener) {
 		documentListeners.add(listener);
@@ -164,6 +189,19 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		this.setEnabled(isFileLoaded);
 	}
 
+	private void activatePanel(boolean isActivated){
+		activateButtons(false, false, false);
+		clientFld.setEditable(isActivated);
+		storeFld.setEditable(isActivated);
+		dateFld.setEditable(isActivated);
+		companyFld.setEditable(isActivated);
+		totalFld.setEditable(isActivated);
+		totalTTCFld.setEditable(isActivated);
+		totalCb.setEnabled(isActivated);
+		totalTTCCb.setEnabled(isActivated);
+		articleTable.setEditable(isActivated);
+	}
+	
 	private void activateButtons(boolean save, boolean del, boolean cancel) {
 		this.saveBtn.setEnabled(save);
 		this.delBtn.setEnabled(del);

@@ -1,6 +1,7 @@
 package fr.utbm.gl52.gui.component;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,4 +68,8 @@ public class ArticleTableModel extends JPanel implements TableModel {
 		data[xindex][yindex] = cellContent;
 	}
 
+	public void setEditable(boolean isEditable){
+		this.table.setEnabled(isEditable);
+		this.table.setBackground(Color.LIGHT_GRAY);
+	}
 }

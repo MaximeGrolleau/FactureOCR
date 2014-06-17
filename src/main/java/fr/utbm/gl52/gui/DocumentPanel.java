@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import fr.utbm.gl52.gui.component.PButton;
@@ -41,7 +42,7 @@ public class DocumentPanel extends JPanel {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		imagePane.setBackground(Color.GRAY);
+		imagePane.setBackground(Color.LIGHT_GRAY);
 		imagePane.setSize(new Dimension(320, 700));
 		imagePane.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
@@ -55,8 +56,16 @@ public class DocumentPanel extends JPanel {
 		filePathFld.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				file = new File(filePathFld.getText());
-				showFile();
+				String pathString = filePathFld.getText().trim();
+				if(pathString.isEmpty()){
+					file = null;
+					imagePane.removeAll();
+					imagePane.updateUI();
+					scanBtn.setEnabled(false);
+				} else {
+					file = new File(pathString);
+					showFile();
+				}
 			}
 
 		});
@@ -94,7 +103,7 @@ public class DocumentPanel extends JPanel {
 		filePropertyPane.add(modelPane);
 
 
-		scanBtn = new PButton("Scan", new ActionListener() {
+		scanBtn = new PButton("Extract", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fireLaunchScan();
 			}
@@ -118,26 +127,62 @@ public class DocumentPanel extends JPanel {
 	}
 
 	private void showFile() {
+		//check existence
 		if (file != null) {
 			if (file.exists()) {
-				System.out.println("Nouvelle image chargée : "
-						+ file.getAbsolutePath());
-				ImageIcon img = new ImageIcon(file.getAbsolutePath());
-
-				imagePane.removeAll();
-				imagePane.add(new JLabel(scaleImage(img)));
-				imagePane.updateUI();
-				scanBtn.setEnabled(true);
+				//check format
+				String format = getFileExtension(file.getName());
+				if(isCorrectFormat(format)){
+					System.out.println("Nouvelle image chargï¿½e : "
+							+ file.getAbsolutePath());
+					ImageIcon img = new ImageIcon(file.getAbsolutePath());
+	
+					imagePane.removeAll();
+					imagePane.add(new JLabel(scaleImage(img)));
+					imagePane.updateUI();
+					scanBtn.setEnabled(true);
+				} else {
+					System.out.println("format non supportï¿½ : "
+							+ file.getAbsolutePath());
+					JOptionPane.showMessageDialog(this, "Format non supportï¿½" , "Erreur", JOptionPane.WARNING_MESSAGE);
+				}
 			} else {
-				System.out.println("fichier introuvable chemin incorrect");
+				System.out.println("fichier introuvable chemin incorrect : "
+						+ file.getAbsolutePath());
+				JOptionPane.showMessageDialog(this, "Chemin incorrect" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				file = null;
 				imagePane.removeAll();
 				imagePane.updateUI();
 				scanBtn.setEnabled(false);
 			}
 		}
+
 	}
 
+	private String getFileExtension(String filepath){
+		String[] splitpath = filepath.split("\\.");
+		return splitpath[1];
+	}
+	
+	private boolean isCorrectFormat(String format){
+		switch (format){
+		case "png":
+			return true;
+		case "jpg":
+			return true;
+		case "pdf":
+			return true;
+		case "bmp":
+			return true;
+		case "gif":
+			return true;
+		case "html":
+			return true;
+		default :
+			return false;
+		}
+	}
+	
 	private ImageIcon scaleImage(ImageIcon img) {
 		int width;
 		int height;
