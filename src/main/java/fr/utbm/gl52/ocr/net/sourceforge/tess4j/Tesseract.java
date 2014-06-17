@@ -13,16 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package ocr.net.sourceforge.tess4j;
+package fr.utbm.gl52.ocr.net.sourceforge.tess4j;
 
-import ocr.net.sourceforge.vietocr.ImageIOHelper;
 import com.sun.jna.Pointer;
+
+import fr.utbm.gl52.ocr.net.sourceforge.vietocr.ImageIOHelper;
+
 import java.awt.Rectangle;
 import java.awt.image.*;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.logging.*;
+
 import javax.imageio.IIOImage;
 
 /**

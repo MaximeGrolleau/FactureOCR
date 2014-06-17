@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ocr.net.sourceforge.vietocr;
+package fr.utbm.gl52.ocr.net.sourceforge.vietocr;
 
 import java.io.*;
 import java.util.*;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ocr.net.sourceforge.tess4j;
+package fr.utbm.gl52.ocr.net.sourceforge.tess4j;
 
 public class TesseractException extends Exception {
 

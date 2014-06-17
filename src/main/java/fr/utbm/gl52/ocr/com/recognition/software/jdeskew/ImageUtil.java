@@ -1,7 +1,7 @@
 /**
  * <a url=http://www.jdeskew.com/>JDeskew</a>
  */
-package ocr.com.recognition.software.jdeskew;
+package fr.utbm.gl52.ocr.com.recognition.software.jdeskew;
 
 //import java.awt.Color;
 //import java.awt.Graphics2D;

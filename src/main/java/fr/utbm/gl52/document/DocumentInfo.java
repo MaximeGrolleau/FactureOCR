@@ -12,14 +12,17 @@ public class DocumentInfo {
 	@GeneratedValue
 	private int id;
 	
-	private Client client;
-	private Supplier supplier;
-	private Address store;
-	private Date date;
-	private List<Product> products;
-	private float taxInclTotal;
-	private float taxExclTotal;
-	
+	public Client client;
+	public Supplier supplier;
+	public Address store;
+	public Date date;
+	public List<Product> products;
+	public float taxInclTotal;
+	public float taxExclTotal;
+	public int factureNumber;
+
+	public DocumentInfo() {
+	}
 	public DocumentInfo(Client client, Supplier supplier, Address store, Date date){
 		this.setClient(client);
 		this.setDate(date);

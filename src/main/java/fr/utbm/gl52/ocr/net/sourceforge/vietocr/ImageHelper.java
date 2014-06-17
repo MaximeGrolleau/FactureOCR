@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package ocr.net.sourceforge.vietocr;
+package fr.utbm.gl52.ocr.net.sourceforge.vietocr;
 
 import java.awt.Graphics2D;
 import java.awt.Image;

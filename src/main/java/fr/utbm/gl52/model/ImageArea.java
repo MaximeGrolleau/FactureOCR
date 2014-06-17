@@ -6,21 +6,31 @@ public class ImageArea {
 	private double fromY;
 	private double toX;
 	private double toY;
+	private boolean scale;
 
-	public ImageArea(ImageArea relative, double fromX, double fromY, double toX, double toY) {
+	ImageArea() {
+		this.relative = null;
+		this.fromX = 0.0;
+		this.fromY = 0.0;
+		this.toX = 1.0;
+		this.toY = 1.0;
+		this.scale = true;
+	}
+	public ImageArea(ImageArea relative, double fromX, double fromY, double toX, double toY, boolean scale) {
 		this.relative = relative;
 		this.fromX = fromX;
 		this.fromY = fromY;
 		this.toX = toX;
 		this.toY = toY;
+		this.scale = scale;
 	}
-	
-	public ImageArea(double fromX, double fromY, double width, double height, ImageArea relative) {
+	ImageArea(double fromX, double fromY, double width, double height, boolean scale, ImageArea relative) {
 		this.relative = relative;
 		this.fromX = fromX;
 		this.fromY = fromY;
 		this.toX = Math.abs(fromX + width);
 		this.toY = Math.abs(fromY + width);
+		this.scale = scale;
 	}
 	
 	public ImageArea getRelative() {
@@ -56,4 +66,11 @@ public class ImageArea {
 	public double getHeight() {
 		return Math.abs(getFromY() - getToY());
 	}
+	public boolean getScale() {
+		return scale;
+	}
+	public void setScale(boolean scale) {
+		this.scale = scale;
+	}
+	
 }

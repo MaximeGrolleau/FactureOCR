@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package ocr.net.sourceforge.tess4j.util;
+package fr.utbm.gl52.ocr.net.sourceforge.tess4j.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

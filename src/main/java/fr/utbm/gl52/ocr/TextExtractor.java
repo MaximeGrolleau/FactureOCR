@@ -4,12 +4,19 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import ocr.net.sourceforge.tess4j.Tesseract;
 import ocr.net.sourceforge.tess4j.TesseractException;
-import fr.utbm.gl52.model.Models;
+import fr.utbm.gl52.document.Document;
+import fr.utbm.gl52.document.DocumentBuilder;
+import fr.utbm.gl52.document.DocumentInfo;
+import fr.utbm.gl52.document.DocumentType;
+import fr.utbm.gl52.model.Model;
+import fr.utbm.gl52.model.Tag;
 
 public class TextExtractor {
 	
@@ -21,74 +28,64 @@ public class TextExtractor {
 	{
 		this.setImageFile(new File(filePath));
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
-		
 	}
-    public static void main(String[] args) {
-    	TextExtractor te = new TextExtractor("FactureOCR_0001.jpg");
-        
-        // Tesseract1 instance = new Tesseract1(); // JNA Direct Mapping
-    	
-    	String mouche = "La brochette de yannis avait un gros p�doncule goulument assorti d'une mayonnaise divine. \nIl s'en saisit et marcha une centaine de km.";
-    	String result = te.extractFromString("bruchotte", mouche, 12, 60);
-    	System.out.println(result);
-    	
-    	Models models = new Models();
-    	models.exemple();
-    	try {
-			te.setImage(ImageIO.read(te.getImageFile()));
+	public Document extractToDocument(Model model)
+	{
+		if(model == null)
+			return null;
+		try {
+			setImage(ImageIO.read(getImageFile()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-    	
-    	
-    	
-
-		/*Model model = models.getModels().get(0);
-		for(ModelField field : model.getFields())
-		{
-			field.getField().getValues().get(0).setTextValue(
-					te.extractFromString(field.getLocation().getAfter(), 
-							te.extractFromZone(new Rectangle(
-									(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
-									(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
-									(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
-									(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight())
-
-									))
-							)
-					);
-System.out.println(field.getLocation().getAfter());
-System.out.println(te.extractFromZone(new Rectangle(
-		(int)(field.getLocation().getArea().getFromX() * te.getImage().getWidth()),
-		(int)(field.getLocation().getArea().getFromY() * te.getImage().getHeight()),
-		(int)(field.getLocation().getArea().getWidth() * te.getImage().getWidth()),
-		(int)(field.getLocation().getArea().getHeight() * te.getImage().getHeight()))));
-			field.getField().getValues().get(0).extract();
-		}
-		for(ModelField field : model.getFields())
-		{
-			for(FieldValue<?> value : field.getField().getValues())
-				value.extract();
-		}
-		for(ModelField field : model.getFields())
-		{
-			for(FieldValue<?> value : field.getField().getValues())
-				System.out.println(field.getField().getName() + " : " + value.getExtractedValue());
-		}*/
 		
-        /*try {
-        	Point pos = new Point(0, 0);
-        	int width = 1000;
-        	int height = 400;
-        	Rectangle rect = new Rectangle(pos.x,pos.y,width,height);
-            String result = te.getTesseractInstance().doOCR(te.getImageFile(), rect);
-            System.out.println(result);
-        } catch (TesseractException e) {
-            System.err.println(e.getMessage());
-        }*/
-    }
-    
+		Document document = new Document(DocumentType.BILL, imageFile, new DocumentInfo());
+		String value;
+		
+		for(Tag tag : model.getTags())
+		{
+			double x;
+			double y;
+			double width;
+			double height;
+
+			x = tag.getLocation().getArea().getFromX();
+			y = tag.getLocation().getArea().getFromY();
+			width = tag.getLocation().getArea().getWidth();
+			height = tag.getLocation().getArea().getHeight();
+			if(tag.getLocation().getArea().getScale())
+			{
+				x *= getImage().getWidth();
+				y *= getImage().getHeight();
+				width *= getImage().getWidth();
+				height *= getImage().getHeight();
+			}
+
+			value = DocumentBuilder.discardAnyUselessCharacter(extractFromZone(new Rectangle((int)x, (int)y, (int)width, (int)height)));
+			if(value != null)
+			{
+				//System.out.println(value);
+				//System.out.println(tag.getLocation().getAfter());
+				if(tag.getLocation().getAfter() != null)
+					value = extractFromString(tag.getLocation().getAfter(), value);
+				if(value != null)
+				{
+					if(DocumentBuilder.convertAndAddIn(document.getInitialInfos(), tag.getTargetField(), value))
+						System.out.println(tag.getTargetField() + " is set to " + value);
+					else
+						System.out.println(tag.getTargetField() + " wasn't able to be set to " + value);
+				}
+				else
+					System.out.println(tag.getTargetField() + " hasn't enough OCR result");
+			}
+			else
+				System.out.println(tag.getTargetField() + " hasn't any OCR result");
+		}
+		
+		return document;
+	}
+
     public String extractFromZone(Rectangle rect)
     {
     	try{
@@ -128,25 +125,22 @@ System.out.println(te.extractFromZone(new Rectangle(
     }
     
     public String extractFromString(String toFind, String toSearch, int nbChar, int pctMatching){
-    	boolean allWordFind;
     	int currentPctMatch;
     	String result="";
     	for(int i = 0; i<toSearch.length()-toFind.length(); i++)
     	{
-    		allWordFind = true;
     		currentPctMatch = toFind.length();
     		for(int j=0; j<toFind.length(); j++)
     		{
     			if(!(toSearch.toLowerCase().charAt(i+j)==toFind.toLowerCase().charAt(j)))
     			{
-    				allWordFind = false;
     				currentPctMatch--;
     				//break;
     			}
     		}
     		System.out.println("avant "+currentPctMatch);
 			double temp = (currentPctMatch/(double)toFind.length());
-			System.out.println("pat� "+temp);
+			System.out.println("paté "+temp);
 			currentPctMatch = (int)(temp*100);
 			System.out.println("d'mouche "+currentPctMatch);
 			
@@ -173,9 +167,10 @@ System.out.println(te.extractFromZone(new Rectangle(
     	for(int i = 0; i<toSearch.length()-toFind.length(); i++)
     	{
     		allWordFind = true;
+    		
     		for(int j=0; j<toFind.length(); j++)
     		{
-    			if(!(toSearch.charAt(i+j)==toFind.charAt(j)))
+    			if(!(toSearch.toLowerCase().charAt(i+j)==toFind.toLowerCase().charAt(j)))
     			{
     				allWordFind = false;
     				break;
@@ -187,7 +182,45 @@ System.out.println(te.extractFromZone(new Rectangle(
     			if(!hasNewLine) max = toSearch.length();
     			else {
     				int nbChar = toSearch.indexOf(newline);
-	    			max = nbChar+i+toFind.length();
+	    			max = nbChar;
+	    			if(max > toSearch.length())
+	    				max = toSearch.length();
+    			}
+    			for(int j=i+toFind.length(); j<max; j++)
+    				result+=toSearch.charAt(j);
+    			return result;
+    		}
+    	}
+    	return null;
+    }
+    
+    public String extractFromString(String toFind, String toSearch, String separator, int pctMatching) //Until line separator found
+    {
+    	String newline = separator;
+    	boolean hasNewLine = toSearch.contains(newline);
+    	int currentPctMatch;
+    	System.out.println(hasNewLine);
+    	String result="";
+    	for(int i = 0; i<toSearch.length()-toFind.length(); i++)
+    	{
+    		currentPctMatch = toFind.length();
+    		for(int j=0; j<toFind.length(); j++)
+    		{
+    			if(!(toSearch.charAt(i+j)==toFind.charAt(j)))
+    			{
+    				currentPctMatch--;
+    			}
+    		}
+    		double temp = (currentPctMatch/(double)toFind.length());
+			currentPctMatch = (int)(temp*100);
+			
+    		if(currentPctMatch >= pctMatching)
+    		{
+    			int max;
+    			if(!hasNewLine) max = toSearch.length();
+    			else {
+    				int nbChar = toSearch.indexOf(newline);
+	    			max = nbChar;
 	    			if(max > toSearch.length())
 	    				max = toSearch.length();
     			}
@@ -199,6 +232,29 @@ System.out.println(te.extractFromZone(new Rectangle(
     	return null;
     }
     	
+    /*public Set<Field> getArticleFieldFromTable(List<String[]> table){
+    	Set<Field> fields = new HashSet<Field>();
+    	String[] header = table.get(0);
+    	for(int i=1; i<table.size(); i++){
+    		List<FieldValue<?>> values = new ArrayList<FieldValue<?>>();
+    		for(int j=1; j<header.length; j++){
+    			values.add(new FieldValueString(table.get(i)[j]));
+    		}
+    		fields.add(new Field(table.get(i)[0], values));
+    	}
+    	return fields;
+    }*/
+    
+    public List<String[]> splitIntoTab(String toSplit, String separator)
+   	{
+       	String str[] = toSplit.split(separator);
+       	ArrayList<String[]> result = new ArrayList<String[]>();
+       	for(int i = 0; i<str.length; i++)
+       	{
+       		result.add(str[i].split(" "));
+       	}
+   		return result;
+   	}
     
 	public Tesseract getTesseractInstance() {
 		return tesseractInstance;

@@ -9,9 +9,10 @@ public class Client {
 	@GeneratedValue
 	private int id;
 	
-	private Address address;
-	private String firstName;
-	private String lastName;
+	public Address address;
+	public String firstName;
+	public String lastName;
+	public String phoneNumber;
 	
 	public Client(Address address, String firstName, String lastName){
 		this.setAddress(address);

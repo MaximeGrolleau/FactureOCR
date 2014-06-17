@@ -13,7 +13,7 @@ public class Document {
 	
 	private final DocumentType type;
 	private final File attachedFile;
-	private final DocumentInfo initialInfos;
+	public final DocumentInfo initialInfos;
 	private DocumentInfo modifiedInfos;
 	
 	public Document(DocumentType type, File file, DocumentInfo initInfos){

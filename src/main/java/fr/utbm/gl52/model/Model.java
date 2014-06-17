@@ -1,8 +1,6 @@
 package fr.utbm.gl52.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import fr.utbm.gl52.document.DocumentType;

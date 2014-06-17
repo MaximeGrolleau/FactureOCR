@@ -9,10 +9,10 @@ public class Address {
 	@GeneratedValue
 	private int id;
 	
-	private String country;
-	private String city;
-	private String street;
-	private int postalCode;
+	public String country;
+	public String city;
+	public String street;
+	public int postalCode;
 	
 	public Address(String country, String city, String street){
 		this.setCity(city);
