@@ -20,9 +20,6 @@ public class Address {
 	public String street = "";
 	public int postalCode;
 	
-	public Address(){
-		
-	}
 	
 	public Address(String country, String city, String street){
 		this.setCity(city);

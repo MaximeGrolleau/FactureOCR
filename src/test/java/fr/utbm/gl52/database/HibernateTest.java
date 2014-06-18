@@ -3,7 +3,6 @@ package fr.utbm.gl52.database;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -66,7 +65,6 @@ public static void main(String[] args) {
         for (Document next : resultList) {
             System.out.println("document : " + next); //$NON-NLS-1$
         }
-        
         HibernateUtil.shutdown();
 
     }

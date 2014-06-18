@@ -9,14 +9,14 @@ import javax.imageio.ImageIO;
 import fr.utbm.gl52.ocr.TextExtractor;
 
 public class ModelEvaluator {
-	public static Model evaluate(File file, List<Model> possibleModels)
+	public static Model evaluate(String filepath, List<Model> possibleModels)
 	{
 		if(possibleModels.size() == 0)
 			return null;
 		if(possibleModels.size() == 1)
 			return possibleModels.get(0);
 		
-		TextExtractor te = new TextExtractor(file);
+		TextExtractor te = new TextExtractor(filepath);
 		
     	try {
 			te.setImage(ImageIO.read(te.getImageFile()));

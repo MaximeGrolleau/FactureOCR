@@ -1,9 +1,15 @@
 package fr.utbm.gl52.document;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -12,22 +18,21 @@ public class Client {
 
 	@Id
 	@GeneratedValue
-	private int id;
-	
-	
-	@OneToOne(cascade=CascadeType.ALL)
+	private int client_id;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Address address;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private int clientNumber;
-	
-	public Client(){
-		
+
+	public Client() {
+
 	}
-	
-	public Client(Address address, String firstName, String lastName){
+
+	public Client(Address address, String firstName, String lastName) {
 		this.setAddress(address);
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
@@ -56,4 +61,5 @@ public class Client {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
 }

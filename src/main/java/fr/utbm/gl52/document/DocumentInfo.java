@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -17,21 +19,24 @@ public class DocumentInfo {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int doc_info_id;
+	
+	@ManyToOne( cascade = CascadeType.ALL )
+	private Client client = new Client();
+	
+	@ManyToOne( cascade = CascadeType.ALL )
+	private Supplier supplier = new Supplier();
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Client client = new Client();
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private Supplier supplier = new Supplier();
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
 	private Address store  = new Address();
+	
 	private Date date = new Date();
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private List<Product> products = new ArrayList<Product>();;
+	private List<Product> products = new ArrayList<Product>();
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Price total = new Price();

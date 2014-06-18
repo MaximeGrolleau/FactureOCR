@@ -10,43 +10,45 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-
 @Entity
-public class Supplier {
+public class Supplier{
 
 	@Id
 	@GeneratedValue
-	private int id;
-	
-	private String name = "";
-	private String surname = "";
-	@OneToOne(cascade=CascadeType.ALL)
+	private int supplierId;
+
+	private String name = ""; //$NON-NLS-1$
+	private String surname = ""; //$NON-NLS-1$
+	private String phoneNumber = ""; //$NON-NLS-1$
+
+	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Address address = new Address();
-	private String website ="";
-	private String phoneNumber ="";
-    @Lob
+	private String website = ""; //$NON-NLS-1$
+
+	@Lob
 	private Image logo;
-	
 
 	/**
 	 * @param name
 	 * @param surname
 	 * @param address
 	 */
-	public Supplier(String name,String surname, Address address){
+	public Supplier(String name, String surname, Address address) {
 		this.setAddress(address);
 		this.setName(name);
 		setLogo(null);
 	}
-	
-	public Supplier(String name, Address address, Image logo){
+
+	public Supplier(String name, Address address, Image logo) {
 		this.setAddress(address);
 		this.setName(name);
 		this.setLogo(logo);
 	}
 
-	public Supplier() {}
+	public Supplier() {
+	}
+
 
 	public String getName() {
 		return name;
@@ -71,5 +73,49 @@ public class Supplier {
 	public void setLogo(Image logo) {
 		this.logo = logo;
 	}
-	
+
+	/**
+	 * @return the surname
+	 */
+	public String getSurname() {
+		return surname;
+	}
+
+	/**
+	 * @param surname
+	 *            the surname to set
+	 */
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	/**
+	 * @param phoneNumber
+	 *            the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	/**
+	 * @return the website
+	 */
+	public String getWebsite() {
+		return website;
+	}
+
+	/**
+	 * @param website
+	 *            the website to set
+	 */
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 }
