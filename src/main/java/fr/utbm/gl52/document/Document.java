@@ -99,6 +99,24 @@ public class Document {
 		List<Document> resultList = q.list();
         return resultList;
 	}
+	
+	public void deleteDocument(int id){
+		
+		Query query = HibernateUtil.getSession().createQuery("delete Document where id = :id"); //$NON-NLS-1$
+		query.setParameter("id", id); //$NON-NLS-1$
+		int result = query.executeUpdate();
+	}
+	
+	public Document getDocument(int id){
+		
+        Query q = HibernateUtil.getSession().createQuery("From Document where id = :id"); //$NON-NLS-1$
+        q.setParameter("id", id); //$NON-NLS-1$
+		@SuppressWarnings("unchecked")
+		List<Document> resultList = q.list();
+		if(resultList.size() != 0)
+			return resultList.get(0);
+		return null;
+	}
 }
 
 

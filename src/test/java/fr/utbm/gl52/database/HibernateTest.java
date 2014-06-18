@@ -59,6 +59,11 @@ public static void main(String[] args) {
 
 
         doc.getAllDocuments(DocumentType.BILL);
+        
+        System.out.println(doc.getDocument(1));
+        
+        doc.deleteDocument(1);
+        
         HibernateUtil.shutdown();
 
     }
