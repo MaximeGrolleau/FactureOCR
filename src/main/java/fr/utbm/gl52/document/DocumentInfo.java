@@ -12,18 +12,13 @@ public class DocumentInfo {
 	@Id
 	@GeneratedValue
 	private int id;
-<<<<<<< HEAD
+
 
 	private String seller;
-	private Client client;
-	private Supplier supplier;
-	private Address store;
-	private Date date;
-	private List<Product> products;
 	private float taxInclTotal;
 	private float taxExclTotal;
 	private int factureNumber;
-=======
+
 	
 
 	private Client client = new Client();
@@ -33,10 +28,6 @@ public class DocumentInfo {
 	private List<Product> products = new ArrayList<Product>();
 	private Price total = new Price();
 	
-	public float taxInclTotal; //TODO à virer
-	public float taxExclTotal; //TODO à virer
-	public int factureNumber;
->>>>>>> 237db2c1215cde8a20a1b6770889bcefffeceeac
 
 	public DocumentInfo() {}
 	

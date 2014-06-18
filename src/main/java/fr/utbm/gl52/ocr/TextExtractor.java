@@ -25,9 +25,9 @@ public class TextExtractor implements ScanListener {
 	private Tesseract tesseractInstance;
 	private List<ScanListener> listeners = new ArrayList<ScanListener>();
 	
-	public TextExtractor(File file)
+	public TextExtractor(String pathfile)
 	{
-		this.setImageFile(file);
+		this.setImageFile(pathfile);
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
 	
@@ -289,8 +289,8 @@ public class TextExtractor implements ScanListener {
 	public File getImageFile() {
 		return imageFile;
 	}
-	public void setImageFile(File imageFile) {
-		this.imageFile = imageFile;
+	public void setImageFile(String pathimageFile) {
+		this.imageFile = new File(pathimageFile);
 	}
 	public BufferedImage getImage() {
 		return image;
