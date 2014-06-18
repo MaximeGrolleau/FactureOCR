@@ -26,7 +26,7 @@ public class HibernateTest {
  */
 public static void main(String[] args) {
 	
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSession();
  
         session.beginTransaction();
 
@@ -57,14 +57,8 @@ public static void main(String[] args) {
         
         session.getTransaction().commit();
 
-        Query q = session.createQuery("From Document"); //$NON-NLS-1$
-                
-        @SuppressWarnings({"unchecked" })
-		List<Document> resultList = q.list();
-        System.out.println("Document:" + resultList.size()); //$NON-NLS-1$
-        for (Document next : resultList) {
-            System.out.println("document : " + next); //$NON-NLS-1$
-        }
+
+        doc.getAllDocuments(DocumentType.BILL);
         HibernateUtil.shutdown();
 
     }

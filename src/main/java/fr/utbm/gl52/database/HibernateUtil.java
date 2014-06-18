@@ -1,10 +1,10 @@
 package fr.utbm.gl52.database;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.jasypt.util.password.StrongPasswordEncryptor;
  
 /**
  * @author mgrollea
@@ -14,7 +14,7 @@ public class HibernateUtil {
  
     private static SessionFactory sessionFactory = buildSessionFactory();
     private static ServiceRegistry serviceRegistry;
-
+    private static Session session;
     /**
      * 
      */
@@ -49,5 +49,21 @@ public class HibernateUtil {
         // Close caches and connection pools
         getSessionFactory().close();
     }
+
+	/**
+	 * @return the session
+	 */
+	public static Session getSession() {
+		if(session != null)
+			return session;
+		return HibernateUtil.getSessionFactory().openSession();
+	}
+
+	/**
+	 * @param session the session to set
+	 */
+	public static void setSession(Session session) {
+		HibernateUtil.session = session;
+	}
  
 }

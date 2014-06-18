@@ -42,6 +42,8 @@ public class DocumentInfo {
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Price total = new Price();
+
+	private int factureNumber;
 	
 
 	public DocumentInfo() {}

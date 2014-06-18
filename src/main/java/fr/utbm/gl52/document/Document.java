@@ -1,6 +1,7 @@
 package fr.utbm.gl52.document;
 
 import java.io.File;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import fr.utbm.gl52.database.HibernateUtil;
 
 @Entity
 public class Document {
@@ -81,4 +87,18 @@ public class Document {
 	public File getAttachedFileData() {
 		return attachedFileData;
 	}
+	
+	/**
+	 * @param type
+	 * @return
+	 */
+	public List<Document> getAllDocuments(DocumentType type){
+		
+        Query q = HibernateUtil.getSession().createQuery("From Document where type = :doctype"); //$NON-NLS-1$
+        q.setParameter("doctype", type); //$NON-NLS-1$
+		List<Document> resultList = q.list();
+        return resultList;
+	}
 }
+
+
