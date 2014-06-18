@@ -1,5 +1,6 @@
 package fr.utbm.gl52.document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class DocumentInfo {
 	@Id
 	@GeneratedValue
 	private int id;
+<<<<<<< HEAD
 
 	private String seller;
 	private Client client;
@@ -21,9 +23,23 @@ public class DocumentInfo {
 	private float taxInclTotal;
 	private float taxExclTotal;
 	private int factureNumber;
+=======
+	
 
-	public DocumentInfo() {
-	}
+	private Client client = new Client();
+	private Supplier supplier = new Supplier();
+	private Address store = new Address();
+	private Date date = new Date();
+	private List<Product> products = new ArrayList<Product>();
+	private Price total = new Price();
+	
+	public float taxInclTotal; //TODO à virer
+	public float taxExclTotal; //TODO à virer
+	public int factureNumber;
+>>>>>>> 237db2c1215cde8a20a1b6770889bcefffeceeac
+
+	public DocumentInfo() {}
+	
 	public DocumentInfo(Client client, Supplier supplier, Address store, Date date){
 		this.setClient(client);
 		this.setDate(date);
@@ -63,20 +79,12 @@ public class DocumentInfo {
 		this.date = date;
 	}
 
-	public float getTaxInclTotal() {
-		return taxInclTotal;
+	public Price getTotal() {
+		return total;
 	}
 
-	public void setTaxInclTotal(float taxInclTotal) {
-		this.taxInclTotal = taxInclTotal;
-	}
-
-	public float getTaxExclTotal() {
-		return taxExclTotal;
-	}
-
-	public void setTaxExclTotal(float taxExclTotal) {
-		this.taxExclTotal = taxExclTotal;
+	public void setTotal(Price total) {
+		this.total = total;
 	}
 
 	public List<Product> getProducts() {

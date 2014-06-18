@@ -9,9 +9,9 @@ public class Address {
 	@GeneratedValue
 	private int id;
 	
-	public String country;
-	public String city;
-	public String street;
+	public String country = "";
+	public String city = "";
+	public String street = "";
 	public int postalCode;
 	
 	public Address(String country, String city, String street){
@@ -26,6 +26,8 @@ public class Address {
 		this.setStreet(street);
 		this.setPostalCode(postalCode);
 	}
+
+	public Address() {}
 
 	public String getCountry() {
 		return country;

@@ -11,15 +11,13 @@ public class Product {
 	
 	private String name;
 	private String reference;
-	private float taxInclPrice;
-	private float taxExclPrice;
+	private Price price;
 	private int quantity;
 	
-	public Product(String name, String reference, float taxInclPrice, float taxExclPrice, int quantity){
+	public Product(String name, String reference, float taxInclPrice, float taxExclPrice, Currency curr, int quantity){
 		this.setName(name);
 		this.setReference(reference);
-		this.setTaxExclPrice(taxExclPrice);
-		this.setTaxInclPrice(taxInclPrice);
+		this.setPrice(new Price(taxInclPrice, taxExclPrice, curr));
 		this.setQuantity(quantity);		
 	}
 
@@ -39,22 +37,13 @@ public class Product {
 		this.reference = reference;
 	}
 
-	public float getTaxInclPrice() {
-		return taxInclPrice;
+	public Price getPrice() {
+		return price;
 	}
 
-	public void setTaxInclPrice(float taxInclPrice) {
-		this.taxInclPrice = taxInclPrice;
+	public void setPrice(Price price) {
+		this.price = price;
 	}
-
-	public float getTaxExclPrice() {
-		return taxExclPrice;
-	}
-
-	public void setTaxExclPrice(float taxExclPrice) {
-		this.taxExclPrice = taxExclPrice;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}

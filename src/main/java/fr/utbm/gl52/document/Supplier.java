@@ -12,10 +12,10 @@ public class Supplier {
 	@GeneratedValue
 	private int id;
 	
-	private String name;
-	private Address address;
-	private String website;
-	private String phoneNumber;
+	private String name = "";
+	private Address address = new Address();
+	private String website = "";
+	private String phoneNumber = "";
 	private Image logo;
 	
 	public Supplier(String name, Address address){
@@ -29,6 +29,8 @@ public class Supplier {
 		this.setName(name);
 		this.setLogo(logo);
 	}
+
+	public Supplier() {}
 
 	public String getName() {
 		return name;
@@ -52,6 +54,22 @@ public class Supplier {
 
 	public void setLogo(Image logo) {
 		this.logo = logo;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 }

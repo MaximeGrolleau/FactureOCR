@@ -1,19 +1,19 @@
 package fr.utbm.gl52.gui.component;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import fr.utbm.gl52.document.Product;
 
-public class ArticleTableModel extends JPanel implements TableModel {
+public class ArticleTableModel extends JScrollPane implements TableModel {
 
 	private static final long serialVersionUID = 7461212547930675721L;
 
@@ -23,33 +23,36 @@ public class ArticleTableModel extends JPanel implements TableModel {
 	Object[][] data = null;
 
 	public ArticleTableModel() {
-		data = new Object[5][10];
+		data = new Object[15][5];
 
 		table = new JTable(data, header);
-		table.setPreferredSize(new Dimension(getWidth(), 300));
-		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.CENTER);
+		JPanel contentPane = new JPanel(new BorderLayout());
+		
+		setLayout(new ScrollPaneLayout());
+		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+		contentPane.add(table, BorderLayout.CENTER);
+		setViewportView(contentPane);
 	
 	}
 	
 	public ArticleTableModel(List<Product> products) {
-		data = new Object[5][products.size()];
+		data = new Object[products.size()][5];
 
 		for(int i = 0; i<products.size(); i++){
-			data[0][i] = products.get(i).getReference();
-			data[1][i] = products.get(i).getName();
-			data[2][i] = products.get(i).getQuantity();
-			data[3][i] = products.get(i).getTaxExclPrice();
-			data[4][i] = products.get(i).getTaxInclPrice();		
+			data[i][0] = products.get(i).getReference();
+			data[i][1] = products.get(i).getName();
+			data[i][2] = products.get(i).getQuantity();
+			data[i][3] = products.get(i).getPrice().getPriceExcludingTaxes();
+			data[i][4] = products.get(i).getPrice().getPriceIncludingTaxes();
 		}
 		
 		table = new JTable(data, header);
-		table.setPreferredSize(new Dimension(getWidth(), 300));
-		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.CENTER);
-	
+		JPanel contentPane = new JPanel(new BorderLayout());
+		
+		setLayout(new ScrollPaneLayout());
+		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+		contentPane.add(table, BorderLayout.CENTER);
+		setViewportView(contentPane);
 	}
 
 	public void addTableModelListener(TableModelListener listener) {
@@ -91,6 +94,6 @@ public class ArticleTableModel extends JPanel implements TableModel {
 
 	public void setEditable(boolean isEditable){
 		this.table.setEnabled(isEditable);
-		this.table.setBackground(Color.LIGHT_GRAY);
+		//this.table.setBackground(Color.LIGHT_GRAY);
 	}
 }
