@@ -15,16 +15,17 @@ public class PPane extends JPanel{
 	
 	private static final long serialVersionUID = 8157489844588357649L;
 	private JButton btn;
-	private boolean isExtended = false;
+	private boolean isExtended;
 	private final int extendedHeight;
 	
-	public PPane(String title, int height){
+	public PPane(String title, int height, boolean setExtended){
 		extendedHeight = height;
+		isExtended = setExtended;
 		setLayout(new BorderLayout());
 		
 		JLabel label = new JLabel(title);
 		
-		btn = new JButton("►");
+		btn = new JButton();
 		btn.setBorderPainted(false);
 		btn.setContentAreaFilled(false);
 		btn.setFocusPainted(false);
@@ -53,7 +54,13 @@ public class PPane extends JPanel{
 		panel.add(btn, BorderLayout.WEST);
 		panel.add(label, BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black));
-		setPreferredSize(new Dimension(this.getWidth(), 15));
+		if(isExtended){
+			setPreferredSize(new Dimension(this.getWidth(), extendedHeight));
+			btn.setText("▼");
+		} else {
+			setPreferredSize(new Dimension(this.getWidth(), 15));
+			btn.setText("►");
+		}
 		add(panel, BorderLayout.NORTH);
 	}
 	
