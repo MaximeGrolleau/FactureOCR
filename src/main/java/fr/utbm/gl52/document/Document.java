@@ -101,10 +101,12 @@ public class Document {
 	}
 	
 	public void deleteDocument(int id){
-		
-		Query query = HibernateUtil.getSession().createQuery("delete Document where id = :id"); //$NON-NLS-1$
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		Query query = session.createQuery("delete Document where id = :id"); //$NON-NLS-1$
 		query.setParameter("id", id); //$NON-NLS-1$
 		int result = query.executeUpdate();
+		session.getTransaction().commit();
 	}
 	
 	public Document getDocument(int id){

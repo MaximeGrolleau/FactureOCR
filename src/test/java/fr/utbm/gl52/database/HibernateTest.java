@@ -62,7 +62,7 @@ public static void main(String[] args) {
         
         System.out.println(doc.getDocument(1));
         
-        doc.deleteDocument(1);
+        doc.deleteDocument(2);
         
         HibernateUtil.shutdown();
 
