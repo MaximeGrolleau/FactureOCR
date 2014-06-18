@@ -46,7 +46,7 @@ public class DocumentPanel extends JPanel {
 	private PButton scanBtn;
 	private PComboBox modelCb;
 	private DocumentType typeOfDoc = DocumentType.DFLT;
-	
+	private int imgOriginWidth, imgOriginHeight, imgScaledWidth, imgScaledHeight;
 	private File file = null;
 	private List<Model> modelsBill = new ArrayList<Model>();
 	private List<Model> modelsReceipt = new ArrayList<Model>();
@@ -220,12 +220,12 @@ public class DocumentPanel extends JPanel {
 					System.out.println("format non support� : "
 							+ file.getAbsolutePath());
 					file = null;
-					JOptionPane.showMessageDialog(this, "Format non support�" , "Erreur", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Unsupported Format" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
 				System.out.println("fichier introuvable chemin incorrect : "
 						+ file.getAbsolutePath());
-				JOptionPane.showMessageDialog(this, "Chemin incorrect" , "Erreur", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Filepath leads nowhere" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				file = null;
 				imagePane.removeAll();
 				imagePane.updateUI();
@@ -262,18 +262,19 @@ public class DocumentPanel extends JPanel {
 	}
 	
 	private ImageIcon scaleImage(ImageIcon img) {
-		int width;
-		int height;
 
-//		if (img.getIconHeight() < img.getIconWidth()) {
-			width = imagePane.getWidth()-2;
-			height = (imagePane.getWidth()-2) * img.getIconHeight() / img.getIconWidth();
-//		} else {
-//			height = imagePane.getHeight();
-//			width = imagePane.getHeight() * img.getIconWidth() / img.getIconHeight();
-//		}
+		imgOriginWidth = img.getIconWidth();
+		imgOriginHeight = img.getIconHeight();
+		
+		if ((double) (imagePane.getWidth()-2)/(double) (imagePane.getHeight()-2) < (double) img.getIconWidth()/ (double)img.getIconHeight()) {
+			imgScaledWidth = imagePane.getWidth();
+			imgScaledHeight = (imagePane.getWidth()) * img.getIconHeight() / img.getIconWidth();
+		} else {
+			imgScaledHeight = imagePane.getHeight();
+			imgScaledWidth = (imagePane.getHeight()) * img.getIconWidth() / img.getIconHeight();
+		}
 
-		return new ImageIcon(img.getImage().getScaledInstance(width, height,
+		return new ImageIcon(img.getImage().getScaledInstance(imgScaledWidth, imgScaledHeight,
 				Image.SCALE_SMOOTH));
 	}
 
@@ -299,13 +300,14 @@ public class DocumentPanel extends JPanel {
 	}
 	
 	public void setModelFilterPanel(){
-		if(modelCb.getSelectedIndex() > 0){
-			if(imagePane.getComponentCount()>1){
+		if(modelCb.getSelectedIndex() > -1){
+			if(imagePane.getComponentCount() > 1){
 				imagePane.remove(0);
 			}
-			if(typeOfDoc == DocumentType.BILL){				
+			if(typeOfDoc == DocumentType.BILL){
 				imagePane.add(new PRectanglePane((float) 0.2, modelsBill.get(modelCb.getSelectedIndex())), 0);
 			} else {
+
 				imagePane.add(new PRectanglePane((float) 0.2, modelsReceipt.get(modelCb.getSelectedIndex())), 0);
 			}
 		} else {
@@ -331,18 +333,27 @@ public class DocumentPanel extends JPanel {
 	    public void paintComponent(Graphics g) {
 		    Graphics2D g2 = (Graphics2D) g;
             super.paintComponent(g);
-            g2.setColor(Color.GREEN);
+            g2.setColor(Color.ORANGE);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency));
             for(Tag tag : model.getTags()){
                 ImageArea zone = tag.getLocation().getArea();
-                zone.setRelative(new ImageArea(null, 0, 0, imagePane.getWidth()-2,imagePane.getHeight()-2, true));
-                g2.fillRect((int) zone.getFromX(), (int) zone.getFromY(), (int) zone.getHeight(), (int) zone.getWidth());                
+                int xup, yup, xlow, ylow;
+               	xup = (int) (zone.getFromX()*imgScaledWidth) / imgOriginWidth;
+                yup = (int) (zone.getFromY()*imgScaledHeight) / imgOriginHeight;
+                xlow = (int) (zone.getToX()*imgScaledWidth) / imgOriginWidth;;
+                ylow = (int) (zone.getToY()*imgScaledHeight) / imgOriginHeight;
+                g2.fillRect(xup, yup, xlow, ylow);                
             }
-            g2.setColor(Color.blue);
             for(Tag tag : model.getProductTags()){
+            	g2.setColor(Color.GREEN);
+            	System.out.println("tag");
                 ImageArea zone = tag.getLocation().getArea();
-                zone.setRelative(new ImageArea(null, 0, 0, imagePane.getWidth()-2,imagePane.getHeight()-2, true));
-                g2.fillRect((int) zone.getFromX(), (int) zone.getFromY(), (int) zone.getHeight(), (int) zone.getWidth());
+                int xup, yup, xlow, ylow;
+               	xup = (int) (zone.getFromX()*imgScaledWidth) / imgOriginWidth;
+                yup = (int) (zone.getFromY()*imgScaledHeight) / imgOriginHeight;
+                xlow = (int) (zone.getToX()*imgScaledWidth) / imgOriginWidth;;
+                ylow = (int) (zone.getToY()*imgScaledHeight) / imgOriginHeight;
+                g2.fillRect(xup, yup, xlow, ylow);        
             }
 		}
 	}
