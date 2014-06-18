@@ -4,7 +4,7 @@ public class Price {
 
 	private float priceIncludingTaxes;
 	private float priceExcludingTaxes;
-	private Currency currency;
+	private Currency currency = Currency.DEFLT;
 	
 	public Price(float amountWithTaxes, float amountWithoutTaxes, Currency currency){
 		this.setCurrency(currency);

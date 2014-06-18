@@ -180,12 +180,12 @@ public class DocumentPanel extends JPanel {
 					System.out.println("format non support� : "
 							+ file.getAbsolutePath());
 					file = null;
-					JOptionPane.showMessageDialog(this, "Format non support�" , "Erreur", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Unsupported format" , "Error", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
 				System.out.println("fichier introuvable chemin incorrect : "
 						+ file.getAbsolutePath());
-				JOptionPane.showMessageDialog(this, "Chemin incorrect" , "Erreur", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Filepath doesn't lead anywhere." , "Error", JOptionPane.WARNING_MESSAGE);
 				file = null;
 				imagePane.removeAll();
 				imagePane.updateUI();
@@ -201,6 +201,7 @@ public class DocumentPanel extends JPanel {
 	}
 	
 	private boolean isCorrectFormat(String format){
+		format = format.toLowerCase();
 		switch (format){
 		case "png":
 			return true;

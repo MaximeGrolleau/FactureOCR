@@ -420,8 +420,9 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		  dateFld.setText(f.format(infos.getDate()));
 		  totalFld.setText(String.valueOf(infos.getTotal().getPriceExcludingTaxes()));
 		  totalTTCFld.setText(String.valueOf(infos.getTotal().getPriceIncludingTaxes()));
+		  totalCb.setSelectedItem(infos.getTotal().getCurrency());
+		  totalTTCCb.setSelectedItem(infos.getTotal().getCurrency());
 		  articleTable = new ArticleTableModel(infos.getProducts());	
-		  
 		  activatePanel(true);
 	}
 
@@ -450,6 +451,7 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		}
 		Currency currency = (Currency) totalCb.getSelectedItem();
 		infos.setTotal(new Price(Float.parseFloat(totalTTCFld.getText()), Float.parseFloat(totalFld.getText()), currency));		
+		infos.setProducts(articleTable.getProducts());
 	}
 	
 	public void addDocumentListener(DocumentListener listener) {
