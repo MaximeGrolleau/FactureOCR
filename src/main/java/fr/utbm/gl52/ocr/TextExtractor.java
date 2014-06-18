@@ -18,8 +18,8 @@ import fr.utbm.gl52.document.Product;
 import fr.utbm.gl52.gui.listeners.ScanListener;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
-import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
-import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 public class TextExtractor implements ScanListener {
 	
 	private File imageFile;
@@ -218,11 +218,8 @@ public class TextExtractor implements ScanListener {
     				//break;
     			}
     		}
-    		System.out.println("avant "+currentPctMatch);
 			double temp = (currentPctMatch/(double)toFind.length());
-			System.out.println("paté "+temp);
 			currentPctMatch = (int)(temp*100);
-			System.out.println("d'mouche "+currentPctMatch);
 			
     		if(currentPctMatch >= pctMatching)
     		{

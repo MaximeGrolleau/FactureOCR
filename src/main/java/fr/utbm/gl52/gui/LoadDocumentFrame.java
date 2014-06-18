@@ -87,9 +87,12 @@ public class LoadDocumentFrame extends JFrame {
 		for(int i = 0 ; i < this.docs.size(); i ++){
 			DocumentInfo infos = this.docs.get(i).getInitialInfos();
 			if(infos!= null){
-				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getClient().getLastName(),i,1);
-				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getSupplier().getName(),i,2);
-				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getDate().toString(),i,3);
+				this.tableDocuments.setValueAt(String.valueOf(infos.getFactureNumber()), i, 0);
+				this.tableDocuments.setValueAt(infos.getClient().getLastName(),i,1);
+				this.tableDocuments.setValueAt(infos.getSupplier().getName(),i,2);
+				this.tableDocuments.setValueAt(infos.getDate().toString(),i,3);
+			} else {
+				System.out.println("document.documentInfo du document chargé nul");
 			}
 		}
 	}
