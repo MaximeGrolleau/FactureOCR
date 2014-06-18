@@ -1,7 +1,5 @@
 package fr.utbm.gl52.document;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +19,10 @@ public class DocumentInfo {
 	@GeneratedValue
 	private int id;
 
+
+	private String seller;
+	private float taxInclTotal;
+	private float taxExclTotal;
 	private int factureNumber;
 
 	
@@ -36,7 +38,7 @@ public class DocumentInfo {
 	private Date date = new Date();
 	@OneToMany(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private List<Product> products = new ArrayList<Product>();
+	private List<Product> products = new ArrayList<Product>();;
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Price total = new Price();
@@ -121,12 +123,5 @@ public class DocumentInfo {
 
 	public void setFactureNumber(int factureNumber) {
 		this.factureNumber = factureNumber;
-	}
-	public void setDate(String string) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
-		try {
-			this.date = formatter.parse(string);
-		} catch (ParseException e) {
-		}
 	}
 }

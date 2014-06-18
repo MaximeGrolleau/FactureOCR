@@ -65,7 +65,4 @@ public class Address {
 	public void setPostalCode(int postalCode) {
 		this.postalCode = postalCode;
 	}
-	public void setPostalCode(String string) {
-		this.postalCode = DocumentBuilder.getIntFromString(string);
-	}
 }

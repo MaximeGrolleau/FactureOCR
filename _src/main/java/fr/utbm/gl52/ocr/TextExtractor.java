@@ -106,60 +106,60 @@ public class TextExtractor implements ScanListener {
 
 		// products
 		Tag productsArea = model.getProductsArea();
-		if(productsArea != null)
+		double currentGapY = 0.0;
+		boolean stillProducts = true;
+		Product currentProduct;
+		while(stillProducts)
 		{
-			double currentGapY = 0.0;
-			boolean stillProducts = true;
-			Product currentProduct;
-			while(stillProducts)
+			currentProduct = new Product("", "", 0, 0, Currency.EUR, 0);
+			for(Tag tag : model.getProductTags())
 			{
-				stillProducts = false;
-				currentProduct = new Product("", "", 0, 0, Currency.EUR, 0);
-				for(Tag tag : model.getProductTags())
+				x = tag.getLocation().getArea().getFromX();
+				y = productsArea.getLocation().getArea().getFromY() + currentGapY;
+				width = tag.getLocation().getArea().getWidth();
+				height = productsArea.getLocation().getArea().getHeight();
+				if(tag.getLocation().getArea().getScale())
 				{
-					x = tag.getLocation().getArea().getFromX();
-					y = productsArea.getLocation().getArea().getFromY() + currentGapY;
-					width = tag.getLocation().getArea().getWidth();
-					height = productsArea.getLocation().getArea().getHeight();
-					if(tag.getLocation().getArea().getScale())
-					{
-						x *= getImage().getWidth();
-						y *= getImage().getHeight();
-						width *= getImage().getWidth();
-						height *= getImage().getHeight();
-					}
+					x *= getImage().getWidth();
+					y *= getImage().getHeight();
+					width *= getImage().getWidth();
+					height *= getImage().getHeight();
+				}
 
-					value = DocumentBuilder.discardAnyUselessCharacter(extractFromZone(new Rectangle((int)x, (int)y, (int)width, (int)height)));
-					if(value != null && value.length() > 0)
-					{
-						if(tag.getLocation().getAfter() != null && DocumentBuilder.discardAnyUselessCharacter(tag.getLocation().getAfter()).length() > 0)
-						{
-							valueAfter = extractFromString(tag.getLocation().getAfter(), value);
-							if(valueAfter != null)
-								value = valueAfter;
-							else
-								System.out.println("currentProduct." + tag.getTargetField() + " hasn't enough OCR result, discarded target word (" + tag.getLocation().getAfter() + ")");
-						}
-						if(DocumentBuilder.convertAndAddIn(currentProduct, tag.getTargetField(), DocumentBuilder.discardAnyLineAfterTheFirst(value)))
-						{
-							System.out.println("currentProduct." + tag.getTargetField() + " is set to " + value);
-							stillProducts = true;
-						}
-						else
-							System.out.println("currentProduct." + tag.getTargetField() + " wasn't able to be set to " + value);
-					}
-					else
-						System.out.println("currentProduct." + tag.getTargetField() + " hasn't any OCR result");
-					System.out.println();
-				}
-				if(stillProducts)
+				value = DocumentBuilder.discardAnyUselessCharacter(extractFromZone(new Rectangle((int)x, (int)y, (int)width, (int)height)));
+				if(value != null && value.length() > 0)
 				{
-					document.getInitialInfos().addProduct(currentProduct);
-					currentGapY += productsArea.getLocation().getArea().getHeight();
-					if(document.getInitialInfos().getProducts().size() > 6)
-						stillProducts = false;
+					if(tag.getLocation().getAfter() != null && DocumentBuilder.discardAnyUselessCharacter(tag.getLocation().getAfter()).length() > 0)
+					{
+						valueAfter = extractFromString(tag.getLocation().getAfter(), value);
+						if(valueAfter != null)
+							value = valueAfter;
+						else
+							System.out.println("currentArticle." + tag.getTargetField() + " hasn't enough OCR result, discarded target word (" + tag.getLocation().getAfter() + ")");
+					}
+					if(DocumentBuilder.convertAndAddIn(currentProduct, tag.getTargetField(), DocumentBuilder.discardAnyLineAfterTheFirst(value)))
+						System.out.println("currentArticle." + tag.getTargetField() + " is set to " + value);
+					else
+						System.out.println("currentArticle." + tag.getTargetField() + " wasn't able to be set to " + value);
 				}
+				else
+					System.out.println("currentArticle." + tag.getTargetField() + " hasn't any OCR result");
+				System.out.println();
 			}
+			document.getInitialInfos().addProduct(currentProduct);
+			currentGapY += productsArea.getLocation().getArea().getHeight();
+			if(document.getInitialInfos().getProducts().size() > 6)
+				stillProducts = false;
+		}
+		
+		for(Product product : document.getInitialInfos().getProducts())
+		{
+			System.out.println(product.getName());
+			System.out.println(product.getQuantity());
+			System.out.println(product.getReference());
+			System.out.println(product.getPrice());
+			System.out.println(product.getPrice().getPriceExcludingTaxes());
+			System.out.println();
 		}
 		
 		fireAnalysedDocument(document);
@@ -312,7 +312,7 @@ public class TextExtractor implements ScanListener {
     	return null;
     }
     	
-    /*public Set<Field> getProductFieldFromTable(List<String[]> table){
+    /*public Set<Field> getArticleFieldFromTable(List<String[]> table){
     	Set<Field> fields = new HashSet<Field>();
     	String[] header = table.get(0);
     	for(int i=1; i<table.size(); i++){

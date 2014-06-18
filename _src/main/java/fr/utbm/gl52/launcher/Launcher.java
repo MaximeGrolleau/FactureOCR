@@ -87,11 +87,11 @@ public class Launcher {
 									}
 									else
 									{
-										String targetFieldsMinusFirst = new String(targetFields[1]);
-										for(int k = 2; k < targetFields.length; ++k)
-											targetFieldsMinusFirst += "." + targetFields[k];
+										String targetFieldsMinusFirst = new String();
+										for(int k = 1; k < targetFields.length; ++k)
+											targetFieldsMinusFirst += targetFields[k];
 										tag.setTargetField(targetFieldsMinusFirst);
-										//tag.getLocation().getArea().setRelative(newModel.getProductsArea().getLocation().getArea());
+										tag.getLocation().getArea().setRelative(newModel.getProductsArea().getLocation().getArea());
 										newModel.addProductTag(tag);
 									}
 								}
