@@ -1,12 +1,8 @@
 package fr.utbm.gl52.document;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 @Entity
 public class Address {
@@ -37,7 +33,6 @@ public class Address {
 		this.setPostalCode(postalCode);
 	}
 
-	public Address() {}
 
 	public String getCountry() {
 		return country;

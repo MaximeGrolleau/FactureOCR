@@ -16,7 +16,7 @@ public class ModelEvaluator {
 		if(possibleModels.size() == 1)
 			return possibleModels.get(0);
 		
-		TextExtractor te = new TextExtractor(pathfile);
+		TextExtractor te = new TextExtractor(file.getPath());
 		
     	try {
 			te.setImage(ImageIO.read(te.getImageFile()));

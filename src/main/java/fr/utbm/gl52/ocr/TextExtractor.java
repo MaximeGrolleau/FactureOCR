@@ -9,10 +9,12 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import fr.utbm.gl52.document.Currency;
 import fr.utbm.gl52.document.Document;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.document.DocumentType;
+import fr.utbm.gl52.document.Product;
 import fr.utbm.gl52.gui.listeners.ScanListener;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
@@ -21,18 +23,22 @@ import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
 public class TextExtractor implements ScanListener {
 	
 	private File imageFile;
-	private String imagePath;
+	private String filePath;
 	private BufferedImage image;
 	private Tesseract tesseractInstance;
 	private List<ScanListener> listeners = new ArrayList<ScanListener>();
 	
-	public TextExtractor(String filePath)
+	public TextExtractor(String filepath)
 	{
-		this.setImageFile(new File(filePath));
-		this.setImagePath(filePath);
+		this.setFilePath(filepath);
+		this.setImageFile(new File(filepath));
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
 	
+	private void setFilePath(String filepath) {
+		this.filePath = filepath;
+	}
+
 	public TextExtractor(){
 		this.setTesseractInstance(Tesseract.getInstance());
 	};
@@ -48,19 +54,17 @@ public class TextExtractor implements ScanListener {
 			return null;
 		}
 		
-		Document document = new Document(DocumentType.BILL, this.imageFile, this.imagePath, new DocumentInfo());
+		Document document = new Document(DocumentType.BILL, imageFile, filePath, new DocumentInfo());
 		String value;
 		String valueAfter;
-		boolean products=false;
-		double sizeListProducts = -1;
 		
+		double x;
+		double y;
+		double width;
+		double height;
+
 		for(Tag tag : model.getTags())
 		{
-			double x;
-			double y;
-			double width;
-			double height;
-
 			x = tag.getLocation().getArea().getFromX();
 			y = tag.getLocation().getArea().getFromY();
 			width = tag.getLocation().getArea().getWidth();
@@ -72,15 +76,7 @@ public class TextExtractor implements ScanListener {
 				width *= getImage().getWidth();
 				height *= getImage().getHeight();
 			}
-			if(products)
-			{
-				//int yProduct = tag
-			}
-			if(tag.getLocation().getAfter()=="documentInfo.listProducts")
-			{
-				products=true;
-				sizeListProducts=tag.getLocation().getArea().getFromY();
-			}
+
 			/*System.out.println(x);
 			System.out.println(y);
 			System.out.println(width);
@@ -105,6 +101,64 @@ public class TextExtractor implements ScanListener {
 			}
 			else
 				System.out.println(tag.getTargetField() + " hasn't any OCR result");
+			System.out.println();
+		}
+
+		// products
+		Tag productsArea = model.getProductsArea();
+		double currentGapY = 0.0;
+		boolean stillProducts = true;
+		Product currentProduct;
+		while(stillProducts)
+		{
+			currentProduct = new Product("", "", 0, 0, Currency.EUR, 0);
+			for(Tag tag : model.getProductTags())
+			{
+				x = tag.getLocation().getArea().getFromX();
+				y = productsArea.getLocation().getArea().getFromY() + currentGapY;
+				width = tag.getLocation().getArea().getWidth();
+				height = productsArea.getLocation().getArea().getHeight();
+				if(tag.getLocation().getArea().getScale())
+				{
+					x *= getImage().getWidth();
+					y *= getImage().getHeight();
+					width *= getImage().getWidth();
+					height *= getImage().getHeight();
+				}
+
+				value = DocumentBuilder.discardAnyUselessCharacter(extractFromZone(new Rectangle((int)x, (int)y, (int)width, (int)height)));
+				if(value != null && value.length() > 0)
+				{
+					if(tag.getLocation().getAfter() != null && DocumentBuilder.discardAnyUselessCharacter(tag.getLocation().getAfter()).length() > 0)
+					{
+						valueAfter = extractFromString(tag.getLocation().getAfter(), value);
+						if(valueAfter != null)
+							value = valueAfter;
+						else
+							System.out.println("currentArticle." + tag.getTargetField() + " hasn't enough OCR result, discarded target word (" + tag.getLocation().getAfter() + ")");
+					}
+					if(DocumentBuilder.convertAndAddIn(currentProduct, tag.getTargetField(), DocumentBuilder.discardAnyLineAfterTheFirst(value)))
+						System.out.println("currentArticle." + tag.getTargetField() + " is set to " + value);
+					else
+						System.out.println("currentArticle." + tag.getTargetField() + " wasn't able to be set to " + value);
+				}
+				else
+					System.out.println("currentArticle." + tag.getTargetField() + " hasn't any OCR result");
+				System.out.println();
+			}
+			document.getInitialInfos().addProduct(currentProduct);
+			currentGapY += productsArea.getLocation().getArea().getHeight();
+			if(document.getInitialInfos().getProducts().size() > 6)
+				stillProducts = false;
+		}
+		
+		for(Product product : document.getInitialInfos().getProducts())
+		{
+			System.out.println(product.getName());
+			System.out.println(product.getQuantity());
+			System.out.println(product.getReference());
+			System.out.println(product.getPrice());
+			System.out.println(product.getPrice().getPriceExcludingTaxes());
 			System.out.println();
 		}
 		
@@ -283,35 +337,22 @@ public class TextExtractor implements ScanListener {
    	}
     
 	public Tesseract getTesseractInstance() {
-		return this.tesseractInstance;
+		return tesseractInstance;
 	}
 	public void setTesseractInstance(Tesseract tesseractInstance) {
 		this.tesseractInstance = tesseractInstance;
 	}
 	public File getImageFile() {
-		return this.imageFile;
+		return imageFile;
 	}
-	public void setImageFile(String pathimageFile) {
-		this.imageFile = new File(pathimageFile);
+	public void setImageFile(File imageFile) {
+		this.imageFile = imageFile;
 	}
 	public BufferedImage getImage() {
-		return this.image;
+		return image;
 	}
 	public void setImage(BufferedImage image) {
 		this.image = image;
-	}
-
-	 /**
-	 * @return the imagePath
-	 */
-	public String getImagePath() {
-		return this.imagePath;
-	}
-	/**
-	 * @param imagePath the imagePath to set
-	 */
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
 	}
 	
 	public void addScanListener(ScanListener listener) {

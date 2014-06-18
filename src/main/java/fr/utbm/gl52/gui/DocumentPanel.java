@@ -101,8 +101,8 @@ public class DocumentPanel extends JPanel {
 		JLabel modelLabel = new JLabel("Model");
 		String[] itemsModelCb = new String[models.size() + 1];
 		itemsModelCb[0] = "Select a model ...";
-		for(int i = 1; i<models.size()+1; i++){
-			itemsModelCb[i] = "Model " + i;
+		for(int i = 0; i<models.size(); i++){
+			itemsModelCb[i+1] = models.get(i).getName();
 		}
 		modelCb = new PComboBox(itemsModelCb);
 
@@ -180,12 +180,12 @@ public class DocumentPanel extends JPanel {
 					System.out.println("format non support� : "
 							+ file.getAbsolutePath());
 					file = null;
-					JOptionPane.showMessageDialog(this, "Unsupported format" , "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Format non support�" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
 				System.out.println("fichier introuvable chemin incorrect : "
 						+ file.getAbsolutePath());
-				JOptionPane.showMessageDialog(this, "Filepath doesn't lead anywhere." , "Error", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Chemin incorrect" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				file = null;
 				imagePane.removeAll();
 				imagePane.updateUI();
@@ -201,7 +201,6 @@ public class DocumentPanel extends JPanel {
 	}
 	
 	private boolean isCorrectFormat(String format){
-		format = format.toLowerCase();
 		switch (format){
 		case "png":
 			return true;

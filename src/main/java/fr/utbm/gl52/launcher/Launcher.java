@@ -27,44 +27,78 @@ public class Launcher {
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
-		
+
 		File[] modelFiles = new File("models").listFiles();
 		List<Model> models = new ArrayList<Model>();
-		
+
 		for(int j=0; j<modelFiles.length; j++)
 		{
-			Model newModel = new Model(DocumentType.RECEIPT);
-			List<String> content = readModel(modelFiles[j]);
-		
-			if (!content.isEmpty()){
-				for(int i=1; i<content.size(); i++){
-					content.set(i, content.get(i).replace("\n", " "));
-					content.set(i, content.get(i).trim());
-					String[] contentLine = content.get(i).split(";");
-					
-					String upLeftCorner = contentLine[2].substring(1, contentLine[2].length()-1);
-					upLeftCorner = upLeftCorner.trim();
-					String[] upCorner = upLeftCorner.split(",");
-	
-					String bottomRightCorner = contentLine[3].replace('(', ' ');
-					bottomRightCorner = bottomRightCorner.trim();
-					String[] btmCorner = bottomRightCorner.split(",");
-	
-					ImageArea imageArea = new ImageArea(null,
-							Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[0])),
-							Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[1])),
-							Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(btmCorner[0])),
-							Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(btmCorner[1])),
-							false);
-					if(Double.parseDouble(upCorner[0]) + Double.parseDouble(upCorner[1]) <= 2.0)
-						imageArea.setScale(true);
-					newModel.addTag(new Tag(contentLine[0], new Location(imageArea, contentLine[1])));
+			if(!modelFiles[j].isDirectory())
+			{
+				Model newModel = new Model(DocumentType.RECEIPT);
+				newModel.setName(modelFiles[j].getName());
+				List<String> content = readModel(modelFiles[j]);
+				if (!content.isEmpty()){
+					for(int i=1; i<content.size(); i++){
+						content.set(i, content.get(i).replace("\n", " "));
+						content.set(i, content.get(i).trim());
+						String[] contentLine = content.get(i).split(";");
+						if(contentLine.length == 4)
+						{
+							String[] targetFields = contentLine[0].split("\\.");
+							if(targetFields.length > 0)
+							{
+								String upLeftCorner = contentLine[2].substring(1, contentLine[2].length()-1);
+								upLeftCorner = upLeftCorner.trim();
+								String[] upCorner = upLeftCorner.split(",");
+
+								String bottomRightCorner = contentLine[3].replace('(', ' ');
+								bottomRightCorner = bottomRightCorner.trim();
+								String[] btmCorner = bottomRightCorner.split(",");
+
+								ImageArea imageArea = new ImageArea(null,
+										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[0])),
+										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[1])),
+										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(btmCorner[0])),
+										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(btmCorner[1])),
+										false);
+								if(Double.parseDouble(upCorner[0]) + Double.parseDouble(upCorner[1]) <= 2.0)
+									imageArea.setScale(true);
+
+								Tag tag = new Tag(contentLine[0], new Location(imageArea, contentLine[1]));
+								if(targetFields[0].equalsIgnoreCase("products"))
+								{
+									if(targetFields.length == 1)
+									{
+										newModel.setProductsArea(tag);
+									}
+									else
+									{
+										String targetFieldsMinusFirst = new String();
+										for(int k = 1; k < targetFields.length; ++k)
+											targetFieldsMinusFirst += targetFields[k];
+										tag.setTargetField(targetFieldsMinusFirst);
+										tag.getLocation().getArea().setRelative(newModel.getProductsArea().getLocation().getArea());
+										newModel.addProductTag(tag);
+									}
+								}
+								else
+								{
+									newModel.addTag(tag);
+								}
+							}
+							else
+								System.out.println("Wrong model format : empty target field");
+						}
+						else
+							System.out.println("Wrong model format : too many semicolons by line");
+					}
 				}
-	 		}
-			
-			models.add(newModel);
+
+				models.add(newModel);
+			}
 		}
-		
+
 		TextExtractor te = new TextExtractor();
 		AppFrame mainFrame = new AppFrame(te, models);
 	}
