@@ -1,8 +1,13 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+@Entity
 public class Product {
 	
 	@Id
@@ -11,6 +16,8 @@ public class Product {
 	
 	private String name;
 	private String reference;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Price price;
 	private int quantity;
 	

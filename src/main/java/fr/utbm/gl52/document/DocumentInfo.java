@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+@Entity
 public class DocumentInfo {
 
 	@Id
@@ -20,12 +26,21 @@ public class DocumentInfo {
 	private int factureNumber;
 
 	
-
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Client client = new Client();
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Supplier supplier = new Supplier();
-	private Address store = new Address();
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Address store  = new Address();
 	private Date date = new Date();
-	private List<Product> products = new ArrayList<Product>();
+	@OneToMany(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private List<Product> products = new ArrayList<Product>();;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Price total = new Price();
 	
 

@@ -4,6 +4,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
+import javax.persistence.Entity;
+
+
 public class DocumentBuilder {
 
 	public static boolean convertAndAddIn(Object instance, String fieldsNames, String value)

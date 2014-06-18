@@ -2,32 +2,54 @@ package fr.utbm.gl52.document;
 
 import java.io.File;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+@Entity
 public class Document {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
-	private final DocumentType type;
-	private final File attachedFile;
-	public final DocumentInfo initialInfos;
+	@Enumerated(EnumType.STRING)
+	private DocumentType type;
+    @Lob
+	private File attachedFileData;
+	private String attachedFileName;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	public DocumentInfo initialInfos;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private DocumentInfo modifiedInfos;
 	
-	public Document(DocumentType type, File file, DocumentInfo initInfos){
+	public Document(){
+		
+	}
+	
+	/**
+	 * @param type
+	 * @param file
+	 * @param name
+	 * @param initInfos
+	 */
+	public Document(DocumentType type, File file, String name, DocumentInfo initInfos){
 		this.type = type;
-		this.attachedFile = file;
+		this.attachedFileData = file;
+		this.attachedFileName = name;
 		this.initialInfos = initInfos;
 	}
 
 	public DocumentType getType() {
 		return type;
-	}
- 
-	public File getAttachedFile() {
-		return attachedFile;
 	}
 
 	public DocumentInfo getInitialInfos() {
@@ -44,5 +66,19 @@ public class Document {
 	
 	public int getId(){
 		return id;
+	}
+
+	/**
+	 * @return the attachedFileName
+	 */
+	public String getAttachedFileName() {
+		return attachedFileName;
+	}
+
+	/**
+	 * @return the attachedFileData
+	 */
+	public File getAttachedFileData() {
+		return attachedFileData;
 	}
 }

@@ -2,10 +2,16 @@ package fr.utbm.gl52.document;
 
 import java.awt.Image;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
+@Entity
 public class Supplier {
 
 	@Id
@@ -13,12 +19,22 @@ public class Supplier {
 	private int id;
 	
 	private String name = "";
+	private String surname = "";
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Address address = new Address();
-	private String website = "";
-	private String phoneNumber = "";
+	private String website ="";
+	private String phoneNumber ="";
+    @Lob
 	private Image logo;
 	
-	public Supplier(String name, Address address){
+
+	/**
+	 * @param name
+	 * @param surname
+	 * @param address
+	 */
+	public Supplier(String name,String surname, Address address){
 		this.setAddress(address);
 		this.setName(name);
 		setLogo(null);
@@ -54,22 +70,6 @@ public class Supplier {
 
 	public void setLogo(Image logo) {
 		this.logo = logo;
-	}
-
-	public String getWebsite() {
-		return website;
-	}
-
-	public void setWebsite(String website) {
-		this.website = website;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 	
 }

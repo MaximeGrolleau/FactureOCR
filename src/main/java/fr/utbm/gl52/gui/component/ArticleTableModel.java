@@ -54,6 +54,21 @@ public class ArticleTableModel extends JScrollPane implements TableModel {
 		contentPane.add(table, BorderLayout.CENTER);
 		setViewportView(contentPane);
 	}
+	
+	public List<Product> getProducts(){
+		List<Product> products = new ArrayList<Product>();
+		
+		for(int i = 0; i<data[0].length; i++){
+			Product product = new Product(String.valueOf(data[i][1]), 
+					String.valueOf(data[i][0]), 
+					Float.parseFloat(String.valueOf(data[i][4])), 
+					Float.parseFloat(String.valueOf(data[i][3])), 
+					null, 
+					Integer.valueOf((String.valueOf(data[i][2]))));
+			products.add(product);
+		}
+		return products;
+	}
 
 	public void addTableModelListener(TableModelListener listener) {
 		tableModelListener.add(listener);
