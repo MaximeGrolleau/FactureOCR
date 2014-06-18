@@ -38,9 +38,7 @@ public class ArticleTableModel extends JScrollPane implements TableModel {
 	public void update(List<Product> products) {
 		//data = new String[products.size()][5];
 
-		for(int i = 0; i<products.size(); i++){
-			System.out.println("article " + products.get(i).getReference() + products.get(i).getName());
-			table.setValueAt(products.get(i).getReference(), i, 0);
+		for(int i = 0; i<products.size(); i++){table.setValueAt(products.get(i).getReference(), i, 0);
 			table.setValueAt(products.get(i).getName(), i, 1);
 			table.setValueAt(String.valueOf(products.get(i).getQuantity()), i, 2);
 			table.setValueAt(String.valueOf(products.get(i).getPrice().getPriceExcludingTaxes()), i, 3);

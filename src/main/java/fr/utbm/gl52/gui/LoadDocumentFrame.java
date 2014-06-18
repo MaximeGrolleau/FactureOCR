@@ -101,7 +101,6 @@ public class LoadDocumentFrame extends JFrame {
 		Query q = HibernateUtil.getSession().createQuery("From Document where type = :doctype"); //$NON-NLS-1$
 		q.setParameter("doctype", type); //$NON-NLS-1$
 		List<Document> resultList = q.list();
-		System.out.println(resultList.size());
 		return resultList;
 	}
 

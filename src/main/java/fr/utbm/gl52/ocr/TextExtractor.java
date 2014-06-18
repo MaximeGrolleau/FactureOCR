@@ -218,11 +218,8 @@ public class TextExtractor implements ScanListener {
     				//break;
     			}
     		}
-    		System.out.println("avant "+currentPctMatch);
 			double temp = (currentPctMatch/(double)toFind.length());
-			System.out.println("paté "+temp);
 			currentPctMatch = (int)(temp*100);
-			System.out.println("d'mouche "+currentPctMatch);
 			
     		if(currentPctMatch >= pctMatching)
     		{
