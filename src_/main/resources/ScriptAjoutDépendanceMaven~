@@ -1,0 +1,7 @@
+mvn install:install-file -DgroupId=net.sourceforge.tess4j -DartifactId=tess4j -Dversion=1.3 -Dfile=tess4j.jar -Dpackaging=jar
+
+mvn install:install-file -DgroupId=net.sourceforge.tess4j -DartifactId=tess4j -Dversion=1.3 -Dfile=tess4j.jar -Dpackaging=jar
+
+mvn install:install-file -Dfile=liblept168.dll -DgroupId=net.sourceforge.tess4j -DartifactId=liblept  -Dversion=1.68 -Dpackaging=dll -DgeneratePom=true
+
+mvn install:install-file -Dfile=libtesseract302.dll -DgroupId=net.sourceforge.tess4j -DartifactId=libtesseract  -Dversion=3.02 -Dpackaging=dll -DgeneratePom=true

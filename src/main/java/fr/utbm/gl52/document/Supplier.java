@@ -10,6 +10,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+
 @Entity
 public class Supplier{
 
@@ -28,6 +29,7 @@ public class Supplier{
 
 	@Lob
 	private Image logo;
+	
 
 	/**
 	 * @param name
@@ -39,16 +41,14 @@ public class Supplier{
 		this.setName(name);
 		setLogo(null);
 	}
-
-	public Supplier(String name, Address address, Image logo) {
+	
+	public Supplier(String name, Address address, Image logo){
 		this.setAddress(address);
 		this.setName(name);
 		this.setLogo(logo);
 	}
 
-	public Supplier() {
-	}
-
+	public Supplier() {}
 
 	public String getName() {
 		return name;
@@ -118,4 +118,5 @@ public class Supplier{
 	public void setWebsite(String website) {
 		this.website = website;
 	}
+	
 }

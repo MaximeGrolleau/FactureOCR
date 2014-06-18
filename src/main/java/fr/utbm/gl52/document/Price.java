@@ -63,5 +63,11 @@ public class Price {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public void setPriceIncludingTaxes(String string) {
+		this.priceIncludingTaxes = DocumentBuilder.getFloatFromString(string);
+	}
+	public void setPriceExcludingTaxes(String string) {
+		this.priceExcludingTaxes = DocumentBuilder.getFloatFromString(string);
+	}
 }
