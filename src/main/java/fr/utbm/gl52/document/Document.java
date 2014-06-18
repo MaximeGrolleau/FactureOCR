@@ -88,7 +88,7 @@ public class Document {
 		return attachedFileData;
 	}
 	
-	public void deleteDocument(int id){
+	public static void deleteDocument(int id){
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		Query query = session.createQuery("delete Document where id = :id"); //$NON-NLS-1$
@@ -97,7 +97,7 @@ public class Document {
 		session.getTransaction().commit();
 	}
 	
-	public Document getDocument(int id){
+	public static Document getDocument(int id){
 		
         Query q = HibernateUtil.getSession().createQuery("From Document where id = :id"); //$NON-NLS-1$
         q.setParameter("id", id); //$NON-NLS-1$

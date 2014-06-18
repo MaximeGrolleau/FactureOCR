@@ -88,7 +88,6 @@ public class LoadDocumentFrame extends JFrame {
 	}
 	
 	public List<Document> getAllDocuments(DocumentType type){
-		// TODO maxime getDocument From Type
 		Query q = HibernateUtil.getSession().createQuery("From Document where type = :doctype"); //$NON-NLS-1$
 		q.setParameter("doctype", type); //$NON-NLS-1$
 		List<Document> resultList = q.list();

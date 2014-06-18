@@ -8,22 +8,22 @@ import fr.utbm.gl52.gui.listeners.DocumentListener;
 
 public class ActionController implements DocumentListener {
 	
+	@Override
 	public boolean saveDocument(Document doc) {
-		//TODO maxime save document -> exception chez moi
-		// je ferme la session alors qu'il faut la laisser ouverte ?
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.saveOrUpdate(doc);
         session.getTransaction().commit();
-        session.close();
         return true;
 	}
 
+	@Override
 	public boolean deleteDocument(int ID) {
-		//TODO maxime delete document
+		Document.deleteDocument(ID);
 		return false;
 	}
 
+	@Override
 	public void cancelModifsDocument(int ID) {
 	}
 

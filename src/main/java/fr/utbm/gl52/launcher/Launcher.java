@@ -8,6 +8,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.utbm.gl52.database.HibernateUtil;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentType;
 import fr.utbm.gl52.gui.AppFrame;
@@ -28,6 +29,8 @@ public class Launcher {
 	 */
 	public static void main(String[] argv) {
 
+		HibernateUtil.getSession();
+		
 		List<Model> models = new ArrayList<Model>();
 		
 		File[] modelReceipt = new File("models//receipt").listFiles();
@@ -38,8 +41,15 @@ public class Launcher {
 		
 		TextExtractor te = new TextExtractor();
 		AppFrame mainFrame = new AppFrame(te, models);
+		
+		HibernateUtil.shutdown();
 	}
 	
+	/**
+	 * @param modelFiles
+	 * @param type
+	 * @return
+	 */
 	public static List<Model> loadModels(File[] modelFiles, DocumentType type){
 		
 		List<Model> models = new ArrayList<Model>();
