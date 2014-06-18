@@ -1,5 +1,6 @@
 package fr.utbm.gl52.document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,20 +21,20 @@ public class DocumentInfo {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Client client;
+	private Client client = new Client();
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Supplier supplier;
+	private Supplier supplier = new Supplier();
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Address store;
-	private Date date;
+	private Address store  = new Address();
+	private Date date = new Date();
 	@OneToMany(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private List<Product> products;
+	private List<Product> products = new ArrayList<Product>();;
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Price total;
+	private Price total = new Price();
 	
 	public float taxInclTotal; //TODO à virer
 	public float taxExclTotal; //TODO à virer

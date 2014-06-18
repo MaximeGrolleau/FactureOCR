@@ -13,30 +13,18 @@ public class Price {
 	private int id;
 	
 	private float priceIncludingTaxes;
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	private float priceExcludingTaxes;
 	
 	@Enumerated(EnumType.STRING)
-	private Currency currency;
+	private Currency currency  = Currency.DEFLT;
 	
 	public Price(float amountWithTaxes, float amountWithoutTaxes, Currency currency){
 		this.setCurrency(currency);
 		this.setPriceExcludingTaxes(amountWithoutTaxes);
 		this.setPriceIncludingTaxes(amountWithTaxes);
 	}
+
+	public Price() {}
 
 	public float getPriceIncludingTaxes() {
 		return priceIncludingTaxes;
@@ -60,6 +48,20 @@ public class Price {
 
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

@@ -13,16 +13,18 @@ import fr.utbm.gl52.document.Document;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.document.DocumentType;
+import fr.utbm.gl52.gui.listeners.ScanListener;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
-public class TextExtractor {
+public class TextExtractor implements ScanListener {
 	
 	private File imageFile;
 	private String imagePath;
 	private BufferedImage image;
 	private Tesseract tesseractInstance;
+	private List<ScanListener> listeners = new ArrayList<ScanListener>();
 	
 	public TextExtractor(String filePath)
 	{
@@ -30,6 +32,11 @@ public class TextExtractor {
 		this.setImagePath(filePath);
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
+	
+	public TextExtractor(){
+		this.setTesseractInstance(Tesseract.getInstance());
+	};
+	
 	public Document extractToDocument(Model model)
 	{
 		if(model == null)
@@ -84,6 +91,7 @@ public class TextExtractor {
 				System.out.println(tag.getTargetField() + " hasn't any OCR result");
 		}
 		
+		fireAnalysedDocument(document);
 		return document;
 	}
 
@@ -275,7 +283,8 @@ public class TextExtractor {
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
-	/**
+
+	 /**
 	 * @return the imagePath
 	 */
 	public String getImagePath() {
@@ -286,5 +295,34 @@ public class TextExtractor {
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public void addScanListener(ScanListener listener) {
+		listeners.add(listener);
+	}
+
+	public void removeScanListener(ScanListener listener) {
+		listeners.remove(listener);
+	}
+	
+	private void fireAnalysedDocument(Document doc){
+		for (ScanListener elt : listeners) {
+			System.out.println("retour du document généré");
+			if(doc != null){
+				elt.receiveDocument(doc);
+			}
+		}
+	}
+	
+	@Override
+	public void receiveDocument(Document doc) {
+		// ne rien faire
+	}
+	
+	@Override
+	public void launchScan(File receivedFile, Model model) {
+		System.out.println("scan demandé");
+		imageFile = receivedFile;
+		extractToDocument(model);
 	}
 }

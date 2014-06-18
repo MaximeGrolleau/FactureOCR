@@ -1,19 +1,19 @@
 package fr.utbm.gl52.gui.component;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import fr.utbm.gl52.document.Product;
 
-public class ArticleTableModel extends JPanel implements TableModel {
+public class ArticleTableModel extends JScrollPane implements TableModel {
 
 	private static final long serialVersionUID = 7461212547930675721L;
 
@@ -23,12 +23,15 @@ public class ArticleTableModel extends JPanel implements TableModel {
 	Object[][] data = null;
 
 	public ArticleTableModel() {
-		data = new Object[25][5];
+		data = new Object[15][5];
 
 		table = new JTable(data, header);
-		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.CENTER);
+		JPanel contentPane = new JPanel(new BorderLayout());
+		
+		setLayout(new ScrollPaneLayout());
+		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+		contentPane.add(table, BorderLayout.CENTER);
+		setViewportView(contentPane);
 	
 	}
 	
@@ -44,11 +47,27 @@ public class ArticleTableModel extends JPanel implements TableModel {
 		}
 		
 		table = new JTable(data, header);
-		//table.setPreferredSize(new Dimension(getWidth(), 300));
-		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.CENTER);
+		JPanel contentPane = new JPanel(new BorderLayout());
+		
+		setLayout(new ScrollPaneLayout());
+		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+		contentPane.add(table, BorderLayout.CENTER);
+		setViewportView(contentPane);
+	}
 	
+	public List<Product> getProducts(){
+		List<Product> products = new ArrayList<Product>();
+		
+		for(int i = 0; i<data[0].length; i++){
+			Product product = new Product(String.valueOf(data[i][1]), 
+					String.valueOf(data[i][0]), 
+					Float.parseFloat(String.valueOf(data[i][4])), 
+					Float.parseFloat(String.valueOf(data[i][3])), 
+					null, 
+					Integer.valueOf((String.valueOf(data[i][2]))));
+			products.add(product);
+		}
+		return products;
 	}
 
 	public void addTableModelListener(TableModelListener listener) {
@@ -90,6 +109,6 @@ public class ArticleTableModel extends JPanel implements TableModel {
 
 	public void setEditable(boolean isEditable){
 		this.table.setEnabled(isEditable);
-		this.table.setBackground(Color.LIGHT_GRAY);
+		//this.table.setBackground(Color.LIGHT_GRAY);
 	}
 }

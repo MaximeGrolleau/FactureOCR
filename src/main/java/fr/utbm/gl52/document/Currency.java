@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 
 public enum Currency {
 	
-	EUR("EURO"), GPB("Pound"), USD("US DOLLAR"), CAD("CANADIAN DOLLAR"), AUD("AUSTRALIAN DOLLAR"), INR("INDIAN RUPEE"), AED("DIRHAM");
+	DEFLT("DEFAULT"),EUR("EURO"), GPB("Pound"), USD("US DOLLAR"), CAD("CANADIAN DOLLAR"), AUD("AUSTRALIAN DOLLAR"), INR("INDIAN RUPEE"), AED("DIRHAM");
 	
 	private String Name;
 	
@@ -15,4 +15,6 @@ public enum Currency {
 		this.Name  = name;
 	}
 	
+
+	private Currency(){}
 }

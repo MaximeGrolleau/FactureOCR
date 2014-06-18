@@ -8,7 +8,6 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.utbm.gl52.document.Document;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentType;
 import fr.utbm.gl52.gui.AppFrame;
@@ -59,10 +58,10 @@ public class Launcher {
 			}
  		}
 		
-		TextExtractor te = new TextExtractor("ImageTest/FactureOCR_0001.jpg");
-		Document document = te.extractToDocument(newModel);
-		
-		AppFrame mainFrame = new AppFrame();
+		List<Model> models = new ArrayList<Model>();
+		models.add(newModel);
+		TextExtractor te = new TextExtractor();
+		AppFrame mainFrame = new AppFrame(te, models);
 	}
 	 public static List<String> readModel(File f) {
 		 List<String> content = new ArrayList<String>();

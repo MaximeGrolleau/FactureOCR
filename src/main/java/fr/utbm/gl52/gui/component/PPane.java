@@ -35,7 +35,7 @@ public class PPane extends JPanel{
 					btn.setText("►");
 					isExtended = false;
 					//setMaximumSize(new Dimension(getWidth(), 20));
-					setPreferredSize(new Dimension(getWidth(), 20));
+					setPreferredSize(new Dimension(getWidth(), 15));
 					repaint();
 				} else {
 					//setMaximumSize(new Dimension(getWidth(), extendedHeight));
@@ -48,11 +48,12 @@ public class PPane extends JPanel{
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.setPreferredSize(new Dimension(this.getWidth(), 20));
+		panel.setPreferredSize(new Dimension(this.getWidth(), 26));
+		panel.setMinimumSize(new Dimension(this.getWidth(), 26));
 		panel.add(btn, BorderLayout.WEST);
 		panel.add(label, BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black));
-		setPreferredSize(new Dimension(this.getWidth(), 20));
+		setPreferredSize(new Dimension(this.getWidth(), 15));
 		add(panel, BorderLayout.NORTH);
 	}
 	
