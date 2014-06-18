@@ -3,6 +3,8 @@ package fr.utbm.gl52.gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -10,6 +12,7 @@ import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
 import fr.utbm.gl52.controller.ActionController;
+import fr.utbm.gl52.database.HibernateUtil;
 import fr.utbm.gl52.gui.listeners.MenuListener;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.ocr.TextExtractor;
@@ -48,6 +51,50 @@ public class AppFrame extends JFrame implements MenuListener {
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		this.addWindowListener(new WindowListener(){
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				HibernateUtil.shutdown();				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	public void searchDocumentFromDb() {

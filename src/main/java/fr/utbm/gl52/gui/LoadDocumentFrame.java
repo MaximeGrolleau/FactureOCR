@@ -38,8 +38,8 @@ public class LoadDocumentFrame extends JFrame {
 		final PComboBox filter = new PComboBox(DocumentType.values());
 		filter.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				docs = getAllDocuments((DocumentType) filter.getSelectedItem());
-				if(docs.isEmpty()){
+				LoadDocumentFrame.this.docs = getAllDocuments((DocumentType) filter.getSelectedItem());
+				if(LoadDocumentFrame.this.docs.isEmpty()){
 					JOptionPane.showMessageDialog(getContentPane(), "No " +filter.getSelectedItem()+ " in database.");
 				} else {
 					updateTable();					
@@ -48,17 +48,23 @@ public class LoadDocumentFrame extends JFrame {
 		});
 		add(filter, BorderLayout.NORTH);
 
-		docs = getAllDocuments((DocumentType) filter.getSelectedItem());
+		this.docs = getAllDocuments((DocumentType) filter.getSelectedItem());
 		String[] header = {"Client", "Company", "Date" };
-		String[][] data = new String[docs.size()][3];
-		tableDocuments = new JTable(data, header);
-		updateTable();
+		if(this.docs.size() == 0){
+			//TODO Qu'es ce qu'on fait :) 
+		}
+			
+			String[][] data = new String[this.docs.size()][3];
+			this.tableDocuments = new JTable(data, header);
+			updateTable();
+			add(this.tableDocuments, BorderLayout.CENTER);
+
 		
-		add(tableDocuments, BorderLayout.CENTER);
+		
 		
 		PButton btnLoad = new PButton("Load", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(documentSelected != null){
+				if(LoadDocumentFrame.this.documentSelected != null){
 					fireDocumentSelected();
 					dispose();
 				} else {
@@ -68,21 +74,22 @@ public class LoadDocumentFrame extends JFrame {
 		});
 		add(btnLoad, BorderLayout.SOUTH);
 		setVisible(true);
+		
 	}
 
 	private void fireDocumentSelected() {
-		for(ScanListener elt : scanListeners){
-			elt.receiveDocument(documentSelected);
+		for(ScanListener elt : this.scanListeners){
+			elt.receiveDocument(this.documentSelected);
 		}
 	}
 	
 	public void updateTable(){
-		for(int i = 0 ; i < docs.size(); i ++){
-			DocumentInfo infos = docs.get(i).getInitialInfos();
+		for(int i = 0 ; i < this.docs.size(); i ++){
+			DocumentInfo infos = this.docs.get(i).getInitialInfos();
 			if(infos!= null){
-				tableDocuments.setValueAt(docs.get(i).getInitialInfos().getClient().getLastName(),i,1);
-				tableDocuments.setValueAt(docs.get(i).getInitialInfos().getSupplier().getName(),i,2);
-				tableDocuments.setValueAt(docs.get(i).getInitialInfos().getDate().toString(),i,3);
+				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getClient().getLastName(),i,1);
+				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getSupplier().getName(),i,2);
+				this.tableDocuments.setValueAt(this.docs.get(i).getInitialInfos().getDate().toString(),i,3);
 			}
 		}
 	}
@@ -95,7 +102,7 @@ public class LoadDocumentFrame extends JFrame {
 	}
 
 	public void addDocumentListener(ScanListener listener) {
-		scanListeners.add(listener);
+		this.scanListeners.add(listener);
 	}
 
 }

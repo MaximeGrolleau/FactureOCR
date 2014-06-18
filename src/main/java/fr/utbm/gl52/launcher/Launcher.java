@@ -41,8 +41,6 @@ public class Launcher {
 		
 		TextExtractor te = new TextExtractor();
 		AppFrame mainFrame = new AppFrame(te, models);
-		
-		HibernateUtil.shutdown();
 	}
 	
 	/**
