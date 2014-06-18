@@ -14,7 +14,6 @@ import javax.persistence.Id;
 public class Bill {
 
 	@Id
-	@GeneratedValue
 	private int billId;
 
 	private int billPriceATI;
@@ -102,8 +101,9 @@ public class Bill {
 	/**
 	 * @return string
 	 */
-	public String ToString(){
+	@Override
+	public String toString(){
 		return new String("Bill [id=" + this.billId + ", taxPercent=" + this.billPercentTax + ", PriceATI=" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				+ this.billPriceATI + " Price EC" + this.billPriceET + "]" ); //$NON-NLS-1$ //$NON-NLS-2$
+				+ this.billPriceATI + " Price EC : " + this.billPriceET + "]" ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

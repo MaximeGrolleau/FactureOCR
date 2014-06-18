@@ -1,9 +1,18 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+
 public enum Currency {
 	
-	EUR, GPB, USD, CAD, AUD, INR, AED;
+	EUR("EURO"), GPB("Pound"), USD("US DOLLAR"), CAD("CANADIAN DOLLAR"), AUD("AUSTRALIAN DOLLAR"), INR("INDIAN RUPEE"), AED("DIRHAM");
 	
-	private Currency(){}
+	private String Name;
+	
+	private Currency(String name){
+		this.Name  = name;
+	}
 	
 }

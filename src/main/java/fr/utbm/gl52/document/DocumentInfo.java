@@ -3,21 +3,36 @@ package fr.utbm.gl52.document;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+@Entity
 public class DocumentInfo {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
-
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Client client;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Supplier supplier;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Address store;
 	private Date date;
+	@OneToMany(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private List<Product> products;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
 	private Price total;
 	
 	public float taxInclTotal; //TODO à virer

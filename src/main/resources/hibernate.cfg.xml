@@ -19,7 +19,15 @@
 		<property name="connection.pool_size">1</property>
 		<property name="current_session_context_class">thread</property>
 
-		<mapping class="fr.utbm.gl52.database.Bill" />
+		<mapping class="fr.utbm.gl52.document.Document" />
+		<mapping class="fr.utbm.gl52.document.Address" />
+		<mapping class="fr.utbm.gl52.document.Client" />
+		<mapping class="fr.utbm.gl52.document.Currency" />
+		<mapping class="fr.utbm.gl52.document.DocumentInfo" />
+		<mapping class="fr.utbm.gl52.document.DocumentType" />
+		<mapping class="fr.utbm.gl52.document.Price" />
+		<mapping class="fr.utbm.gl52.document.Product" />
+		<mapping class="fr.utbm.gl52.document.Supplier" />
 
 	</session-factory>
 </hibernate-configuration>

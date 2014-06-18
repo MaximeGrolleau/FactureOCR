@@ -1,19 +1,31 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
+@Entity
 public class Client {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
-	public Address address;
-	public String firstName;
-	public String lastName;
-	public String phoneNumber;
-	public int clientNumber;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Address address;
+	private String firstName;
+	private String lastName;
+	private String phoneNumber;
+	private int clientNumber;
+	
+	public Client(){
+		
+	}
 	
 	public Client(Address address, String firstName, String lastName){
 		this.setAddress(address);

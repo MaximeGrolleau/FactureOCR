@@ -1,10 +1,16 @@
 package fr.utbm.gl52.document;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+@Entity
 public class Address {
-	
+		
 	@Id
 	@GeneratedValue
 	private int id;
@@ -13,6 +19,10 @@ public class Address {
 	public String city;
 	public String street;
 	public int postalCode;
+	
+	public Address(){
+		
+	}
 	
 	public Address(String country, String city, String street){
 		this.setCity(city);

@@ -1,9 +1,35 @@
 package fr.utbm.gl52.document;
 
-public class Price {
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Price {
+	@GeneratedValue
+	@Id
+	private int id;
+	
 	private float priceIncludingTaxes;
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private float priceExcludingTaxes;
+	
+	@Enumerated(EnumType.STRING)
 	private Currency currency;
 	
 	public Price(float amountWithTaxes, float amountWithoutTaxes, Currency currency){

@@ -20,12 +20,14 @@ import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
 public class TextExtractor {
 	
 	private File imageFile;
+	private String imagePath;
 	private BufferedImage image;
 	private Tesseract tesseractInstance;
 	
 	public TextExtractor(String filePath)
 	{
 		this.setImageFile(new File(filePath));
+		this.setImagePath(filePath);
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
 	public Document extractToDocument(Model model)
@@ -39,7 +41,7 @@ public class TextExtractor {
 			return null;
 		}
 		
-		Document document = new Document(DocumentType.BILL, imageFile, new DocumentInfo());
+		Document document = new Document(DocumentType.BILL, this.imageFile, this.imagePath, new DocumentInfo());
 		String value;
 		
 		for(Tag tag : model.getTags())
@@ -256,21 +258,33 @@ public class TextExtractor {
    	}
     
 	public Tesseract getTesseractInstance() {
-		return tesseractInstance;
+		return this.tesseractInstance;
 	}
 	public void setTesseractInstance(Tesseract tesseractInstance) {
 		this.tesseractInstance = tesseractInstance;
 	}
 	public File getImageFile() {
-		return imageFile;
+		return this.imageFile;
 	}
 	public void setImageFile(File imageFile) {
 		this.imageFile = imageFile;
 	}
 	public BufferedImage getImage() {
-		return image;
+		return this.image;
 	}
 	public void setImage(BufferedImage image) {
 		this.image = image;
+	}
+	/**
+	 * @return the imagePath
+	 */
+	public String getImagePath() {
+		return this.imagePath;
+	}
+	/**
+	 * @param imagePath the imagePath to set
+	 */
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }
