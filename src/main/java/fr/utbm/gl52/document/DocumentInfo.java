@@ -1,5 +1,6 @@
 package fr.utbm.gl52.document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +14,12 @@ public class DocumentInfo {
 	private int id;
 	
 
-	private Client client;
-	private Supplier supplier;
-	private Address store;
-	private Date date;
-	private List<Product> products;
-	private Price total;
+	private Client client = new Client();
+	private Supplier supplier = new Supplier();
+	private Address store = new Address();
+	private Date date = new Date();
+	private List<Product> products = new ArrayList<Product>();
+	private Price total = new Price();
 	
 	public float taxInclTotal; //TODO à virer
 	public float taxExclTotal; //TODO à virer

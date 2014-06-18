@@ -47,11 +47,12 @@ public class ArticleTableModel extends JScrollPane implements TableModel {
 		}
 		
 		table = new JTable(data, header);
-		//table.setPreferredSize(new Dimension(getWidth(), 300));
-		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.NORTH);
-		add(table, BorderLayout.CENTER);
-	
+		JPanel contentPane = new JPanel(new BorderLayout());
+		
+		setLayout(new ScrollPaneLayout());
+		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
+		contentPane.add(table, BorderLayout.CENTER);
+		setViewportView(contentPane);
 	}
 
 	public void addTableModelListener(TableModelListener listener) {

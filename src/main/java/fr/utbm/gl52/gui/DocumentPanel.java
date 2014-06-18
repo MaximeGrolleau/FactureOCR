@@ -23,8 +23,8 @@ import javax.swing.JPanel;
 import fr.utbm.gl52.gui.component.PButton;
 import fr.utbm.gl52.gui.component.PComboBox;
 import fr.utbm.gl52.gui.component.PTextField;
-import fr.utbm.gl52.gui.listeners.DocumentListener;
 import fr.utbm.gl52.gui.listeners.ScanListener;
+import fr.utbm.gl52.model.Model;
 
 public class DocumentPanel extends JPanel {
 
@@ -34,12 +34,17 @@ public class DocumentPanel extends JPanel {
 	private static final int WIDTH = 350;
 
 	private List<ScanListener> scanListeners = new ArrayList<ScanListener>();
-	private File file = null;
 	private JPanel imagePane = new JPanel();
 	private PTextField filePathFld;
 	private PButton scanBtn;
+	private PComboBox modelCb;
+	
+	private File file = null;
+	private List<Model> models;
+	
 
-	public DocumentPanel(){
+	public DocumentPanel(List<Model> models){
+		this.models = models;
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -90,16 +95,26 @@ public class DocumentPanel extends JPanel {
 		PComboBox docTypeCb = new PComboBox(new String[] { "Select a type ...",
 				"Facture",
 				"Ticket de caisse" });
+		docTypeCb.setSelectedIndex(1);
 
 		// model
 		JLabel modelLabel = new JLabel("Model");
-		PComboBox modelCb = new PComboBox(new String[] { "Select a model ..." });
+		String[] itemsModelCb = new String[models.size() + 1];
+		itemsModelCb[0] = "Select a model ...";
+		for(int i = 1; i<models.size()+1; i++){
+			itemsModelCb[i] = "Model " + i;
+		}
+		modelCb = new PComboBox(itemsModelCb);
 
 		JPanel scanPane = new JPanel();
 		scanBtn = new PButton("Extract", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("apppui bouton ??");
-				fireLaunchScan();
+				int index = modelCb.getSelectedIndex()-1;
+				if(index < 0){
+					JOptionPane.showMessageDialog(imagePane, "Please select a model." , "Error", JOptionPane.WARNING_MESSAGE);
+				} else {
+					fireLaunchScan(index);
+				}
 			}
 		});
 		scanBtn.setEnabled(false);
@@ -230,11 +245,11 @@ public class DocumentPanel extends JPanel {
 		scanListeners.remove(listener);
 	}
 	
-	private void fireLaunchScan() {
+	private void fireLaunchScan(int indexModel) {
 		for (ScanListener elt : scanListeners) {
 			System.out.println("envoie de demande de scan");
 			if(file != null){
-				elt.launchScan(file);
+				elt.launchScan(file, models.get(indexModel));
 			}
 		}
 	}

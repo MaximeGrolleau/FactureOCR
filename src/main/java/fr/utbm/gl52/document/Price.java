@@ -12,6 +12,8 @@ public class Price {
 		this.setPriceIncludingTaxes(amountWithTaxes);
 	}
 
+	public Price() {}
+
 	public float getPriceIncludingTaxes() {
 		return priceIncludingTaxes;
 	}

@@ -14,25 +14,25 @@ import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.document.DocumentType;
 import fr.utbm.gl52.gui.listeners.ScanListener;
-import fr.utbm.gl52.launcher.Launcher;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
-public class TextExtractor implements ScanListener{
+public class TextExtractor implements ScanListener {
 	
 	private File imageFile;
 	private BufferedImage image;
 	private Tesseract tesseractInstance;
-	private List<Model> models;
+	private List<ScanListener> listeners = new ArrayList<ScanListener>();
 	
 	public TextExtractor(File file)
 	{
 		this.setImageFile(file);
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
-	public TextExtractor(List<Model> models){
-		this.models = models;
+	
+	public TextExtractor(){
+		this.setTesseractInstance(Tesseract.getInstance());
 	};
 	
 	public Document extractToDocument(Model model)
@@ -89,6 +89,7 @@ public class TextExtractor implements ScanListener{
 				System.out.println(tag.getTargetField() + " hasn't any OCR result");
 		}
 		
+		fireAnalysedDocument(document);
 		return document;
 	}
 
@@ -280,14 +281,33 @@ public class TextExtractor implements ScanListener{
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
+	
+	public void addScanListener(ScanListener listener) {
+		listeners.add(listener);
+	}
+
+	public void removeScanListener(ScanListener listener) {
+		listeners.remove(listener);
+	}
+	
+	private void fireAnalysedDocument(Document doc){
+		for (ScanListener elt : listeners) {
+			System.out.println("retour du document généré");
+			if(doc != null){
+				elt.receiveDocument(doc);
+			}
+		}
+	}
+	
 	@Override
 	public void receiveDocument(Document doc) {
 		// ne rien faire
 	}
+	
 	@Override
-	public void launchScan(File receivedFile) {
+	public void launchScan(File receivedFile, Model model) {
 		System.out.println("scan demandé");
 		imageFile = receivedFile;
-		extractToDocument(models.get(0));
+		extractToDocument(model);
 	}
 }

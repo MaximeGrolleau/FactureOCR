@@ -34,6 +34,7 @@ import fr.utbm.gl52.gui.component.PPane;
 import fr.utbm.gl52.gui.component.PTextField;
 import fr.utbm.gl52.gui.listeners.DocumentListener;
 import fr.utbm.gl52.gui.listeners.ScanListener;
+import fr.utbm.gl52.model.Model;
 
 public class ExtractedDataPanel extends JPanel implements ScanListener {
 
@@ -391,10 +392,6 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		this.delBtn.setEnabled(del);
 		this.cancelBtn.setEnabled(cancel);
 	}
-
-	public void receiveDocument(Document doc){
-		showDocument(doc, (doc.getModifiedInfos() != null));
-	}
 	
 	public void showDocument(Document document, boolean isModifiedDocument){
 		  this.document = document;
@@ -423,7 +420,9 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		  dateFld.setText(f.format(infos.getDate()));
 		  totalFld.setText(String.valueOf(infos.getTotal().getPriceExcludingTaxes()));
 		  totalTTCFld.setText(String.valueOf(infos.getTotal().getPriceIncludingTaxes()));
-		  articleTable = new ArticleTableModel(infos.getProducts());	  
+		  articleTable = new ArticleTableModel(infos.getProducts());	
+		  
+		  activatePanel(true);
 	}
 
 	public void updateDocument(){
@@ -491,8 +490,12 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		}
 	}
 
+	public void receiveDocument(Document doc){
+		showDocument(doc, (doc.getModifiedInfos() != null));
+	}
+	
 	@Override
-	public void launchScan(File receivedFile) {
+	public void launchScan(File receivedFile, Model model) {
 		// TODO Auto-generated method stub
 	}
 }
