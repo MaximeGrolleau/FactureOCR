@@ -1,4 +1,4 @@
-package fr.utbm.gl52.facturemodel;
+package fr.utbm.gl52.model;
 
 public abstract class FieldValue<T> {
 	protected String textValue;

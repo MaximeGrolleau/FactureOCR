@@ -1,1 +1,24 @@
 \chapter{Conclusion}
+
+\section{Retour aux objectifs}
+
+L'application développée répond aux grands objectifs définis : chargement et analyse des différents formats de fichiers, visualisation et modification des informations extraites, et enfin gestion de l'enregistrement et de l'accès aux données relatives à chaque facture ou ticket de caisse.
+Ce document de spécification garantie la réflexion portée autour de sa conception et son développement.\\
+
+Nous avons cependant dû faire face à un certain nombre de problèmes, à commencer par la conception de la structure représentative d'un document. Nous avons d'abord modélisé la structure avec un trop grand niveau de généricité ce qui rendait le processus beaucoup trop compliqué à gérer en particulier au niveau de la base de données. 
+Etant donné que seuls deux types de documents (facture et tickets de caisse) sont traités, une grande généricité sur les champs n'est pas nécessaire.\\
+
+Au niveau du processus d'OCR en lui-même, l'application est dépendante du temps d'exécution de Tesseract. En effet, environ vingt secondes sont nécessaires pour l'extraction de données d'une facture selon un modèle comprenant 4 zones.\\
+
+Concernant les objectifs non atteints, nous n'avons pas réussi à développer de méthode détection automatique de modèle au chargement de la facture par manque de temps et d'idée. D'autre part, le nombre de modèles de tests créés est très réduit et doit correspondre parfaitement à la facture pour obtenir un résultat correct. L'élasticité des modèles est en effet très faible et une bonne extraction de données nécessite un modèle très précis.
+
+
+\section{Regard critique}
+
+Le projet a été développé dans le respect des consignes et objectifs donnés.
+Un soin particulier a été apporté aux techniques de développement : nous obtenons un projet Maven, qui utilise conjointement une base de données et l'ORM hibernate, une libraire OCR adaptée à nos besoins à travers un classe type framework, et qui fonctionne sous Linux et Windows.\\
+
+La maintenance et l'évolution du projet sont donc grandement facilitées, et on peut imaginer mettre en place des solutions aux différents problèmes rencontrés : pour répondre aux difficutés de précision par exemple, un module pourrait être mis en place permettant la sélection manuelle de la zone d'articles par l'utilisateur. L'application gagnerait grandement en fiabilité avec en contrepartie une contrainte mineure pour l'utilisateur.\\
+Si l'on veut épargner le maximum d'actions à l'utilisateur, on pourrait proposer une solution alternative avec un nombre de modèles beaucoup plus élevé et l'ajout à l'interface d'un bouton d'enregistrement de l'image en tant que modèle avec définition des zones et reconnaissance du logo du prestataire.\\
+
+Le module de statistique mériterait également d'être développé, un des grands intérêt de l'informatisation de données étant l'analyse et l'étude globales des informations récoltées.

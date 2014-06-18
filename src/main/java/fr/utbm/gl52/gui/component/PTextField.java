@@ -10,6 +10,12 @@ public class PTextField extends JTextField{
 
 	public PTextField() {
 		super();
-		setPreferredSize(new Dimension(250, 20));
+		setPreferredSize(new Dimension(150, 20));
+		setMinimumSize(new Dimension(90, 20));
+	}
+	
+	public PTextField(int width) {
+		super();
+		setPreferredSize(new Dimension(width, 20));
 	}
 }

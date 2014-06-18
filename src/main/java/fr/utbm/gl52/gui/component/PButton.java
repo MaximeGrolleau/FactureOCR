@@ -10,8 +10,9 @@ public class PButton extends JButton {
 
 	public PButton(String text, ActionListener listener) {
 		super(text);
+		setFocusPainted(false);
+		setContentAreaFilled(false);
 		addActionListener(listener);
-
 	}
 
 }

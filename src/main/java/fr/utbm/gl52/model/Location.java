@@ -1,29 +1,29 @@
-package fr.utbm.gl52.facturemodel;
+package fr.utbm.gl52.model;
 
 public class Location {
 	private ImageArea area;
 	private String after;
 	
 	public Location() {
-		this.area = new ImageArea(null, 0.,0.,1.,1.);
+		this.area = new ImageArea();
 		this.after = null;
 	}
 	public Location(ImageArea area) {
 		if(area != null)
 			this.area = area;
 		else
-			this.area = new ImageArea(null, 0.,0.,1.,1.);
+			this.area = new ImageArea();
 		this.after = null;
 	}
 	public Location(String after) {
-		this.area = new ImageArea(null, 0.,0.,1.,1.);
+		this.area = new ImageArea();
 		this.after = after;
 	}
 	public Location(ImageArea area, String after) {
 		if(area != null)
 			this.area = area;
 		else
-			this.area = new ImageArea(null, 0.,0.,1.,1.);
+			this.area = new ImageArea();
 		this.after = after;
 	}
 	
@@ -34,7 +34,7 @@ public class Location {
 		if(area != null)
 			this.area = area;
 		else
-			this.area = new ImageArea(null, 0.,0.,1.,1.);
+			this.area = new ImageArea();
 	}
 
 	public String getAfter() {
@@ -43,4 +43,5 @@ public class Location {
 	public void setAfter(String after) {
 		this.after = after;
 	}
+	
 }

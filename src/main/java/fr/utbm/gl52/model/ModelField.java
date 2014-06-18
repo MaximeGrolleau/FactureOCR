@@ -1,4 +1,4 @@
-package fr.utbm.gl52.facturemodel;
+package fr.utbm.gl52.model;
 
 
 public class ModelField {

@@ -18,7 +18,7 @@ public class AppFrame extends JFrame implements MenuListener {
 
 	public AppFrame(){
 		setTitle("FactureOCR");
-		setSize(new Dimension(800,700));
+		setSize(new Dimension(850,700));
 		Container content = getContentPane();
 		content.setLayout(new BorderLayout());
 		
@@ -38,6 +38,7 @@ public class AppFrame extends JFrame implements MenuListener {
 		content.add(BorderLayout.CENTER, splitPane);
 		
 		setVisible(true);
+		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 

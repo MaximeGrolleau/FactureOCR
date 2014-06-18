@@ -1,6 +1,7 @@
 package fr.utbm.gl52.gui.component;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +11,40 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
+import fr.utbm.gl52.document.Product;
+
 public class ArticleTableModel extends JPanel implements TableModel {
 
 	private static final long serialVersionUID = 7461212547930675721L;
 
 	private List<TableModelListener> tableModelListener = new ArrayList<TableModelListener>();
 	private JTable table;
-	private String[] header= { "Ref.", "Desc.", "Qty", "Price" };
+	private String[] header= { "Ref.", "Desc.", "Qty", "Price excl. taxes", "Price incl. taxes"};
 	Object[][] data = null;
 
 	public ArticleTableModel() {
-		data = new Object[4][10];
+		data = new Object[25][5];
 
 		table = new JTable(data, header);
-		table.setPreferredSize(new Dimension(getWidth(), 300));
+		setLayout(new BorderLayout());
+		add(table.getTableHeader(), BorderLayout.NORTH);
+		add(table, BorderLayout.CENTER);
+	
+	}
+	
+	public ArticleTableModel(List<Product> products) {
+		data = new Object[products.size()][5];
+
+		for(int i = 0; i<products.size(); i++){
+			data[i][0] = products.get(i).getReference();
+			data[i][1] = products.get(i).getName();
+			data[i][2] = products.get(i).getQuantity();
+			data[i][3] = products.get(i).getPrice().getPriceExcludingTaxes();
+			data[i][4] = products.get(i).getPrice().getPriceIncludingTaxes();
+		}
+		
+		table = new JTable(data, header);
+		//table.setPreferredSize(new Dimension(getWidth(), 300));
 		setLayout(new BorderLayout());
 		add(table.getTableHeader(), BorderLayout.NORTH);
 		add(table, BorderLayout.CENTER);
@@ -67,4 +88,8 @@ public class ArticleTableModel extends JPanel implements TableModel {
 		data[xindex][yindex] = cellContent;
 	}
 
+	public void setEditable(boolean isEditable){
+		this.table.setEnabled(isEditable);
+		this.table.setBackground(Color.LIGHT_GRAY);
+	}
 }
