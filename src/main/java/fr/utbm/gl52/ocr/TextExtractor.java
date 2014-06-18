@@ -13,21 +13,28 @@ import fr.utbm.gl52.document.Document;
 import fr.utbm.gl52.document.DocumentBuilder;
 import fr.utbm.gl52.document.DocumentInfo;
 import fr.utbm.gl52.document.DocumentType;
+import fr.utbm.gl52.gui.listeners.ScanListener;
+import fr.utbm.gl52.launcher.Launcher;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
 import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
-public class TextExtractor {
+public class TextExtractor implements ScanListener{
 	
 	private File imageFile;
 	private BufferedImage image;
 	private Tesseract tesseractInstance;
+	private List<Model> models;
 	
-	public TextExtractor(String filePath)
+	public TextExtractor(File file)
 	{
-		this.setImageFile(new File(filePath));
+		this.setImageFile(file);
 		this.setTesseractInstance(Tesseract.getInstance()); // JNA Interface Mapping
 	}
+	public TextExtractor(List<Model> models){
+		this.models = models;
+	};
+	
 	public Document extractToDocument(Model model)
 	{
 		if(model == null)
@@ -272,5 +279,15 @@ public class TextExtractor {
 	}
 	public void setImage(BufferedImage image) {
 		this.image = image;
+	}
+	@Override
+	public void receiveDocument(Document doc) {
+		// ne rien faire
+	}
+	@Override
+	public void launchScan(File receivedFile) {
+		System.out.println("scan demandé");
+		imageFile = receivedFile;
+		extractToDocument(models.get(0));
 	}
 }

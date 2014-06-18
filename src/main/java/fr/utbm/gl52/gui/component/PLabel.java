@@ -15,4 +15,11 @@ public class PLabel extends JLabel {
 		setMinimumSize(new Dimension(50, 20));
 	}
 	
+	public PLabel(String text, int minWidth){
+		super(text);
+		setPreferredSize(new Dimension(70, 20));
+		setMaximumSize(new Dimension(150, 20));
+		setMinimumSize(new Dimension(minWidth, 20));
+	}
+	
 }

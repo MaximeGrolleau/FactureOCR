@@ -3,8 +3,10 @@ package fr.utbm.gl52.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
 import fr.utbm.gl52.gui.component.PButton;
 import fr.utbm.gl52.gui.component.PComboBox;
 import fr.utbm.gl52.gui.component.PTextField;
+import fr.utbm.gl52.gui.listeners.DocumentListener;
 import fr.utbm.gl52.gui.listeners.ScanListener;
 
 public class DocumentPanel extends JPanel {
@@ -41,18 +43,25 @@ public class DocumentPanel extends JPanel {
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		imagePane.setBackground(Color.LIGHT_GRAY);
+		
+		imagePane.setBackground(Color.white);
 		imagePane.setSize(new Dimension(320, 700));
-		imagePane.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+		imagePane.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		JPanel filePropertyPane = new JPanel();
-		filePropertyPane.setLayout(new BoxLayout(filePropertyPane,
-				BoxLayout.Y_AXIS));
-
+		filePropertyPane.setLayout(new GridBagLayout());
+		filePropertyPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+		
+		GridBagConstraints gc = new GridBagConstraints();
+		gc.anchor = GridBagConstraints.LINE_START;
+		gc.fill = GridBagConstraints.HORIZONTAL;
+		gc.insets = new Insets(2,2,2,2);
+		gc.gridx = 0;
+		gc.gridy = 0;	
+		
 		// filepath
 		JLabel filePathLbl = new JLabel("Filepath");
-		filePathFld = new PTextField();
+		filePathFld = new PTextField(180);
 		filePathFld.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -75,44 +84,56 @@ public class DocumentPanel extends JPanel {
 			}
 		});
 		filePathBtn.setPreferredSize(new Dimension(20, 20));
-		JPanel filePathPane = new JPanel();
-		filePathPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		filePathPane.add(filePathLbl);
-		filePathPane.add(filePathFld);
-		filePathPane.add(filePathBtn);
-		filePropertyPane.add(filePathPane);
 
 		// type of doc
 		JLabel docTypeLabel = new JLabel("Type of document");
 		PComboBox docTypeCb = new PComboBox(new String[] { "Select a type ...",
 				"Facture",
 				"Ticket de caisse" });
-		JPanel docTypePane = new JPanel();
-		docTypePane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		docTypePane.add(docTypeLabel);
-		docTypePane.add(docTypeCb);
-		filePropertyPane.add(docTypePane);
 
 		// model
 		JLabel modelLabel = new JLabel("Model");
 		PComboBox modelCb = new PComboBox(new String[] { "Select a model ..." });
-		JPanel modelPane = new JPanel();
-		modelPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		modelPane.add(modelLabel);
-		modelPane.add(modelCb);
-		filePropertyPane.add(modelPane);
 
-
+		JPanel scanPane = new JPanel();
 		scanBtn = new PButton("Extract", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("apppui bouton ??");
 				fireLaunchScan();
 			}
 		});
 		scanBtn.setEnabled(false);
+		scanPane.add(scanBtn);
+		scanPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+		filePropertyPane.add(filePathLbl, gc);
+		
+		gc.gridx = 1;
+		filePropertyPane.add(filePathFld, gc);
+		
+		gc.gridx = 2;
+		filePropertyPane.add(filePathBtn, gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 1;
+		filePropertyPane.add(docTypeLabel, gc);
+		
+		gc.gridx = 1;
+		gc.gridwidth = 2;
+		filePropertyPane.add(docTypeCb, gc);
+		
+		gc.gridx = 0;
+		gc.gridwidth = 1;
+		gc.gridy = 2;
+		filePropertyPane.add(modelLabel, gc);
+		
+		gc.gridx = 1;
+		gc.gridwidth = 2;
+		filePropertyPane.add(modelCb, gc);
+		
 		add(filePropertyPane, BorderLayout.NORTH);
 		add(imagePane, BorderLayout.CENTER);
-		add(scanBtn, BorderLayout.SOUTH);
+		add(scanPane, BorderLayout.SOUTH);
 	}
 
 	private void openExplorer() {
@@ -136,7 +157,6 @@ public class DocumentPanel extends JPanel {
 					System.out.println("Nouvelle image charg�e : "
 							+ file.getAbsolutePath());
 					ImageIcon img = new ImageIcon(file.getAbsolutePath());
-	
 					imagePane.removeAll();
 					imagePane.add(new JLabel(scaleImage(img)));
 					imagePane.updateUI();
@@ -144,6 +164,7 @@ public class DocumentPanel extends JPanel {
 				} else {
 					System.out.println("format non support� : "
 							+ file.getAbsolutePath());
+					file = null;
 					JOptionPane.showMessageDialog(this, "Format non support�" , "Erreur", JOptionPane.WARNING_MESSAGE);
 				}
 			} else {
@@ -201,9 +222,20 @@ public class DocumentPanel extends JPanel {
 				Image.SCALE_SMOOTH));
 	}
 
+	public void addScanListener(ScanListener listener) {
+		scanListeners.add(listener);
+	}
+
+	public void removeScanListener(ScanListener listener) {
+		scanListeners.remove(listener);
+	}
+	
 	private void fireLaunchScan() {
 		for (ScanListener elt : scanListeners) {
-			elt.launchScan();
+			System.out.println("envoie de demande de scan");
+			if(file != null){
+				elt.launchScan(file);
+			}
 		}
 	}
 }

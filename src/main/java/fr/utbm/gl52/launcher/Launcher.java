@@ -59,10 +59,10 @@ public class Launcher {
 			}
  		}
 		
-		TextExtractor te = new TextExtractor("ImageTest/FactureOCR_0001.jpg");
-		Document document = te.extractToDocument(newModel);
-		
-		AppFrame mainFrame = new AppFrame();
+		List<Model> models = new ArrayList<Model>();
+		models.add(newModel);
+		TextExtractor te = new TextExtractor(models);		
+		AppFrame mainFrame = new AppFrame(te);
 	}
 	 public static List<String> readModel(File f) {
 		 List<String> content = new ArrayList<String>();

@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -138,11 +139,11 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		clientPane.add(clientcountryFld, gc);
 
 		clientPane.setMinimumSize(new Dimension(getWidth(), 20));
-		clientPane.setMaximumSize(new Dimension(getWidth(), 140));
-		clientPane.setPreferredSize(new Dimension(getWidth(), 140));
-		PPane gclientPane = new PPane("Client informations", 140);
+		//clientPane.setMaximumSize(new Dimension(getWidth(), 150));
+		clientPane.setPreferredSize(new Dimension(getWidth(), 200));
+		PPane gclientPane = new PPane("Client informations", 200);
 		gclientPane.add(clientPane, BorderLayout.CENTER);
-		gclientPane.setPreferredSize(new Dimension(this.getWidth(), 20));
+		gclientPane.setPreferredSize(new Dimension(this.getWidth(), 15));
 		add(gclientPane);
 
 		// Seller infos
@@ -191,10 +192,10 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		gc.gridx = 5;
 		companyPane.add(companycountryFld, gc);
 		
-		companyPane.setMinimumSize(new Dimension(this.getWidth(), 20));
-		companyPane.setMaximumSize(new Dimension(this.getWidth(), 140));
-		companyPane.setPreferredSize(new Dimension(this.getWidth(), 20));
-		PPane gcompanyPane = new PPane("Seller informations", 140);
+		companyPane.setMinimumSize(new Dimension(this.getWidth(), 15));
+		companyPane.setMaximumSize(new Dimension(this.getWidth(), 210));
+		companyPane.setPreferredSize(new Dimension(this.getWidth(), 15));
+		PPane gcompanyPane = new PPane("Seller informations", 210);
 		gcompanyPane.add(companyPane, BorderLayout.CENTER);
 		add(gcompanyPane);
 		
@@ -234,10 +235,10 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		gc.gridx = 5;
 		storePane.add(storecountryFld, gc);
 		
-		storePane.setMinimumSize(new Dimension(this.getWidth(), 20));
+		storePane.setMinimumSize(new Dimension(this.getWidth(), 15));
 		storePane.setMaximumSize(new Dimension(this.getWidth(), 140));
-		storePane.setPreferredSize(new Dimension(this.getWidth(), 20));
-		PPane gstorePane = new PPane("Store location", 120);
+		storePane.setPreferredSize(new Dimension(this.getWidth(), 15));
+		PPane gstorePane = new PPane("Store location", 140);
 		gstorePane.add(storePane, BorderLayout.CENTER);
 		add(gstorePane);
 
@@ -265,15 +266,15 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		
 		gc.gridy = 1;
 		gc.gridx = 0;
-		datePane.add(new PLabel("Comments"), gc);
+		datePane.add(new PLabel("Comments", 70), gc);
 		
 		gc.gridx = 1;
 		gc.gridwidth = 4;
 		datePane.add(commentFld, gc);
 
-		datePane.setMinimumSize(new Dimension(this.getWidth(), 20));
-		datePane.setMaximumSize(new Dimension(this.getWidth(), 60));
-		datePane.setPreferredSize(new Dimension(this.getWidth(), 20));
+		datePane.setMinimumSize(new Dimension(this.getWidth(), 15));
+		datePane.setMaximumSize(new Dimension(this.getWidth(), 140));
+		datePane.setPreferredSize(new Dimension(this.getWidth(), 15));
 		PPane ggalPane = new PPane("General informations", 140);
 		ggalPane.add(datePane, BorderLayout.CENTER);
 		add(ggalPane);
@@ -491,7 +492,7 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	}
 
 	@Override
-	public void launchScan() {
-		// ne fais rien
+	public void launchScan(File receivedFile) {
+		// TODO Auto-generated method stub
 	}
 }

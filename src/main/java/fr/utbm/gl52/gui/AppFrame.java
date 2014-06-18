@@ -1,6 +1,7 @@
 package fr.utbm.gl52.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -10,13 +11,14 @@ import javax.swing.WindowConstants;
 
 import fr.utbm.gl52.controller.ActionController;
 import fr.utbm.gl52.gui.listeners.MenuListener;
+import fr.utbm.gl52.ocr.TextExtractor;
 
 public class AppFrame extends JFrame implements MenuListener {
 	
 	private static final long serialVersionUID = -702732361996190737L;
 	private ActionController controller = new ActionController();
 
-	public AppFrame(){
+	public AppFrame(TextExtractor te){
 		setTitle("FactureOCR");
 		setSize(new Dimension(850,700));
 		Container content = getContentPane();
@@ -26,6 +28,7 @@ public class AppFrame extends JFrame implements MenuListener {
 		menuPanel.addMenuListener(this);
 
 		DocumentPanel documentPanel = new DocumentPanel();
+		documentPanel.addScanListener(te);
 
 		ExtractedDataPanel dataPanel = new ExtractedDataPanel();
 		dataPanel.addDocumentListener(controller);
