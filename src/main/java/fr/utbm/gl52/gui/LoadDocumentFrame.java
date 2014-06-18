@@ -40,7 +40,7 @@ public class LoadDocumentFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LoadDocumentFrame.this.docs = getAllDocuments((DocumentType) filter.getSelectedItem());
 				if(LoadDocumentFrame.this.docs.isEmpty()){
-					JOptionPane.showMessageDialog(getContentPane(), "No " +filter.getSelectedItem()+ " in database.");
+					JOptionPane.showMessageDialog(getContentPane(), "No " +filter.getSelectedItem()+ " in database."); //$NON-NLS-1$ //$NON-NLS-2$
 				} else {
 					updateTable();					
 				}
@@ -49,7 +49,7 @@ public class LoadDocumentFrame extends JFrame {
 		add(filter, BorderLayout.NORTH);
 
 		this.docs = getAllDocuments((DocumentType) filter.getSelectedItem());
-		String[] header = {"Client", "Company", "Date" };
+		String[] header = {"Client", "Company", "Date" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		if(this.docs.size() == 0){
 			//TODO Qu'es ce qu'on fait :) 
 		}
@@ -62,13 +62,13 @@ public class LoadDocumentFrame extends JFrame {
 		
 		
 		
-		PButton btnLoad = new PButton("Load", new ActionListener() {
+		PButton btnLoad = new PButton("Load", new ActionListener() { //$NON-NLS-1$
 			public void actionPerformed(ActionEvent e) {
 				if(LoadDocumentFrame.this.documentSelected != null){
 					fireDocumentSelected();
 					dispose();
 				} else {
-					JOptionPane.showMessageDialog(getContentPane(), "No document selected.");
+					JOptionPane.showMessageDialog(getContentPane(), "No document selected."); //$NON-NLS-1$
 				}
 			}
 		});
