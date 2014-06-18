@@ -18,8 +18,8 @@ import fr.utbm.gl52.document.Product;
 import fr.utbm.gl52.gui.listeners.ScanListener;
 import fr.utbm.gl52.model.Model;
 import fr.utbm.gl52.model.Tag;
-import fr.utbm.gl52.ocr.net.sourceforge.tess4j.Tesseract;
-import fr.utbm.gl52.ocr.net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
 public class TextExtractor implements ScanListener {
 	
 	private File imageFile;
