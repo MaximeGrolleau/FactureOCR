@@ -29,13 +29,13 @@ public class Document {
 	private DocumentType type;
     @Lob
 	private File attachedFileData;
-	private String attachedFileName;
+	private String attachedFileName = "";
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	public DocumentInfo initialInfos;
+	public DocumentInfo initialInfos = new DocumentInfo();
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private DocumentInfo modifiedInfos;
+	private DocumentInfo modifiedInfos = new DocumentInfo();
 	
 	public Document(){
 		
@@ -86,18 +86,6 @@ public class Document {
 	 */
 	public File getAttachedFileData() {
 		return attachedFileData;
-	}
-	
-	/**
-	 * @param type
-	 * @return
-	 */
-	public List<Document> getAllDocuments(DocumentType type){
-		
-        Query q = HibernateUtil.getSession().createQuery("From Document where type = :doctype"); //$NON-NLS-1$
-        q.setParameter("doctype", type); //$NON-NLS-1$
-		List<Document> resultList = q.list();
-        return resultList;
 	}
 	
 	public void deleteDocument(int id){

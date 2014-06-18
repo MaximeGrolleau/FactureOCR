@@ -365,7 +365,6 @@ public class TextExtractor implements ScanListener {
 	
 	private void fireAnalysedDocument(Document doc){
 		for (ScanListener elt : listeners) {
-			System.out.println("retour du document généré");
 			if(doc != null){
 				elt.receiveDocument(doc);
 			}
@@ -379,7 +378,6 @@ public class TextExtractor implements ScanListener {
 	
 	@Override
 	public void launchScan(File receivedFile, Model model) {
-		System.out.println("scan demandé");
 		imageFile = receivedFile;
 		extractToDocument(model);
 	}

@@ -19,6 +19,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
 
@@ -361,11 +362,12 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 			}
 		});
 		cancelBtn = new PButton("Cancel all modifications",
-				new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						fireCancelModifsDoc();
-					}
-				});
+			new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					fireCancelModifsDoc();
+					showDocument(document, false);
+				}
+		});
 
 		JPanel btnPane = new JPanel();
 		btnPane.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -489,7 +491,11 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	private void fireSaveDoc() {
 		for (DocumentListener elt : documentListeners) {
 			if(document != null){
-				elt.saveDocument(document);			
+				if(elt.saveDocument(document)){
+					JOptionPane.showMessageDialog(this, "Document has been correctly saved.");
+				} else {
+					JOptionPane.showMessageDialog(this, "Document couldn't be saved.");
+				}		
 			} else {
 				System.out.println("Pas de document à enregistrer");
 			}
@@ -499,7 +505,11 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	private void fireDeleteDoc() {
 		for (DocumentListener elt : documentListeners) {
 			if(document != null){
-				elt.deleteDocument(document.getId());	
+				if(elt.deleteDocument(document.getId())){
+					JOptionPane.showMessageDialog(this, "Document has been correctly deleted.");
+				} else {
+					JOptionPane.showMessageDialog(this, "Document couldn't be deleted.");
+				}	
 			} else {
 				System.out.println("Pas de document à supprimer");
 			}
@@ -509,15 +519,16 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	private void fireCancelModifsDoc() {
 		for (DocumentListener elt : documentListeners) {
 			if(document != null){
-				elt.cancelModifsDocument(document.getId());	
+				elt.cancelModifsDocument(document.getId());
+				showDocument(document, false);
 			} else {
-				System.out.println("Pas de document à supprimer");
+				System.out.println("Pas de document sur lequel opérer");
 			}
 		}
 	}
 
 	public void receiveDocument(Document doc){
-		showDocument(doc, (doc.getModifiedInfos() != null));
+		showDocument(doc, false);
 	}
 	
 	@Override

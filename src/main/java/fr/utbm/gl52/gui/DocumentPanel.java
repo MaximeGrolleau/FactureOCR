@@ -288,7 +288,6 @@ public class DocumentPanel extends JPanel {
 	
 	private void fireLaunchScan(int indexModel) {
 		for (ScanListener elt : scanListeners) {
-			System.out.println("envoie de demande de scan");
 			if(file != null){
 				if(typeOfDoc == DocumentType.BILL){
 					elt.launchScan(file, modelsBill.get(indexModel));
@@ -310,8 +309,6 @@ public class DocumentPanel extends JPanel {
 
 				imagePane.add(new PRectanglePane((float) 0.2, modelsReceipt.get(modelCb.getSelectedIndex())), 0);
 			}
-		} else {
-			System.out.println(modelCb.getSelectedIndex());
 		}
 	}
 	
@@ -346,7 +343,6 @@ public class DocumentPanel extends JPanel {
             }
             for(Tag tag : model.getProductTags()){
             	g2.setColor(Color.GREEN);
-            	System.out.println("tag");
                 ImageArea zone = tag.getLocation().getArea();
                 int xup, yup, xlow, ylow;
                	xup = (int) (zone.getFromX()*imgScaledWidth) / imgOriginWidth;

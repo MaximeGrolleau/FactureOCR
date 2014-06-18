@@ -1,6 +1,5 @@
 package fr.utbm.gl52.model;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 

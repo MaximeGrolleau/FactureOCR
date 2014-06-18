@@ -1,20 +1,16 @@
 package fr.utbm.gl52.document;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
-
 public enum Currency {
 	
 	DEFLT("DEFAULT"),EUR("EURO"), GPB("Pound"), USD("US DOLLAR"), CAD("CANADIAN DOLLAR"), AUD("AUSTRALIAN DOLLAR"), INR("INDIAN RUPEE"), AED("DIRHAM");
 	
-	private String Name;
+	private final String name;
 	
 	private Currency(String name){
-		this.Name  = name;
+		this.name = name;
 	}
-	
 
-	private Currency(){}
+	public String getName() {
+		return name;
+	}
 }

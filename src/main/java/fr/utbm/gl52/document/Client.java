@@ -1,15 +1,9 @@
 package fr.utbm.gl52.document;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -60,6 +54,22 @@ public class Client {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public int getClientNumber() {
+		return clientNumber;
+	}
+
+	public void setClientNumber(int clientNumber) {
+		this.clientNumber = clientNumber;
 	}
 
 }

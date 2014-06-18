@@ -1,9 +1,5 @@
 package fr.utbm.gl52.document;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 public enum DocumentType {
 
 	DFLT("Select a type ..."),

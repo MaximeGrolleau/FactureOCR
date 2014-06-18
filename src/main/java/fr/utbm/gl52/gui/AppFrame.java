@@ -18,7 +18,8 @@ public class AppFrame extends JFrame implements MenuListener {
 	
 	private static final long serialVersionUID = -702732361996190737L;
 	private ActionController controller = new ActionController();
-
+	private ExtractedDataPanel dataPanel = new ExtractedDataPanel();
+	
 	public AppFrame(TextExtractor te, List<Model> models){
 		setTitle("FactureOCR");
 		setSize(new Dimension(860,700));
@@ -31,7 +32,7 @@ public class AppFrame extends JFrame implements MenuListener {
 		DocumentPanel documentPanel = new DocumentPanel(models);
 		documentPanel.addScanListener(te);
 
-		ExtractedDataPanel dataPanel = new ExtractedDataPanel();
+		
 		dataPanel.addDocumentListener(controller);
 		
 		te.addScanListener(dataPanel);
@@ -52,9 +53,8 @@ public class AppFrame extends JFrame implements MenuListener {
 	public void searchDocumentFromDb() {
 		LoadDocumentFrame searchFrame = new LoadDocumentFrame();
 		searchFrame.setAlwaysOnTop(true);
-		searchFrame.setPreferredSize(new Dimension(100, 100));
 		searchFrame.setLocationRelativeTo(this);
-		searchFrame.setVisible(true);
+		searchFrame.addDocumentListener(dataPanel);
 	}
 
 	public void showStats() {

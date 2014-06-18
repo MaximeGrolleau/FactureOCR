@@ -58,7 +58,7 @@ public static void main(String[] args) {
         session.getTransaction().commit();
 
 
-        doc.getAllDocuments(DocumentType.BILL);
+        //doc.getAllDocuments(DocumentType.BILL);
         
         System.out.println(doc.getDocument(1));
         
