@@ -41,7 +41,7 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	private static final long serialVersionUID = -9133411730442747891L;
 
 	private static final int HEIGHT = 650;
-	private static final int WIDTH = 430;
+	private static final int WIDTH = 460;
 	
 	private List<DocumentListener> documentListeners = new ArrayList<DocumentListener>();
 
@@ -59,12 +59,14 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	private PTextField storepostalcodeFld;
 	private PTextField storecountryFld;
 	private PTextField storestreetFld;
+	private PTextField storewebsiteFld;
 	private JFormattedTextField dateFld;
 	private PTextField companynameFld;
 	private PTextField companystreetFld;
 	private PTextField companycountryFld;
 	private PTextField companycityFld;
 	private PTextField companypostalcodeFld;
+	private PTextField billNumber;
 	private PTextField totalTTCFld;
 	private PTextField totalFld;
 	private PComboBox totalCb;
@@ -91,7 +93,6 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		clientPane.setLayout(new GridBagLayout());
 		
 		GridBagConstraints gc = new GridBagConstraints();
-		gc.anchor = GridBagConstraints.LINE_START;
 		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.insets = new Insets(2,2,2,2);
 		gc.gridx = 0;
@@ -153,16 +154,25 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		companycountryFld = new PTextField();
 		companycityFld = new PTextField();
 		companypostalcodeFld = new PTextField();
+		storewebsiteFld = new PTextField();
 		JPanel companyPane = new JPanel(new GridBagLayout());
 		
 		gc.gridx = 0;
 		gc.gridy = 0;
 		gc.gridwidth = 1;
 		companyPane.add(new PLabel("Name"), gc);
-
+		
 		gc.gridx = 1;
-		gc.gridwidth = 5;
+		gc.gridwidth = 2;
 		companyPane.add(companynameFld, gc);
+		
+		gc.gridx = 3;
+		gc.gridwidth = 1;
+		companyPane.add(new PLabel("Site"), gc);
+		
+		gc.gridx = 4;
+		gc.gridwidth = 2;
+		companyPane.add(storewebsiteFld, gc);
 
 		gc.gridx = 0;
 		gc.gridy = 1;
@@ -253,6 +263,7 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		dateFld.setPreferredSize(new Dimension(70, 20));
 		dateFld.setMinimumSize(new Dimension(70, 20));
 		commentFld = new PTextField();
+		billNumber = new PTextField();
 		commentFld.setPreferredSize(new Dimension(365, 40));
 		commentFld.setMinimumSize(new Dimension(365, 20));
 		JPanel datePane = new JPanel(new GridBagLayout());
@@ -264,6 +275,12 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		
 		gc.gridx = 1;
 		datePane.add(dateFld, gc);
+		
+		gc.gridx = 2;
+		datePane.add(new PLabel("Number", 70), gc);
+
+		gc.gridx = 3;
+		datePane.add(billNumber, gc);
 		
 		gc.gridy = 1;
 		gc.gridx = 0;
@@ -361,7 +378,7 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 	}
 	
 	private void activatePanel(boolean isActivated){
-		activateButtons(false, false, false);
+		activateButtons(isActivated, isActivated, isActivated);
 		clientfirstnameFld.setEditable(isActivated);
 		clientlastnameFld.setEditable(isActivated);
 		clientstreetFld.setEditable(isActivated);
@@ -370,10 +387,12 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		clientpostalcodeFld.setEditable(isActivated);
 		storecityFld.setEditable(isActivated);
 		storecountryFld.setEditable(isActivated);
+		storewebsiteFld.setEditable(isActivated);
 		storestreetFld.setEditable(isActivated);
 		storepostalcodeFld.setEditable(isActivated);
 		commentFld.setEditable(isActivated);
 		dateFld.setEditable(isActivated);
+		billNumber.setEditable(isActivated);
 		companynameFld.setEditable(isActivated);
 		companystreetFld.setEditable(isActivated);
 		companycountryFld.setEditable(isActivated);
@@ -412,17 +431,20 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		  storecountryFld.setText(infos.getStore().getCountry());
 		  storestreetFld.setText(infos.getStore().getStreet());
 		  storepostalcodeFld.setText(String.valueOf(infos.getStore().getPostalCode()));
+		  storewebsiteFld.setText(infos.getSupplier().getWebsite());
 		  companynameFld.setText(infos.getSupplier().getName());
 		  companycityFld.setText(infos.getSupplier().getAddress().getCity());
 		  companystreetFld.setText(infos.getSupplier().getAddress().getStreet());
 		  companycountryFld.setText(infos.getSupplier().getAddress().getCountry());
 		  companypostalcodeFld.setText(String.valueOf(infos.getSupplier().getAddress().getPostalCode()));
 		  dateFld.setText(f.format(infos.getDate()));
+		  billNumber.setText(String.valueOf(infos.getFactureNumber()));
 		  totalFld.setText(String.valueOf(infos.getTotal().getPriceExcludingTaxes()));
 		  totalTTCFld.setText(String.valueOf(infos.getTotal().getPriceIncludingTaxes()));
 		  totalCb.setSelectedItem(infos.getTotal().getCurrency());
 		  totalTTCCb.setSelectedItem(infos.getTotal().getCurrency());
-		  articleTable = new ArticleTableModel(infos.getProducts());	
+		  articleTable.update(infos.getProducts());
+		  articleTable.repaint();
 		  activatePanel(true);
 	}
 
@@ -452,6 +474,8 @@ public class ExtractedDataPanel extends JPanel implements ScanListener {
 		Currency currency = (Currency) totalCb.getSelectedItem();
 		infos.setTotal(new Price(Float.parseFloat(totalTTCFld.getText()), Float.parseFloat(totalFld.getText()), currency));		
 		infos.setProducts(articleTable.getProducts());
+		infos.getSupplier().setWebsite(storewebsiteFld.getText());
+		infos.setFactureNumber(billNumber.getText());
 	}
 	
 	public void addDocumentListener(DocumentListener listener) {

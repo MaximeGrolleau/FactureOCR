@@ -28,14 +28,27 @@ public class Launcher {
 	 */
 	public static void main(String[] argv) {
 
-		File[] modelFiles = new File("models").listFiles();
 		List<Model> models = new ArrayList<Model>();
+		
+		File[] modelReceipt = new File("models//receipt").listFiles();
+		models.addAll(loadModels(modelReceipt, DocumentType.RECEIPT));
 
+		File[] modelBill = new File("models//bill").listFiles();
+		models.addAll(loadModels(modelBill, DocumentType.BILL));
+		
+		TextExtractor te = new TextExtractor();
+		AppFrame mainFrame = new AppFrame(te, models);
+	}
+	
+	public static List<Model> loadModels(File[] modelFiles, DocumentType type){
+		
+		List<Model> models = new ArrayList<Model>();
+		
 		for(int j=0; j<modelFiles.length; j++)
 		{
 			if(!modelFiles[j].isDirectory())
 			{
-				Model newModel = new Model(DocumentType.RECEIPT);
+				Model newModel = new Model(type);
 				newModel.setName(modelFiles[j].getName());
 				List<String> content = readModel(modelFiles[j]);
 				if (!content.isEmpty()){
@@ -51,11 +64,11 @@ public class Launcher {
 								String upLeftCorner = contentLine[2].substring(1, contentLine[2].length()-1);
 								upLeftCorner = upLeftCorner.trim();
 								String[] upCorner = upLeftCorner.split(",");
-
+	
 								String bottomRightCorner = contentLine[3].replace('(', ' ');
 								bottomRightCorner = bottomRightCorner.trim();
 								String[] btmCorner = bottomRightCorner.split(",");
-
+	
 								ImageArea imageArea = new ImageArea(null,
 										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[0])),
 										Double.parseDouble(DocumentBuilder.discardAnyNonNumericCharacter(upCorner[1])),
@@ -64,7 +77,7 @@ public class Launcher {
 										false);
 								if(Double.parseDouble(upCorner[0]) + Double.parseDouble(upCorner[1]) <= 2.0)
 									imageArea.setScale(true);
-
+	
 								Tag tag = new Tag(contentLine[0], new Location(imageArea, contentLine[1]));
 								if(targetFields[0].equalsIgnoreCase("products"))
 								{
@@ -98,10 +111,10 @@ public class Launcher {
 				models.add(newModel);
 			}
 		}
-
-		TextExtractor te = new TextExtractor();
-		AppFrame mainFrame = new AppFrame(te, models);
+		return models;
 	}
+	
+	
 	 public static List<String> readModel(File f) {
 		 List<String> content = new ArrayList<String>();
 		    try {

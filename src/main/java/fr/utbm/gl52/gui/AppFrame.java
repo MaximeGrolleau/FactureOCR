@@ -1,7 +1,6 @@
 package fr.utbm.gl52.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.util.List;
@@ -22,7 +21,7 @@ public class AppFrame extends JFrame implements MenuListener {
 
 	public AppFrame(TextExtractor te, List<Model> models){
 		setTitle("FactureOCR");
-		setSize(new Dimension(850,700));
+		setSize(new Dimension(860,700));
 		Container content = getContentPane();
 		content.setLayout(new BorderLayout());
 		
@@ -38,12 +37,13 @@ public class AppFrame extends JFrame implements MenuListener {
 		te.addScanListener(dataPanel);
 
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		
+		splitPane.setEnabled(false);
 		content.add(BorderLayout.NORTH, menuPanel);
 		splitPane.add(documentPanel);
 		splitPane.add(dataPanel);
 		content.add(BorderLayout.CENTER, splitPane);
 		
+		pack();
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

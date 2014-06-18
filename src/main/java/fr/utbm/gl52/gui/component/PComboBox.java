@@ -8,6 +8,11 @@ public class PComboBox extends JComboBox<Object> {
 
 	private static final long serialVersionUID = -7564387139367739977L;
 
+	public PComboBox() {
+		super();
+		setPreferredSize(new Dimension(150, 20));
+	}
+	
 	public PComboBox(Object[] elements) {
 		super();
 		for (Object elt : elements) {

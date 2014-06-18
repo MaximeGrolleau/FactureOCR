@@ -17,10 +17,10 @@ public class Client {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-	private Address address;
-	private String firstName;
-	private String lastName;
-	private String phoneNumber;
+	private Address address = new Address();
+	private String firstName = "";
+	private String lastName = "";
+	private String phoneNumber = "";
 	private int clientNumber;
 	
 	public Client(){

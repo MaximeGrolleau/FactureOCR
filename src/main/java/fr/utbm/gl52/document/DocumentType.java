@@ -6,14 +6,9 @@ import javax.persistence.Enumerated;
 
 public enum DocumentType {
 
-	/**
-	 * 
-	 */
-	BILL("BILL"),
-	/**
-	 * 
-	 */
-	RECEIPT("RECEIPT");
+	DFLT("Select a type ..."),
+	BILL("Bill"),
+	RECEIPT("Receipt");
 	
 	private final String name;
 	
@@ -27,6 +22,23 @@ public enum DocumentType {
 	public String getName() {
 		return name;
 	}
+
+	static public String[] getList(){
+		String[] names = new String[]{
+				DFLT.getName(), BILL.getName(), RECEIPT.getName()
+		};
+		return names;
+	}
 	
+	static public DocumentType getDocumentType(String name){
+		switch (name){
+		case "Bill":
+			return BILL;
+		case "Receipt":
+			return RECEIPT;
+		default:
+			return DFLT;
+		}
+	}
 	
 }

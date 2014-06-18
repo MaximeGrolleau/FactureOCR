@@ -23,7 +23,7 @@ public class ArticleTableModel extends JScrollPane implements TableModel {
 	Object[][] data = null;
 
 	public ArticleTableModel() {
-		data = new Object[15][5];
+		data = new Object[23][5];
 
 		table = new JTable(data, header);
 		JPanel contentPane = new JPanel(new BorderLayout());
@@ -35,24 +35,19 @@ public class ArticleTableModel extends JScrollPane implements TableModel {
 	
 	}
 	
-	public ArticleTableModel(List<Product> products) {
-		data = new Object[products.size()][5];
+	public void update(List<Product> products) {
+		//data = new String[products.size()][5];
 
 		for(int i = 0; i<products.size(); i++){
-			data[i][0] = products.get(i).getReference();
-			data[i][1] = products.get(i).getName();
-			data[i][2] = products.get(i).getQuantity();
-			data[i][3] = products.get(i).getPrice().getPriceExcludingTaxes();
-			data[i][4] = products.get(i).getPrice().getPriceIncludingTaxes();
+			System.out.println("article " + products.get(i).getReference() + products.get(i).getName());
+			table.setValueAt(products.get(i).getReference(), i, 0);
+			table.setValueAt(products.get(i).getName(), i, 1);
+			table.setValueAt(String.valueOf(products.get(i).getQuantity()), i, 2);
+			table.setValueAt(String.valueOf(products.get(i).getPrice().getPriceExcludingTaxes()), i, 3);
+			table.setValueAt(String.valueOf(products.get(i).getPrice().getPriceIncludingTaxes()), i, 4);
 		}
 		
-		table = new JTable(data, header);
-		JPanel contentPane = new JPanel(new BorderLayout());
-		
-		setLayout(new ScrollPaneLayout());
-		contentPane.add(table.getTableHeader(), BorderLayout.NORTH);
-		contentPane.add(table, BorderLayout.CENTER);
-		setViewportView(contentPane);
+		table.repaint();
 	}
 	
 	public List<Product> getProducts(){

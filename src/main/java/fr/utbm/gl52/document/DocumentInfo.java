@@ -116,4 +116,12 @@ public class DocumentInfo {
 	public void setFactureNumber(String string) {
 		this.factureNumber = DocumentBuilder.getIntFromString(string);
 	}
+
+	public int getFactureNumber() {
+		return factureNumber;
+	}
+
+	public void setFactureNumber(int factureNumber) {
+		this.factureNumber = factureNumber;
+	}
 }
