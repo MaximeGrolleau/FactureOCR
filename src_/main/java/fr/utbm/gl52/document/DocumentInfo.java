@@ -11,8 +11,7 @@ public class DocumentInfo {
 	@Id
 	@GeneratedValue
 	private int id;
-
-	private String seller;
+	
 	private Client client;
 	private Supplier supplier;
 	private Address store;
@@ -98,7 +97,12 @@ public class DocumentInfo {
 		products.remove(oldProduct);
 		products.add(newProduct);
 	}
-	
+	public int getFactureNumber() {
+		return factureNumber;
+	}
+	public void setFactureNumber(int factureNumber) {
+		this.factureNumber = factureNumber;
+	}
 	public void setFactureNumber(String string) {
 		this.factureNumber = DocumentBuilder.getIntFromString(string);
 	}

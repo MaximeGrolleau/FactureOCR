@@ -43,8 +43,6 @@ public class TextExtractor {
 		Document document = new Document(DocumentType.BILL, imageFile, new DocumentInfo());
 		String value;
 		String valueAfter;
-		boolean products=false;
-		double sizeListProducts = -1;
 		
 		for(Tag tag : model.getTags())
 		{
@@ -64,15 +62,7 @@ public class TextExtractor {
 				width *= getImage().getWidth();
 				height *= getImage().getHeight();
 			}
-			if(products)
-			{
-				//int yProduct = tag
-			}
-			if(tag.getLocation().getAfter()=="documentInfo.listProducts")
-			{
-				products=true;
-				sizeListProducts=tag.getLocation().getArea().getFromY();
-			}
+
 			/*System.out.println(x);
 			System.out.println(y);
 			System.out.println(width);
@@ -155,11 +145,8 @@ public class TextExtractor {
     				//break;
     			}
     		}
-    		System.out.println("avant "+currentPctMatch);
 			double temp = (currentPctMatch/(double)toFind.length());
-			System.out.println("paté "+temp);
 			currentPctMatch = (int)(temp*100);
-			System.out.println("d'mouche "+currentPctMatch);
 			
     		if(currentPctMatch >= pctMatching)
     		{
@@ -178,7 +165,6 @@ public class TextExtractor {
     {
     	String newline = "\n";
     	boolean hasNewLine = toSearch.contains(newline);
-    	System.out.println(hasNewLine);
     	boolean allWordFind;
     	String result="";
     	for(int i = 0; i<toSearch.length()-toFind.length(); i++)
